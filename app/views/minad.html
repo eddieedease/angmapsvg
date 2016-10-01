@@ -1,0 +1,143 @@
+<div ng-show="minad.minn" class="section">
+  <div class="wrapper">
+    <form class="form-signin">
+      <h2 class="form-signin-heading">Hier inloggen</h2>
+      <code>User: Admin</code><br>
+      <code>Password: goudvis</code>
+      <hr>
+      <input ng-model="minad.user" type="text" class="form-control" name="username" placeholder="Gebruikersnaam" required="" autofocus="" />
+      <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required="" /> {{minad.wrongpwtext}}
+      <button class="btn btn-lg btn-dangerbtn-block" ng-click="minad.inlogger()" type="submit">Inloggen</button>
+    </form>
+  </div>
+</div>
+
+<div ng-show="minad.minnn" class="section">
+
+  <div class="jumbotron jum-b">
+    <div class="container">
+      <h1>ADMIN superpowers</h1>
+      <small>Voor het aanpassen van de kaart</small>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7">
+          <h3>{{minad.hovergemeente}}</h3>
+          <div svg-map></div>
+        </div>
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-5">
+          <div class="panel panel-danger">
+            <div class="panel-heading">Selectie</div>
+            <div class="panel-body">
+              <h4>Lijst select - (Met suggestie)</h4>
+              <div class="form-group">
+                <select selector model="minad.currentgemeente" options="minad.gemeenten" value-attr="value"></select></div>
+              <h4>Soort map</h4>
+              <div class="radio">
+                <label>
+                    <input type="radio"  name="radio1" value="1" ng-model="minad.curmap" ng-change="minad.setMap(1)">
+                    Overzicht kaart
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                    <input type="radio" name="radio2" value="2" ng-model="minad.curmap" ng-change="minad.setMap(2)">
+                    Buurtrechten
+                </label>
+              </div>
+            </div>
+            <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
+            <hr>
+            <div>
+              <button class="btn btn-primary center-block" type="submit">Opslaan</button>
+            </div>
+
+          </div>
+
+
+          <!--<p>
+                <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
+              </p>
+              <div class="regionlist">
+                <div ng-repeat="(key,gemeente) in dummyData">
+                  <div>{{key}}</div>
+                  <div>{{gemeente.value | number}}</div>
+                </div>
+              </div>-->
+          <div class="panel panel-danger">
+            <div class="panel-heading">Buurtrechten toewijzen</div>
+            <div class="panel-body">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="" checked>
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                  Buurtrecht 1
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="" >
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                  Buurtrecht 2
+                </label>
+              </div>
+              <div class="checkbox disabled">
+                <label>
+                  <input type="checkbox" value="" >
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                  Buurtrecht 3
+                </label>
+              </div> <button class="btn btn-primary" type="submit">Opslaan</button></div>
+          </div>
+
+          <div class="panel panel-danger">
+            <div class="panel-heading">Instrumenten toewijzen</div>
+            <div class="panel-body">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="" checked>
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                  Instrument 1
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="" >
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                  Instrument 2
+                </label>
+              </div>
+              <div class="checkbox disabled">
+                <label>
+                  <input type="checkbox" value="" >
+                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                  Instrument 3
+                </label>
+              </div><button class="btn btn-primary" type="submit">Opslaan</button></div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>

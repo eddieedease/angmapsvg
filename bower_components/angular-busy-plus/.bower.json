@@ -1,0 +1,43 @@
+{
+  "name": "angular-busy-plus",
+  "version": "4.1.5",
+  "main": [
+    "dist/angular-busy.js",
+    "dist/angular-busy.css"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9",
+    "angular-animate": "~1.4.9"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "temp",
+    "demo",
+    "lib",
+    "./angular-busy.css",
+    "./angular-busy.html",
+    "./angular-busy.js",
+    "Gruntfile.js",
+    "package.json",
+    "README.md"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.4.9",
+    "jquery": "~2.1.0"
+  },
+  "homepage": "https://github.com/faceleg/angular-busy-plus",
+  "_release": "4.1.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.1.5",
+    "commit": "250bbb514f991a298fa5e7b969733ccb1ade20d7"
+  },
+  "_source": "https://github.com/faceleg/angular-busy-plus.git",
+  "_target": "^4.1.5",
+  "_originalSource": "angular-busy-plus",
+  "_direct": true
+}

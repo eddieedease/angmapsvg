@@ -1,0 +1,191 @@
+.nav{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.jum-b{
+    background-color: #e13c3c !important;
+}
+.jumbotron h1 {
+    color: #FFF !important;
+    text-shadow: 1px 1px #000, 2px 2px #000;
+}
+.jumbotron p, small {
+    color: #FFF !important ;
+}
+
+em {
+    color: #000000 !important;
+    text-shadow: 1px 1px #FFF, 2px 2px #FFF;
+}
+
+
+
+svg path:hover , path.active { /* Amend this */
+    cursor: pointer;
+    opacity: 1;
+
+
+}
+
+svg .gemeente.active ,.gemeente1.active, .gemeente2.active ,.gemeente3.active, .gemeente4.active {
+    cursor: pointer;
+
+    fill: #fff;
+		stroke:#000
+}
+
+
+
+
+svg .gemeente {
+
+    
+
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+svg .gemeente1 {
+
+		fill: rgb(65, 136, 48);
+
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+svg .gemeente2 {
+
+    fill: #c12727;
+
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+svg .gemeente3 {
+
+    fill: #505cc8;
+
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+svg .gemeente4 {
+
+    fill: black;
+
+    -webkit-transition: stroke 0.5s, stroke-width 0.5s;
+    -o-transition: stroke 0.5s, stroke-width 0.5s;
+    transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+
+
+
+svg .gemeente:hover ,.gemeente1:hover, .gemeente2:hover ,.gemeente3:hover, .gemeente4:hover, .state.active {
+    cursor: pointer;
+    stroke-width: 1;
+    fill: #fff;
+		stroke:#000
+}
+
+
+
+
+.wrapper {
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+
+
+		&:focus {
+		  z-index: 2;
+		}
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+	  border-bottom-left-radius: 0;
+	  border-bottom-right-radius: 0;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 20px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+blockquote{
+    border-left:none
+}
+
+.quote-badge{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.quote-box{
+
+    overflow: hidden;
+    margin-top: -50px;
+    padding-top: -100px;
+    border-radius: 17px;
+    background-color: #4ADFCC;
+    margin-top: 25px;
+    color:white;
+    width: 325px;
+    box-shadow: 2px 2px 2px 2px #E0E0E0;
+
+}
+
+.quotation-mark{
+
+    margin-top: -10px;
+    font-weight: bold;
+    font-size:100px;
+    color:white;
+    font-family: "Times New Roman", Georgia, Serif;
+
+}
+
+.quote-text{
+
+    font-size: 19px;
+    margin-top: -65px;
+}
