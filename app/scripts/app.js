@@ -19,7 +19,7 @@ var app = angular
         'selector',
         'angular-md5',
         'ui.tinymce',
-        'angular-loading-bar'
+        'angular-svg-round-progressbar'
     ])
     .config(function($routeProvider) {
         $routeProvider
@@ -119,8 +119,14 @@ var app = angular
                 // before reompiling remove gemeente id
                 element.removeAttr("gemeente");
 
+                scope.$parent.forLoading();
+
 
                 // NOTE NOTE this are the functions clicks
+
+                //Loading Bar
+                // The functions of this DIRECTIVE
+
 
                 // The functions of this DIRECTIVE
                 scope.gemeenteClick = function() {
@@ -157,6 +163,3 @@ var app = angular
             return "rgba(255," + g + "," + b + ",1)";
         }
     }]);;
-
-
-    

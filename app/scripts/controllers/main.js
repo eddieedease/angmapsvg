@@ -13,6 +13,11 @@ angular.module('lsamapApp')
         // always bind self for various (aqr) reasons
         var self = this;
 
+        this.current = 0;
+        this.max = 410;
+
+        this.loadingnow = true;
+
 
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
@@ -37,11 +42,27 @@ angular.module('lsamapApp')
 
         $scope.hoverRegion = "";
 
+
+
         // NOTE DIRECTIVES/ SCOPE CALLS
         // these ones get called from the gemeenten directives
+
+
+        $scope.forLoading = function() {
+            self.current = self.current + 1;
+            console.log(self.current);
+
+            if (self.current === 400) {
+              self.loadingnow = false;
+            }
+
+        }
+
         $scope.mouseoverselection = function(idid) {
             self.hovergemeente = idid;
         }
+
+
 
         $scope.mouseclicked = function(idid) {
             self.currentgemeente = idid;
