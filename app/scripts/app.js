@@ -119,9 +119,6 @@ var app = angular
                 // before reompiling remove gemeente id
                 element.removeAttr("gemeente");
 
-                scope.$parent.forLoading();
-
-
                 // NOTE NOTE this are the functions clicks
 
                 //Loading Bar

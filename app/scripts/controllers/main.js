@@ -22,12 +22,12 @@ angular.module('lsamapApp')
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
         apis.getApi().then(function(dataResponse) {
-          // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
-          console.log(dataResponse);
-          // TODO set everything up
-          //self.currenthtml = $sce.trustAsHtml(self.sersections[0].nl);
-          //self.currentitle = $sce.trustAsHtml(self.sersections[0].titlenl);
-          //self.ryx();
+            // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
+            console.log(dataResponse);
+            // TODO set everything up
+            //self.currenthtml = $sce.trustAsHtml(self.sersections[0].nl);
+            //self.currentitle = $sce.trustAsHtml(self.sersections[0].titlenl);
+            //self.ryx();
         });
 
 
@@ -41,22 +41,9 @@ angular.module('lsamapApp')
 
 
         $scope.hoverRegion = "";
-
-
-
         // NOTE DIRECTIVES/ SCOPE CALLS
         // these ones get called from the gemeenten directives
 
-
-        $scope.forLoading = function() {
-            self.current = self.current + 1;
-            console.log(self.current);
-
-            if (self.current === 400) {
-              self.loadingnow = false;
-            }
-
-        }
 
         $scope.mouseoverselection = function(idid) {
             self.hovergemeente = idid;
@@ -74,12 +61,23 @@ angular.module('lsamapApp')
                 label: gem
             }
             self.gemeenten.push(nieuw);
+
             // sort alphabetical
             self.gemeenten.sort(function(a, b) {
                 // ascending alfabetical
                 if (a.label < b.label) return -1;
                 if (a.label > b.label) return 1;
             });
+
+
+            // write to the loader
+            self.current = self.current + 1;
+            console.log(self.current);
+
+            if (self.current === 401) {
+                self.loadingnow = false;
+                self.current = 1;
+            }
         }
 
         /*  // NOTE timeout example TODO; mayB calls this when loading
