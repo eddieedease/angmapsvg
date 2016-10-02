@@ -12,8 +12,9 @@ $request = json_decode($postdata);
 
 $from_mail = $naam.'<'.$email.'>';
 
-$to = "info@lodgeaanzee.nl"; // this is your Email address
-$subject = "CHALET contactformulier";
+// 
+$to = "info@lsabewoners.nl"; // this is your Email address
+$subject = "lsa Kaart - ingezonden contactformuler";
 $message = $naam . " heeft je contactformulier ingevuld:" . "\n\n" . $bericht. "\n\n".$email;
 
 //$headers = "Van:" . $naam;

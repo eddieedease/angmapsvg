@@ -5,6 +5,9 @@ header('Access-Control-Allow-Origin: *');
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
+// mysql tables are: api, gemeenten, instrument, uploads
+// TODO IMPORTANT TODO TODO Get validation from server side, aka save username and pw & check
+
 
 @$action= $request->action;
 @$id = $request->id;
@@ -14,36 +17,17 @@ $request = json_decode($postdata);
 @$pos = $request->pos;
 @$photolink = $request->photolink;
 @$thumblink = $request->thumblink;
-@$nl = $request->nl;
-@$du = $request->du;
-@$en = $request->en;
+
 
 @$timestart = $request->timestart;
-@$timeend = $request->timeend;
 
-@$maintenance = $request->maintenance;
-@$event = $request->event;
 @$text = $request->text;
 @$token= $request->token;
-@$context1= $request->context1;
+
 @$emailcontact= $request->emailcontact;
 
 @$title = $request->title;
 @$type = $request->type;
-
-@$facebook= $request->facebook;
-@$multilang= $request->multilang;
-@$vis= $request->vis;
-
-@$titlenl = $request->titlenl;
-@$titledu = $request->titledu;
-@$titleen = $request->titleen;
-
-@$adres1 = $request->adres1;
-@$adres2 = $request->adres2;
-@$adres3 = $request->adres3;
-
-
 
 
 include 'db.php';
@@ -57,6 +41,8 @@ function mynl2br($text) {
    return strtr($text, array("\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
 }
 
+
+
 switch ($action) {
     case "editbasis":
         $sql = "UPDATE basis SET context1 = '$context1', emailcontact = '$emailcontact',maintenance ='$maintenance',facebook ='$facebook',multilang ='$multilang' WHERE id = 0";
@@ -67,14 +53,16 @@ switch ($action) {
     case "editbasis3":
         $sql = "UPDATE ipa SET token = '$token' WHERE sec = 'wo'";
         break;
-    case "edittab":
+    case "editgemeente":
+        // NEED - id gemeente, wysigtekst
         $nlsafe = mynl2br($nl);
         $sql = "UPDATE sections SET  nl = '$nl', en = '$en',du ='$du', titlenl = '$titlenl', titledu = '$titledu', titleen = '$titleen' WHERE id = '$id'";
         break;
-    case "newtab":
+    case "newinstrument":
+        // title, wysigtekst, link, buurtrechtenlink
         $sql = "INSERT INTO sections (nl,en,du,titlenl,titledu,titleen) VALUES ('$nl','$en','$du','$titlenl','$titledu','$titleen')";
         break;
-    case "removetab":
+    case "removeinstrument":
         $sql = "DELETE FROM sections WHERE id = '$id'";
         break;
     case "addbooking":

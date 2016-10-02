@@ -1,4 +1,5 @@
 <?php
+
 header('Access-Control-Allow-Origin: *');
         // set up the connection variables
         include 'db.php';
