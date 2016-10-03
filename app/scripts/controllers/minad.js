@@ -8,7 +8,7 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-  .controller('MinadCtrl', function($scope, $timeout, $route, apis, md5) {
+  .controller('MinadCtrl', function($scope, NgTableParams, $timeout, $route, apis, md5) {
 
     // make ref
     var self = this;
@@ -23,6 +23,11 @@ angular.module('lsamapApp')
     // NOTE NOTE NOTE eassy dev reverse!!!TODO  For now...
     this.minn = true;
     this.minnn = false;
+
+
+    // NOTE testing for the table sorting stuff
+    var data = [{name: "Instrument 1", age: 50} ,{name: "Instrument 2", age: 24},{name: "Instrument 3", age: 10}];
+    self.tableParams = new NgTableParams({}, { dataset: data});
 
     // options for the editor
     this.tinymceOptions = {

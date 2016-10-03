@@ -17,7 +17,8 @@
     "tinymce-dist": "4.3.12",
     "angular-busy-plus": "^4.1.5",
     "angular-loading-bar": "^0.9.0",
-    "angular-svg-round-progressbar": "^0.4.8"
+    "angular-svg-round-progressbar": "^0.4.8",
+    "ng-table": "^1.0.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

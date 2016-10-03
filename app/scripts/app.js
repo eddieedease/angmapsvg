@@ -19,7 +19,8 @@ var app = angular
         'selector',
         'angular-md5',
         'ui.tinymce',
-        'angular-svg-round-progressbar'
+        'angular-svg-round-progressbar',
+        'ngTable'
     ])
     .config(function($routeProvider) {
         $routeProvider
