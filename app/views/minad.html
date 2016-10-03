@@ -1,143 +1,439 @@
 <div ng-show="minad.minn" class="section">
-  <div class="wrapper">
-    <form class="form-signin">
-      <h2 class="form-signin-heading">Hier inloggen</h2>
-      <code>User: Admin</code><br>
-      <code>Password: goudvis</code>
-      <hr>
-      <input ng-model="minad.user" type="text" class="form-control" name="username" placeholder="Gebruikersnaam" required="" autofocus="" />
-      <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required="" /> {{minad.wrongpwtext}}
-      <button class="btn btn-lg btn-dangerbtn-block" ng-click="minad.inlogger()" type="submit">Inloggen</button>
-    </form>
-  </div>
+    <div class="wrapper">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Hier inloggen</h2>
+            <code>User: Admin</code><br>
+            <code>Password: goudvis</code>
+            <hr>
+            <input ng-model="minad.user" type="text" class="form-control" name="username" placeholder="Gebruikersnaam" required="" autofocus=""/>
+            <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required=""/>
+            {{minad.wrongpwtext}}
+            <button class="btn btn-lg btn-dangerbtn-block" ng-click="minad.inlogger()" type="submit">Inloggen</button>
+        </form>
+    </div>
 </div>
 
 <div ng-show="minad.minnn" class="section">
 
-  <div class="jumbotron jum-b">
-    <div class="container">
-      <h1>ADMIN superpowers</h1>
-      <small>Voor het aanpassen van de kaart</small>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron jum-b" style="margin-bottom:0px">
+
+                <h1>ADMIN superpowers</h1>
+                <small>Voor het aanpassen van de kaart</small>
+            </div>
+        </div>
     </div>
-  </div>
 
-
-  <div class="section">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-7">
-          <h3>{{minad.hovergemeente}}</h3>
-          <div svg-map></div>
-        </div>
-        <div class="col-md-5">
-        </div>
-        <div class="col-md-5">
-          <div class="panel panel-danger">
-            <div class="panel-heading">Selectie</div>
-            <div class="panel-body">
-              <h4>Lijst select - (Met suggestie)</h4>
-              <div class="form-group">
-                <select selector model="minad.currentgemeente" options="minad.gemeenten" value-attr="value"></select></div>
-              <h4>Soort map</h4>
-              <div class="radio">
-                <label>
-                    <input type="radio"  name="radio1" value="1" ng-model="minad.curmap" ng-change="minad.setMap(1)">
-                    Overzicht kaart
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                    <input type="radio" name="radio2" value="2" ng-model="minad.curmap" ng-change="minad.setMap(2)">
-                    Buurtrechten
-                </label>
-              </div>
-            </div>
-            <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
-            <hr>
-            <div>
-              <button class="btn btn-primary center-block" type="submit">Opslaan</button>
-            </div>
-
-          </div>
-
-
-          <!--<p>
-                <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
-              </p>
-              <div class="regionlist">
-                <div ng-repeat="(key,gemeente) in dummyData">
-                  <div>{{key}}</div>
-                  <div>{{gemeente.value | number}}</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Admin Menu ->
+                    </h3>
+                    <span class="pull-right">
+                        <!-- Tabs -->
+                        <ul class="nav panel-tabs">
+                            <li class="active">
+                                <a data-target="#tab1" data-toggle="tab">Info</a>
+                            </li>
+                            <li>
+                                <a data-target="#tab2" data-toggle="tab">Kaart</a>
+                            </li>
+                            <li>
+                                <a data-target="#tab3" data-toggle="tab">Instrumenten</a>
+                            </li>
+                            <li>
+                                <a data-target="#tab4" data-toggle="tab">Instellingen</a>
+                            </li>
+                        </ul>
+                    </span>
                 </div>
-              </div>-->
-          <div class="panel panel-danger">
-            <div class="panel-heading">Buurtrechten toewijzen</div>
-            <div class="panel-body">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" checked>
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                  Buurtrecht 1
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" >
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                  Buurtrecht 2
-                </label>
-              </div>
-              <div class="checkbox disabled">
-                <label>
-                  <input type="checkbox" value="" >
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                  Buurtrecht 3
-                </label>
-              </div> <button class="btn btn-primary" type="submit">Opslaan</button></div>
-          </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="panel-body inf-content">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="http://bootdey.com/img/Content/user-453533-fdadfd.png" data-original-title="Usuario">
+                                        <ul title="Ratings" class="list-inline ratings text-center">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="glyphicon glyphicon-star"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>Informatie</strong><br>
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed table-responsive table-user-information">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>
+                                                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                                AppID
+                                                            </strong>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            123456789
+                                                        </td>
+                                                    </tr>
 
-          <div class="panel panel-danger">
-            <div class="panel-heading">Instrumenten toewijzen</div>
-            <div class="panel-body">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" checked>
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                  Instrument 1
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="" >
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                  Instrument 2
-                </label>
-              </div>
-              <div class="checkbox disabled">
-                <label>
-                  <input type="checkbox" value="" >
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                  Instrument 3
-                </label>
-              </div><button class="btn btn-primary" type="submit">Opslaan</button></div>
-          </div>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>
+                                                                <span class="glyphicon glyphicon-bookmark text-primary"></span>
+                                                                Username
+                                                            </strong>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            ..
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <strong>
+                                                                <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                                                Role
+                                                            </strong>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            Admin
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>
+                                                                <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                                                Email
+                                                            </strong>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            noreply@email.com
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>
+                                                                <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                                                created
+                                                            </strong>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            1 okt 2016
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>
+                                                                <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                                                Modified
+                                                            </strong>
+                                                        </td>
+                                                        <td class="text-primary">
+                                                            1 okt 20016
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <h3>{{minad.hovergemeente}}</h3>
+                                        <div svg-map></div>
+                                    </div>
+                                    <div class="col-md-5"></div>
+                                    <div class="col-md-5">
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading">Selectie</div>
+                                            <div class="panel-body">
+                                                <h4>Lijst select - (Met suggestie)</h4>
+                                                <div class="form-group">
+                                                    <select selector model="minad.currentgemeente" options="minad.gemeenten" value-attr="value"></select>
+                                                </div>
+                                                <h4>Soort map</h4>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="radio1" value="1" ng-model="minad.curmap" ng-change="minad.setMap(1)">
+                                                        Overzicht kaart
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="radio2" value="2" ng-model="minad.curmap" ng-change="minad.setMap(2)">
+                                                        Buurtrechten
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
+                                            <hr>
+
+                                                <div class="panel-heading">Buurtrechten toewijzen</div>
+                                                <div class="panel-body">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="" checked>
+                                                            <span class="cr">
+                                                                <i class="cr-icon glyphicon glyphicon-ok"></i>
+                                                            </span>
+                                                            Buurtrecht 1
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            <span class="cr">
+                                                                <i class="cr-icon glyphicon glyphicon-ok"></i>
+                                                            </span>
+                                                            Buurtrecht 2
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox disabled">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            <span class="cr">
+                                                                <i class="cr-icon glyphicon glyphicon-ok"></i>
+                                                            </span>
+                                                            Buurtrecht 3
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="" checked>
+                                                            <span class="cr">
+                                                                <i class="cr-icon glyphicon glyphicon-ok"></i>
+                                                            </span>
+                                                            Buurtrecht 4
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            <span class="cr">
+                                                                <i class="cr-icon glyphicon glyphicon-ok"></i>
+                                                            </span>
+                                                            Buurtrecht 5
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox disabled">
+                                                        <label>
+                                                            <input type="checkbox" value="">
+                                                            <span class="cr">
+                                                                <i class="cr-icon glyphicon glyphicon-ok"></i>
+                                                            </span>
+                                                            Buurtrecht 6
+                                                        </label>
+                                                    </div>
+
+
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-primary center-block" type="submit">Opslaan</button>
+                                            </div>
+
+                                        </div>
+
+                                        <!--<p>
+                                    <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
+                                  </p>
+                                  <div class="regionlist">
+                                    <div ng-repeat="(key,gemeente) in dummyData">
+                                      <div>{{key}}</div>
+                                      <div>{{gemeente.value | number}}</div>
+                                    </div>
+                                  </div>-->
 
 
 
 
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                            <table class="table table-striped custab">
+                                <thead>
+                                    <a href="#" class="btn btn-primary btn-xs pull-right">
+                                        <b>+</b>
+                                        Voeg nieuw instrument toe</a>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Naam</th>
+                                        <th>Gelinkte buurtrechten</th>
+                                        <th class="text-center">Actie</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>1</td>
+                                    <td>News</td>
+                                    <td>News Cate</td>
+                                    <td class="text-center">
+                                        <a class='btn btn-info btn-xs'>
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            Edit</a>
+                                        <a class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                            Del</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Products</td>
+                                    <td>Main Products</td>
+                                    <td class="text-center">
+                                        <a class='btn btn-info btn-xs'>
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            Edit</a>
+                                        <a class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                            Del</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Blogs</td>
+                                    <td>Parent Blogs</td>
+                                    <td class="text-center">
+                                        <a class='btn btn-info btn-xs'>
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            Edit</a>
+                                        <a class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                            Del</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="tab4">
+                            <div class="container">
+                                <div class="row">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <!-- Form Name -->
+                                            <legend>Basis instellingen/ Extra functionaliteit</legend>
+                                            <p>
+                                                Hier kunnen we zaken zoals het email adres veranderen waar de contactmail verstuurd naar zal worden, evenals bijv het wijzigen van het wachtwoord, nieuws bericht aanpassen.
+                                            </p>
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Naam</label>
+                                                <div class="col-md-6">
+                                                    <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="color">E-mail</label>
+                                                <div class="col-md-6">
+                                                    <input id="color" name="email" type="email" placeholder="voorbeeld@voorbeeld.nl" class="form-control input-md">
+                                                </div>
+                                            </div>
 
-
-
-
-
+                                            <!-- Multiple Checkboxes (inline) -->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="notification"></label>
+                                                <div class="col-md-4">
+                                                    <label class="checkbox-inline" for="notification-0">
+                                                        <input type="checkbox" name="notification" id="notification-0" value="1">
+                                                        Voorbeeld checkbox
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- Select Basic -->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="threshold">Optie menu</label>
+                                                <div class="col-md-4">
+                                                    <select id="threshold" name="threshold" class="form-control">
+                                                        <option value="1">Optie 1</option>
+                                                        <option value="2">Optie 2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- Multiple Radios (inline) -->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="reqType">Request Type</label>
+                                                <div class="col-md-4">
+                                                    <label class="radio-inline" for="reqType-0">
+                                                        <input type="radio" name="reqType" id="reqType-0" value="post" checked="checked">
+                                                        POST
+                                                    </label>
+                                                    <label class="radio-inline" for="reqType-1">
+                                                        <input type="radio" name="reqType" id="reqType-1" value="get">
+                                                        GET
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- Multiple Radios (inline) -->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="dataFormat">Data Format</label>
+                                                <div class="col-md-4">
+                                                    <label class="radio-inline" for="dataFormat-0">
+                                                        <input type="radio" name="dataFormat" id="dataFormat-0" value="json" checked="checked">
+                                                        JSON
+                                                    </label>
+                                                    <label class="radio-inline" for="dataFormat-1">
+                                                        <input type="radio" name="dataFormat" id="dataFormat-1" value="xml">
+                                                        XML
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- Multiple Checkboxes (inline) -->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="appendUrlParams"></label>
+                                                <div class="col-md-4">
+                                                    <label class="checkbox-inline" for="appendUrlParams-0">
+                                                        <input type="checkbox" name="appendUrlParams" id="appendUrlParams-0" value="1">
+                                                        Append URL Params
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- Button (Double) -->
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="submitButton"></label>
+                                                <div class="col-md-8">
+                                                    <button id="submitButton" name="submitButton" class="btn btn-success">Save</button>
+                                                    <button id="cancel" name="cancel" class="btn btn-inverse">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-      </div>
     </div>
-
-
-
-  </div>
 
 </div>

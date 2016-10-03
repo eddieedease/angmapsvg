@@ -3,7 +3,7 @@
 Trying to make an interactive svg map of the municipalities from the Netherlands
 svg is slighly altered from the WikiCommons one, to set it up just right.
 
-$#Install
+#Install
 install with 'npm install && bower install'
 
 #Serve & Build

@@ -20,7 +20,7 @@ angular.module('lsamapApp')
     this.curmap = apis.currentMap;
     this.wrongpwtext = "";
     this.gemeenten = [];
-    // NOTE NOTE NOTE eassy dev reverse!!!
+    // NOTE NOTE NOTE eassy dev reverse!!!TODO  For now...
     this.minn = true;
     this.minnn = false;
 
