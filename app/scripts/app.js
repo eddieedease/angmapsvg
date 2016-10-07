@@ -62,13 +62,14 @@ var app = angular
 
             },
             link: function(scope, element, attrs) {
-                scope.rewritesdone = false;
                 scope.elementGem = element.attr("gem");
                 // TODO TODO TODO remove
                 scope.$parent.collectGemeenten(scope.elementGem);
 
                 element.attr("ng-click", "gemeenteClick()");
                 element.attr("ng-mouseenter", "mouseEnter()");
+
+                element.attr("ng-mouseleave", "mouseLeaves()");
                 element.attr("mouseoverselection", "mouseoverselection");
 
                 // NOTE NOTE - now works -  really long struggles here
@@ -80,6 +81,8 @@ var app = angular
                         $compile(element)(scope);
                     }
                     if (scope.$parent.hoverRegionLast === scope.elementGem) {
+                        // TODO this aint the way, the hover doens't get recognised anymore
+                        // so, must be another solutions
                         element.removeAttr("class");
                         element.attr("ng-class", "gemeente");
                         //element.attr("ng-class", "{active:''}");
@@ -127,10 +130,6 @@ var app = angular
 
                 // NOTE NOTE this are the functions clicks
 
-                //Loading Bar
-                // The functions of this DIRECTIVE
-
-
                 // The functions of this DIRECTIVE
                 scope.gemeenteClick = function() {
                     var gem = scope.elementGem;
@@ -144,17 +143,19 @@ var app = angular
                     scope.$parent.mouseoverselection(gem);
                 };
 
+                scope.mouseLeaves= function() {
+                    var gem = scope.elementGem;
+                    scope.$parent.mouseremoveselection(gem);
+                };
+
                 scope.regionMouseOver = function() { //<
                     scope.hoverRegion = scope.elementId; //<--- Add this
                     element[0].parentNode.appendChild(element[0]); //<
                     console.log("Is Hoverrr");
                 };
 
-
-                // NOTE rewrite
+                // NOTE rewrite is needed
                 $compile(element)(scope);
-
-
             }
         } // NOTE below is the filter for the map colour
     }).filter('map_colour', [function() {

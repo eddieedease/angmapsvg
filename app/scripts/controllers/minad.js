@@ -8,7 +8,7 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MinadCtrl', function($scope, NgTableParams, $timeout, $route, apis, md5) {
+    .controller('MinadCtrl', function($scope, NgTableParams, $timeout, $route, apis,ipa, md5) {
 
         // make ref
         var self = this;
@@ -21,20 +21,27 @@ angular.module('lsamapApp')
         this.wrongpwtext = "";
         this.gemeenten = [];
         // NOTE NOTE NOTE eassy dev reverse!!!TODO  For now...
-        this.minn = true;
-        this.minnn = false;
+
+        if (ipa.xzy === false) {
+          this.minn = true;
+          this.minnn = false;
+        } else if (ipa.xzy === true ){
+          this.minn = false;
+          this.minnn = true;
+        }
+
 
 
         // NOTE testing for the table sorting stuff
         var data = [{
             name: "Instrument 1",
-            age: 50
+            id: 50
         }, {
             name: "Instrument 2",
-            age: 24
+            id: 24
         }, {
             name: "Instrument 3",
-            age: 10
+            id: 10
         }];
         self.tableParams = new NgTableParams({}, {
             dataset: data
@@ -69,6 +76,10 @@ angular.module('lsamapApp')
             self.hovergemeente = idid;
         }
 
+        $scope.mouseremoveselection = function(idid) {
+            self.hovergemeente = "";
+        }
+
         $scope.mouseclicked = function(idid) {
             //console.log("controller HIITTTTTT");
             console.log(idid + "clicked");
@@ -98,6 +109,8 @@ angular.module('lsamapApp')
             // NOTE for the record, when the page view is changed, we need to reload the route
             // the service variable currentmap will force render the new colours
             $route.reload();
+
+            //$scope.$apply()
         }
 
         // Logging in over here, Now for testing purposes
@@ -109,6 +122,7 @@ angular.module('lsamapApp')
                 this.wrongpwtext = "Alllright Good";
                 this.minn = false;
                 this.minnn = true;
+                ipa.xyzg();
             } else {
                 this.wrongpwtext = "Fout";
             }

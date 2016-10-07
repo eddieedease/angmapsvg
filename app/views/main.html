@@ -1,10 +1,7 @@
-<div class="jumbotron jum-b">
-    <div class="container">
-        <h1>Gemeenten in Kaart</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-        <small>LSAmap</small>
+<div class="container-fluid">
+    <div class="row">
+        <img src="images/banner2.png" class="img-responsive" style="width:100%">
     </div>
-
 </div>
 
 <div class="section">
@@ -42,21 +39,17 @@
                         <h3 class="panel-title">Info</h3>
                     </div>
                     <div class="panel-body">
+                        <h4>Soort kaart</h4>
+                        <select ng-model="main.curmap" ng-change="main.setMap(main.curmap)" name="buurtrecht">
+                            <option class="lt" value="1">Heel overzicht</option>
+                            <option class="lt" value="2">Buurtrecht 1</option>
+                            <option class="lt" value="AK">Buurtrecht 2</option>
+                            <option class="lt" value="AK">Buurtrecht 3</option>
+                            <option class="lt" value="AZ">Buurtrecht 4</option>
+                            <option class="lt" value="AR">Buurtrecht 5</option>
+                            <option class="lt" value="CA">Buurtrecht 6</option>
+                        </select>
 
-                        <div class="form-group">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="radio1" value="1" ng-model="main.curmap" ng-change="main.setMap(1)">
-                                    Overzicht kaart
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="radio2" value="2" ng-model="main.curmap" ng-change="main.setMap(2)">
-                                    Buurtrechten
-                                </label>
-                            </div>
-                        </div>
                         <!--<p>
               <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
             </p>
@@ -66,9 +59,14 @@
                 <div>{{gemeente.value | number}}</div>
               </div>
             </div>-->
-                        <h4>Zoeken</h4>
+                        <h4>Zoeken op gemeente</h4>
                         <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten" value-attr="value"></select>
+                        <div style="float:right">
+                          {{main.hovergemeente}}
+                        </div>
                         <hr>
+
+
                     </div>
 
                     <div style='padding:20px;padding-top:0px'>
@@ -85,13 +83,13 @@
             <div class="col-md-7">
 
                 <h3>
-                    {{main.hovergemeente}}</h3>
+                    </h3>
 
                 <div ng-show="main.loadingnow">
-                    <round-progress max="main.max" current="main.current" color="#45ccce" bgcolor="#eaeaea" radius="50" stroke="20" semi="false" rounded="true" clockwise="true" responsive="false" animation="easeInOutQuart" animation-delay="0">Laden</round-progress>
+                    Laden..
                 </div>
                 <div ng-show="!main.loadingnow">
-                    <div  svg-map></div>
+                    <div svg-map></div>
                 </div>
 
             </div>

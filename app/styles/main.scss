@@ -5,13 +5,46 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 
 
+
+
+
+
+
+
+select { width: 200px }
+select .lt { text-align:center; }
+select { text-indent: 5px; }
+
+
+
+
+
+
+
+.thumbnail {
+    position: relative;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
 .inf-content{
     border:1px solid #DDDDDD;
     -webkit-border-radius:10px;
     -moz-border-radius:10px;
     border-radius:10px;
     box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
-}			  
+}
 
 .panel-tabs {
     position: relative;

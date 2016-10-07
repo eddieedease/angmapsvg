@@ -8,6 +8,14 @@
  * Service in the lsamapApp.
  */
 angular.module('lsamapApp')
-  .service('ipa', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
-  });
+    .service('ipa', function($http, $timeout) {
+
+        var self = this
+
+        this.xzy = false;
+
+        this.xyzg = function() {
+            self.xzy = true;
+        };
+
+    });

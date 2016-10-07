@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 /**
  * @ngdoc function
  * @name lsamapApp.controller:MainCtrl
@@ -16,7 +18,10 @@ angular.module('lsamapApp')
         this.current = 0;
         this.max = 410;
 
+
         this.loadingnow = true;
+
+
 
 
         // NOTE NOTE SERVICE CALLS
@@ -46,9 +51,14 @@ angular.module('lsamapApp')
 
 
         $scope.mouseoverselection = function(idid) {
-            self.hovergemeente = idid;
+            self.hovergemeente = "Muis over:  " + idid;
         }
 
+
+
+        $scope.mouseremoveselection = function(idid) {
+            self.hovergemeente = "";
+        }
 
 
         $scope.mouseclicked = function(idid) {
@@ -70,7 +80,7 @@ angular.module('lsamapApp')
             });
 
 
-            // write to the loader
+            // write to the loader - but thus kinda doens't work
             self.current = self.current + 1;
             //console.log(self.current);
 
@@ -94,9 +104,23 @@ angular.module('lsamapApp')
 
 
         this.setMap = function(whichmap) {
-            apis.currentMap = whichmap;
+
+            var thismap = parseInt(whichmap)
+
+            console.log(typeof thismap);
+            apis.currentMap = thismap;
+            //self.loadingnow = true;
             // NOTE for the record, when the page view is changed, we need to reload the route
             // the service variable currentmap will force render the new colours
+            this.loadingnow = true;
+
+            $timeout(self.reloadroute, 500);
+
+
+            //self.loadingnow = false;
+        }
+
+        this.reloadroute = function() {
             $route.reload();
         }
 
