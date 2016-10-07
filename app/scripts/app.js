@@ -81,7 +81,8 @@ var app = angular
                     }
                     if (scope.$parent.hoverRegionLast === scope.elementGem) {
                         element.removeAttr("class");
-
+                        element.attr("ng-class", "gemeente");
+                        //element.attr("ng-class", "{active:''}");
                         console.log(scope.$parent.hoverRegionLast);
                         $compile(element)(scope);
                     }
@@ -89,6 +90,7 @@ var app = angular
 
                 // NOTE todo colour testing// THIS IS THE MAKING OF THE MAPS // WORKS
                 // use a switch to determine what kind of map should be drawn
+
                 var eventesten = Math.floor(Math.random() * 4) + 1
 
                 switch (apis.currentMap) {
@@ -117,6 +119,9 @@ var app = angular
                     default:
 
                 }
+
+
+
                 // before reompiling remove gemeente id
                 element.removeAttr("gemeente");
 
@@ -144,8 +149,6 @@ var app = angular
                     element[0].parentNode.appendChild(element[0]); //<
                     console.log("Is Hoverrr");
                 };
-
-
 
 
                 // NOTE rewrite

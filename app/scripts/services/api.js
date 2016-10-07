@@ -11,6 +11,7 @@ angular.module('lsamapApp')
   .service('apis', function($http, $timeout) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
+    // example function
     this.getMapData = function() {
       return [{
         id: "1",
@@ -30,8 +31,9 @@ angular.module('lsamapApp')
     // 4 types of maps I suppose?
     this.currentMap = 1;
 
-    // NOTE NOTE NOTE
-    // Here are the API CALLS
+    // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
+    // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
+    // Here are the API CALLS - Change ´nwlink' when needed
 
     //var nwlink = 'http://localhost:80/chaletrenesse/app/api/';
     // var nwlink = './api/';

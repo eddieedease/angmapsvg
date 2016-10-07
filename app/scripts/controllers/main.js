@@ -72,7 +72,7 @@ angular.module('lsamapApp')
 
             // write to the loader
             self.current = self.current + 1;
-            console.log(self.current);
+            //console.log(self.current);
 
             if (self.current === 401) {
                 self.loadingnow = false;
@@ -104,7 +104,7 @@ angular.module('lsamapApp')
         // this one picks up the selector change
         // gets also the new and the oldvalue-
         this.onChangeFromList = function(newValue, oldValue) {
-            console.log("Hoe vaak!");
+            //console.log("Hoe vaak!");
 
             if (newValue) {
                 $scope.currentgemeente = newValue.value;
