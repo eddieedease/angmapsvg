@@ -40,6 +40,8 @@ module.exports = function(config) {
       'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/angular-svg-round-progressbar/build/roundProgress.js',
       'bower_components/ng-table/dist/ng-table.js',
+      'bower_components/hammerjs/hammer.js',
+      'bower_components/ng-image-gallery/dist/ng-image-gallery.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

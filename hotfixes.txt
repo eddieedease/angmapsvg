@@ -1,0 +1,14 @@
+NG-immage gallery
+bower --> ng-image gallery --> dist --> ng-imagegallery.js
+
+replace
+
+// Images container
+'<div class="galleria-images img-anim-{{imgAnim}} img-move-dir-{{imgMoveDirection}}">'+
+'<div ng-repeat="image in images">' +
+  '<img class="galleria-image" ng-if="activeImg == image" ng-src="{{image.url}}" ondragstart="return false;" oncontextmenu="return false;" ng-attr-title="{{image.title || undefined}}" ng-attr-alt="{{image.alt || undefined}}"/>'+
+  '<h3 ng-if="activeImg == image" style="color:white">{{image.title}}</h3>' +
+'</div>'+
+
+
+= adding title to the modal window

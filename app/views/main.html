@@ -12,23 +12,7 @@
             </div>
         </div>
     </div>
-</di>
-<div class="container">
-    <ol class="breadcrumb breadcrumb-arrow">
-        <li>
-            <a href="#">Home</a>
-        </li>
-        <li>
-            <a href="#">Buurtrechten</a>
-        </li>
-        <li>
-            <a href="#">Gemeente</a>
-        </li>
-        <li>
-            <a href="#">Instrument</a>
-        </li>
-    </ol>
-</div>
+
 <div class="section">
     <div class="container-fluid">
         <div class="row">
@@ -61,11 +45,15 @@
             </div>-->
                         <h4>Zoeken op gemeente</h4>
                         <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten" value-attr="value"></select>
+                        <ol class="breadcrumb">
+                          <li><a href="#">Gemeente</a></li>
+                          <li><a href="#">Buurtrecht</a></li>
+                          <li class="active">Instrument</li>
+                        </ol>
                         <div style="float:right">
-                          {{main.hovergemeente}}
+                            {{main.hovergemeente}}
                         </div>
                         <hr>
-
 
                     </div>
 
@@ -75,15 +63,23 @@
                             Lorem ipsum dolor voorbeeldtekst sit amet, consectetur adipiscing elit. Vivamus molestie convallis pretium. Vivamus risus augue, dapibus sed luctus eget, ornare id orci.<br><br>
                             Donec condimentum faucibus placerat. Nam tortor libero, euismod at rutrum ac, lobortis consequat lorem. Nunc ut ultrices purus. Aenean auctor lacus sit amet nunc finibus volutpat./n Donec varius nec nisi at fermentum. Sed accumsan lorem ac enim
                             semper faucibus.
-                        </p>
+                        </p><hr>
+                        <h4>Afbeeldingen</h4>
+
+                        <ng-image-gallery
+                            images="main.images"
+                            thumbnails="true"
+                            inline="false"
+                            img-bubbles="true"
+                            bg-close="true"
+                            bubbles="true"></ng-image-gallery>
                     </div>
 
                 </div>
             </div>
             <div class="col-md-7">
 
-                <h3>
-                    </h3>
+                <h3></h3>
 
                 <div ng-show="main.loadingnow">
                     Laden..

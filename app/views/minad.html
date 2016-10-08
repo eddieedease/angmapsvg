@@ -23,7 +23,7 @@
                 <small>Voor het aanpassen van de kaart</small>
             </div>
         </div>
-    
+
 
 
         <div class="col-md-12">
@@ -252,22 +252,34 @@
                         </div>
                         <div class="tab-pane" id="tab3">
 
-                            <table ng-table="minad.tableParams" class="table" show-filter="true">
-                                <tr ng-repeat="user in $data">
-                                    <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-                                        {{user.name}}</td>
-                                    <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
-                                        {{user.age}}</td>
-                                    <td title="'extra'">
-                                        <button class="btn btn-default btn-sm">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+
+
+
+                            <div ng-show="!main.instruments">
+                              <table ng-table="minad.tableParams" class="table" show-filter="true">
+                                  <tr ng-repeat="user in $data">
+                                      <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                                          {{user.name}}</td>
+                                      <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+                                          {{user.age}}</td>
+                                      <td title="'extra'">
+                                          <button class="btn btn-default btn-sm">
+                                              <span class="glyphicon glyphicon-pencil"></span>
+                                          </button>
+                                          <button class="btn btn-danger btn-sm">
+                                              <span class="glyphicon glyphicon-trash"></span>
+                                          </button>
+                                      </td>
+                                  </tr>
+                              </table>
+                            </div>
+
+                            <div class="col-md-6 col-md-offset-2" ng-show="!main.instruments">
+                              <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelinstru"></textarea>
+                            </div>
+
+
+
 
                         </div>
                         <div class="tab-pane" id="tab4">

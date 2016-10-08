@@ -20,7 +20,8 @@ var app = angular
         'angular-md5',
         'ui.tinymce',
         'angular-svg-round-progressbar',
-        'ngTable'
+        'ngTable',
+        'thatisuday.ng-image-gallery'
     ])
     .config(function($routeProvider) {
         $routeProvider

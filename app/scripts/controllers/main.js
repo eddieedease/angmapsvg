@@ -22,6 +22,21 @@ angular.module('lsamapApp')
         this.loadingnow = true;
 
 
+        // fill images
+        this.images = [{
+            title: 'Coole titel',
+            thumbUrl: 'images/castle1.jpg',
+            url: 'images/castle1.jpg',
+        }, {
+          title: 'Check het uit',
+            url: 'images/castle2.jpg'
+        }, {
+          title: 'Owyey',
+            thumbUrl: 'images/castle3.jpeg',
+            url: 'images/castle3.jpeg'
+        }];
+
+
 
 
         // NOTE NOTE SERVICE CALLS
