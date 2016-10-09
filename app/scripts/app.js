@@ -64,7 +64,13 @@ var app = angular
             },
             link: function(scope, element, attrs) {
                 scope.elementGem = element.attr("gem");
-                // TODO TODO TODO remove
+
+
+                //console.log(apis.serGemeenten);
+
+
+
+
                 scope.$parent.collectGemeenten(scope.elementGem);
 
                 element.attr("ng-click", "gemeenteClick()");
@@ -92,37 +98,79 @@ var app = angular
                     }
                 });
 
-                // NOTE todo colour testing// THIS IS THE MAKING OF THE MAPS // WORKS
-                // use a switch to determine what kind of map should be drawn
 
-                var eventesten = Math.floor(Math.random() * 4) + 1
+                // Load the service vars
+                // count aantal buurtrechten & paint
+                scope.komtvoor = false;
 
-                switch (apis.currentMap) {
-                    case 1:
-                        if (eventesten === 1) {
-                            element.attr("ng-attr-fill", "{{1.0 | map_colour}}");
-                        } else if (eventesten === 2) {
-                            element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
-                        } else if (eventesten === 3) {
-                            element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
-                        } else if (eventesten === 4) {
-                            element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                for (var i = 0; i < apis.serGemeenten.length; i++) {
+                    if (apis.serGemeenten[i].name === scope.elementGem) {
+                        scope.komtvoor = true;
+                        console.log(apis.serGemeenten[i].name);
+                        scope.buurtrechtarray = apis.serGemeenten[i].buurtrecht.split(',');
+                        console.log(scope.buurtrechtarray); // WORKS
+
+                        // Paint them shizzle
+                        switch (scope.buurtrechtarray.length) {
+                            case 1:
+                                element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+                                break;
+                            case 2:
+                                element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                break;
+                            case 3:
+                                element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
+                                break;
+                            default:
                         }
-                        break;
-                    case 2:
-                        if (eventesten === 1) {
-                            element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
-                        } else if (eventesten === 2) {
-                            element.attr("ng-attr-fill", "{{0.6 | map_colour}}");
-                        } else if (eventesten === 3) {
-                            element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
-                        } else if (eventesten === 4) {
-                            element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
-                        }
-                        break;
-                    default:
-
+                    }
                 }
+
+                //otherwise paint white
+                if (scope.komtvoor === false) {
+                  console.log("uhmz...")
+                  element.attr("ng-attr-fill", "{{1 | map_colour2}}");
+                }
+
+
+
+
+
+                /*
+                                // NOTE todo colour testing// THIS IS THE MAKING OF THE MAPS // WORKS
+                                // use a switch to determine what kind of map should be drawn
+
+                                var eventesten = Math.floor(Math.random() * 4) + 1
+
+                                switch (apis.currentMap) {
+                                    case 1:
+                                        if (eventesten === 1) {
+                                            element.attr("ng-attr-fill", "{{1.0 | map_colour}}");
+                                        } else if (eventesten === 2) {
+                                            element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
+                                        } else if (eventesten === 3) {
+                                            element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+                                        } else if (eventesten === 4) {
+                                            element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                        }
+                                        break;
+                                    case 2:
+                                        if (eventesten === 1) {
+                                            element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
+                                        } else if (eventesten === 2) {
+                                            element.attr("ng-attr-fill", "{{0.6 | map_colour}}");
+                                        } else if (eventesten === 3) {
+                                            element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                        } else if (eventesten === 4) {
+                                            element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+                                        }
+                                        break;
+                                    default:
+                                }
+
+
+                */
+
 
 
 
@@ -144,7 +192,7 @@ var app = angular
                     scope.$parent.mouseoverselection(gem);
                 };
 
-                scope.mouseLeaves= function() {
+                scope.mouseLeaves = function() {
                     var gem = scope.elementGem;
                     scope.$parent.mouseremoveselection(gem);
                 };
@@ -157,6 +205,7 @@ var app = angular
 
                 // NOTE rewrite is needed
                 $compile(element)(scope);
+
             }
         } // NOTE below is the filter for the map colour
     }).filter('map_colour', [function() {
@@ -164,5 +213,11 @@ var app = angular
             var b = 255 - Math.floor(input * 255);
             var g = Math.floor(input * 255);
             return "rgba(255," + g + "," + b + ",1)";
+
+        }
+    }]).filter('map_colour2', [function() {
+        return function(input) {
+            return "rgba(248, 225, 225, 1)";
+
         }
     }]);;

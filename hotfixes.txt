@@ -12,3 +12,9 @@ replace
 
 
 = adding title to the modal window
+
+
+---------------------------------
+
+nwlink
+change var nwlink in services

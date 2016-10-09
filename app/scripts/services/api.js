@@ -10,6 +10,7 @@
 angular.module('lsamapApp')
   .service('apis', function($http, $timeout) {
     // AngularJS will instantiate a singleton by calling "new" on this function
+    var self = this;
 
     // example function
     this.getMapData = function() {
@@ -28,8 +29,24 @@ angular.module('lsamapApp')
     this.service1 = "owheywwweye";
 
     // the currentMap needs to be binded to the scope (I guess)
-    // 4 types of maps I suppose?
+    // 2 types of maps I suppose?
     this.currentMap = 1;
+
+
+    // This one gets called from the controller api call to update the service just before rendering the map directive
+    this.setSerGemeenten = function(serser) {
+      //this.sergemeenten =
+      // WORKS
+      self.serGemeenten = serser;
+      console.log(self.serGemeenten);
+    };
+
+
+
+
+
+
+
 
     // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
     // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
@@ -50,9 +67,13 @@ angular.module('lsamapApp')
         },
         cache: false
       }).success(function(data, status, headers, config) {
-        //console.log(data[0]);
+        //console.log(data);
       });
     };
+
+
+
+
 
     this.ipa = function() {
       // $http() returns a $promise that we can add handlers with .then()

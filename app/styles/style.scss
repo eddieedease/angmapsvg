@@ -23,24 +23,18 @@ em {
 svg path:hover , path.active { /* Amend this */
     cursor: pointer;
     opacity: 1;
-
-
 }
 
 svg .gemeente.active ,.gemeente1.active, .gemeente2.active ,.gemeente3.active, .gemeente4.active {
     cursor: pointer;
-
     fill: #fff;
 		stroke:#000
 }
 
 
-
-
 svg .gemeente {
-
-    
-
+    stroke:#000;
+    stroke-width: 0.4;
     -webkit-transition: stroke 0.5s, stroke-width 0.5s;
     -o-transition: stroke 0.5s, stroke-width 0.5s;
     transition: stroke 0.5s, stroke-width 0.5s;

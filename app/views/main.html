@@ -85,7 +85,10 @@
                     Laden..
                 </div>
                 <div ng-show="!main.loadingnow">
-                    <div svg-map></div>
+                  <div ng-if="main.apiResp">
+                      <div svg-map></div>
+                  </div>
+
                 </div>
 
             </div>

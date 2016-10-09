@@ -43,7 +43,13 @@ angular.module('lsamapApp')
         // NOTE API call
         apis.getApi().then(function(dataResponse) {
             // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
-            console.log(dataResponse);
+
+            apis.setSerGemeenten(dataResponse.data[0]);
+
+
+            self.apiResp = dataResponse.data[0];
+            //self.apiResp = "chck";
+
             // TODO set everything up
             //self.currenthtml = $sce.trustAsHtml(self.sersections[0].nl);
             //self.currentitle = $sce.trustAsHtml(self.sersections[0].titlenl);
