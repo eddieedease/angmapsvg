@@ -24,6 +24,8 @@ svg path:hover , path.active { /* Amend this */
     cursor: pointer;
     //opacity: 0.1;
     fill: #fff;
+    stroke:#000;
+    stroke-width: 0.8;
 }
 
 svg .gemeente.active ,.gemeente1.active, .gemeente2.active ,.gemeente3.active, .gemeente4.active {

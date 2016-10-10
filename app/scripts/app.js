@@ -108,9 +108,8 @@ var app = angular
                 for (var i = 0; i < apis.serGemeenten.length; i++) {
                     if (apis.serGemeenten[i].name === scope.elementGem) {
                         scope.komtvoor = true;
-                        console.log(apis.serGemeenten[i].name);
                         scope.buurtrechtarray = apis.serGemeenten[i].buurtrecht.split(',');
-                        console.log(scope.buurtrechtarray); // WORKS
+
 
                         // Paint them shizzle
                         switch (scope.buurtrechtarray.length) {
@@ -131,13 +130,10 @@ var app = angular
                     }
                 }
 
-                //otherwise paint white
+                //otherwise paint other color
                 if (scope.komtvoor === false) {
-                    console.log("uhmz...")
-                    element.attr("ng-attr-fill", "{{1 | map_colour2}}");
+                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                 }
-
-
 
 
 

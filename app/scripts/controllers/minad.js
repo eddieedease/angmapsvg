@@ -8,7 +8,7 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MinadCtrl', function(ngToast,$scope, NgTableParams,$http, $timeout, $route, apis, ipa, md5) {
+    .controller('MinadCtrl', function(ngToast, $scope, NgTableParams, $http, $timeout, $route, apis, ipa, md5) {
 
         // NOTE NOTE change
         // var nwlink = './api/';
@@ -19,13 +19,24 @@ angular.module('lsamapApp')
         var self = this;
         // scope variables
         this.md5message = 'Your pwd encryption is: ' + md5.createHash("goudvis" || '');
-        this.tinymceModel = "Boe";
+        this.tinymceModel = "Verander...";
+
+
+
+        this.brechtcheckboxes = {
+            Buurtrecht1: false,
+            Buurtrecht2: false,
+            Buurtrecht3: false,
+            Buurtrecht4: false,
+            Buurtrecht5: false,
+            Buurtrecht6: false
+        };
+
         self.body = "<div>  </div>"; // this is important for tinymce. without content, the error does not occur
         // for linkin
         this.curmap = apis.currentMap;
         this.wrongpwtext = "";
         this.gemeenten = [];
-        // NOTE NOTE NOTE eassy dev reverse!!!TODO  For now...
 
         if (ipa.xzy === false) {
             this.minn = true;
@@ -83,7 +94,7 @@ angular.module('lsamapApp')
                 "insertdatetime nonbreaking save table contextmenu directionality",
                 "emoticons template paste textcolor code"
             ],
-            toolbar1: "insertfile undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link",
+            toolbar1: "insertfile undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent",
             toolbar2: "styleselect forecolor backcolor | link | code",
             image_advtab: true,
             relative_urls: false,
@@ -108,14 +119,13 @@ angular.module('lsamapApp')
 
         $scope.mouseclicked = function(idid) {
             //console.log("controller HIITTTTTT");
-            console.log(idid + "clicked");
+            //console.log(idid + "clicked");
             self.currentgemeente = idid;
 
         }
 
         // calls from the directive
         $scope.collectGemeenten = function(gem) {
-          console.log("hallo?");
             var nieuw = {
                 value: gem,
                 label: gem
@@ -135,7 +145,7 @@ angular.module('lsamapApp')
             //console.log(self.current);
 
             if (self.current === 401) {
-              console.log("halloooo");
+                //console.log("halloooo");
                 self.loadingnow = false;
                 self.current = 1;
             }
@@ -150,18 +160,48 @@ angular.module('lsamapApp')
             if (newValue) {
                 $scope.currentgemeente = newValue.value;
                 self.currentgemeente = newValue.value;
-
-
-
+                // first reset checkboxes
+                this.brechtcheckboxes = {
+                    Buurtrecht1: false,
+                    Buurtrecht2: false,
+                    Buurtrecht3: false,
+                    Buurtrecht4: false,
+                    Buurtrecht5: false,
+                    Buurtrecht6: false
+                };
                 // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
                 for (var i = 0; i < self.apiResp.length; i++) {
 
-                  if (self.apiResp[i].name === self.currentgemeente) {
-                    console.log("crazy");
-                    self.tinymceModel = self.apiResp[i].wysig;
+                    if (self.apiResp[i].name === self.currentgemeente) {
+                        console.log("crazy");
+                        self.tinymceModel = self.apiResp[i].wysig;
+                        // Check for buurtrechten
+                        var tempstring = self.apiResp[i].buurtrecht;
+                        var tempArray = tempstring.split(",");
+                        console.log(tempArray);
+                        for (var b = 0; b < tempArray.length; b++) {
+                            if (tempArray[b] === "1") {
+                                self.brechtcheckboxes.Buurtrecht1 = true;
+                            }
+                            if (tempArray[b] === "2") {
+                                self.brechtcheckboxes.Buurtrecht2 = true;
+                            }
+                            if (tempArray[b] === "3") {
+                                self.brechtcheckboxes.Buurtrecht3 = true;
+                            }
+                            if (tempArray[b] === "4") {
+                                self.brechtcheckboxes.Buurtrecht4 = true;
+                            }
+                            if (tempArray[b] === "5") {
+                                self.brechtcheckboxes.Buurtrecht5 = true;
+                            }
+                            if (tempArray[b] === "6") {
+                                self.brechtcheckboxes.Buurtrecht6 = true;
+                            }
 
-                    self.isnew = false;
-                  }
+                        }
+                        self.isnew = false;
+                    }
                 }
 
 
@@ -250,50 +290,77 @@ angular.module('lsamapApp')
         // NOTE NOTE NOTE NOTE Handling all the request
         // NOTE update RECORDS
 
+
         this.updateGemeenten = function() {
             console.log('poging tot opslaan');
 
+            var arrayforstring = [];
+            //arrayforstring.push("1");
+            // collect buurtrechten
+            console.log(this.brechtcheckboxes.Buurtrecht1);
+            if (this.brechtcheckboxes.Buurtrecht1) {
+                arrayforstring.push("1");
+            }
+            if (this.brechtcheckboxes.Buurtrecht2) {
+                arrayforstring.push("2");
+            }
+            if (this.brechtcheckboxes.Buurtrecht3) {
+                arrayforstring.push("3");
+            }
+            if (this.brechtcheckboxes.Buurtrecht4) {
+                arrayforstring.push("4");
+            }
+            if (this.brechtcheckboxes.Buurtrecht5) {
+                arrayforstring.push("5");
+            }
+            if (this.brechtcheckboxes.Buurtrecht6) {
+                arrayforstring.push("6");
+            }
+            var buurtrechtstring = arrayforstring.join();
+
+            console.log(self.currentgemeente);
             // first check if it is a edit or a new one
-            if (self.isnew === true) {
-              this.myPromise = $http({
-                  method: "post",
-                  url: nwlink + 'chng.php',
-                  data: {
-                      action: "newgemeente",
-                      name: self.currentgemeente,
-                      wysig: self.tinymceModel,
-                      buurtrechten: "1,2,3"
-                  },
-                  headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded'
-                  }
-              });
-              /* Check whether the HTTP Request is Successfull or not. */
-              this.myPromise.success(function(data) {
-                  //self.updateService();
-                  console.log(data);
-                  ngToast.create('Instellingen opgeslagen');
-              });
-            } else {
-              this.myPromise = $http({
-                  method: "post",
-                  url: nwlink + 'chng.php',
-                  data: {
-                      action: "editgemeente",
-                      name: self.currentgemeente,
-                      wysig: self.tinymceModel,
-                      buurtrechten: "1,2,3"
-                  },
-                  headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded'
-                  }
-              });
-              /* Check whether the HTTP Request is Successfull or not. */
-              this.myPromise.success(function(data) {
-                  //self.updateService();
-                  console.log(data);
-                  ngToast.create('Instellingen opgeslagen');
-              });
+            if (self.isnew === true && self.currentgemeente !== undefined) {
+                this.myPromise = $http({
+                    method: "post",
+                    url: nwlink + 'chng.php',
+                    data: {
+                        action: "newgemeente",
+                        name: self.currentgemeente,
+                        wysig: self.tinymceModel,
+                        buurtrechten: buurtrechtstring
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                /* Check whether the HTTP Request is Successfull or not. */
+                this.myPromise.success(function(data) {
+                    //self.updateService();
+                    console.log(data);
+                    ngToast.create('Instellingen opgeslagen');
+                    $route.reload();
+                });
+            } else if (self.isnew === false && self.currentgemeente !== undefined){
+                this.myPromise = $http({
+                    method: "post",
+                    url: nwlink + 'chng.php',
+                    data: {
+                        action: "editgemeente",
+                        name: self.currentgemeente,
+                        wysig: self.tinymceModel,
+                        buurtrechten: buurtrechtstring
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                /* Check whether the HTTP Request is Successfull or not. */
+                this.myPromise.success(function(data) {
+                    //self.updateService();
+                    console.log(data);
+                    $route.reload();
+                });
             }
 
 
