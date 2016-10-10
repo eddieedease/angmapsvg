@@ -43,6 +43,7 @@ module.exports = function(config) {
       'bower_components/hammerjs/hammer.js',
       'bower_components/ng-image-gallery/dist/ng-image-gallery.js',
       'bower_components/ngSmoothScroll/lib/angular-smooth-scroll.js',
+      'bower_components/ngToast/dist/ngToast.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

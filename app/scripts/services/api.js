@@ -11,6 +11,9 @@ angular.module('lsamapApp')
   .service('apis', function($http, $timeout) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var self = this;
+    // NOTE NOTE Important
+    // var nwlink = './api/';
+    var nwlink = 'http://localhost:80/lsamap/app/api/';
 
     // example function
     this.getMapData = function() {
@@ -24,7 +27,6 @@ angular.module('lsamapApp')
         color: "color2"
       }];
     };
-
     // A fake service for now
     this.service1 = "owheywwweye";
 
@@ -53,8 +55,7 @@ angular.module('lsamapApp')
     // Here are the API CALLS - Change ´nwlink' when needed
 
     //var nwlink = 'http://localhost:80/chaletrenesse/app/api/';
-    // var nwlink = './api/';
-    var nwlink = 'http://localhost:80/lsamap/app/api/';
+
 
     this.getApi = function() {
       // $http() returns a $promise that we can add handlers with .then()

@@ -10,9 +10,10 @@
 angular.module('lsamapApp')
     .service('ipa', function($http, $timeout) {
 
-        var self = this
+        var self = this;
 
-        this.xzy = false;
+        // change for quick acces
+        this.xzy = true;
 
         this.xyzg = function() {
             self.xzy = true;

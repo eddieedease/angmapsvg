@@ -47,8 +47,6 @@ angular.module('lsamapApp')
             // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
 
             apis.setSerGemeenten(dataResponse.data[0]);
-
-
             self.apiResp = dataResponse.data[0];
             //self.apiResp = "chck";
 
@@ -86,6 +84,7 @@ angular.module('lsamapApp')
 
         $scope.mouseclicked = function(idid) {
             self.currentgemeente = idid;
+
         }
 
         $scope.collectGemeenten = function(gem) {
@@ -150,11 +149,17 @@ angular.module('lsamapApp')
 
         // this one picks up the selector change
         // gets also the new and the oldvalue-
+        // NOTE NOTE this one is called when value is changed
         this.onChangeFromList = function(newValue, oldValue) {
             //console.log("Hoe vaak!");
 
             if (newValue) {
+
                 $scope.currentgemeente = newValue.value;
+
+                //self.currenthtml = $sce.trustAsHtml(self.sersections[0].nl);
+
+
                 $scope.hoverRegion = newValue.value;
                 if (oldValue) {
                     $scope.hoverRegionLast = oldValue.value;

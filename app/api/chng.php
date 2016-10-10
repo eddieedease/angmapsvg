@@ -12,6 +12,8 @@ $request = json_decode($postdata);
 @$action = $request->action;
 @$id = $request->id;
 @$wysig = $request->wysig;
+@$name = $request->name;
+@$buurtrechten = $request->buurtrechten;
 
 @$id = $request->id;
 @$pos = $request->pos;
@@ -50,10 +52,15 @@ switch ($action) {
     case 'editbasis3': //TODO
         $sql = "UPDATE ipa SET token = '$token' WHERE sec = 'wo'";
         break;
-    case 'editgemeente': //TODO
+    case 'newgemeente':
         // NEED - id gemeente, wysigtekst
-        $nlsafe = mynl2br($nl);
-        $sql = "UPDATE gemeenten SET  nl = '$nl', en = '$en',du ='$du', titlenl = '$titlenl', titledu = '$titledu', titleen = '$titleen' WHERE id = '$id'";
+        //$nlsafe = mynl2br($nl);
+        $sql = "INSERT INTO gemeenten (name,wysig,buurtrecht) VALUES ('$name','$wysig','$buurtrechten')";
+        break;
+    case 'editgemeente':
+        // NEED - id gemeente, wysigtekst
+        //$nlsafe = mynl2br($nl);
+        $sql = "UPDATE gemeenten SET  name = '$name', wysig = '$wysig',buurtrecht ='$buurtrechten' WHERE name = '$name'";
         break;
     case 'editinstrument': //TODO
         // title, wysigtekst, link, buurtrechtenlink

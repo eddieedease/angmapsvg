@@ -21,7 +21,8 @@ var app = angular
         'ui.tinymce',
         'angular-svg-round-progressbar',
         'ngTable',
-        'thatisuday.ng-image-gallery'
+        'thatisuday.ng-image-gallery',
+        'ngToast'
     ])
     .config(function($routeProvider) {
         $routeProvider
