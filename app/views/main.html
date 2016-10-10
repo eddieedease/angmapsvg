@@ -13,28 +13,28 @@
         </div>
     </div>
 
-<div class="section">
-    <div class="container-fluid">
-        <div class="row">
+    <div class="section">
+        <div class="container-fluid">
+            <div class="row">
 
-            <div class="col-md-5">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Info</h3>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Soort kaart</h4>
-                        <select ng-model="main.curmap" ng-change="main.setMap(main.curmap)" name="buurtrecht">
-                            <option class="lt" value="1">Heel overzicht</option>
-                            <option class="lt" value="2">Buurtrecht 1</option>
-                            <option class="lt" value="AK">Buurtrecht 2</option>
-                            <option class="lt" value="AK">Buurtrecht 3</option>
-                            <option class="lt" value="AZ">Buurtrecht 4</option>
-                            <option class="lt" value="AR">Buurtrecht 5</option>
-                            <option class="lt" value="CA">Buurtrecht 6</option>
-                        </select>
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Info</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4>Soort kaart</h4>
+                            <select ng-model="main.curmap" ng-change="main.setMap(main.curmap)" name="buurtrecht">
+                                <option class="lt" value="1">Heel overzicht</option>
+                                <option class="lt" value="2">Buurtrecht 1</option>
+                                <option class="lt" value="AK">Buurtrecht 2</option>
+                                <option class="lt" value="AK">Buurtrecht 3</option>
+                                <option class="lt" value="AZ">Buurtrecht 4</option>
+                                <option class="lt" value="AR">Buurtrecht 5</option>
+                                <option class="lt" value="CA">Buurtrecht 6</option>
+                            </select>
 
-                        <!--<p>
+                            <!--<p>
               <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
             </p>
             <div class="regionlist">
@@ -43,194 +43,183 @@
                 <div>{{gemeente.value | number}}</div>
               </div>
             </div>-->
-                        <h4>Zoeken op gemeente</h4>
-                        <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten" value-attr="value"></select>
-                        <ol class="breadcrumb">
-                          <li><a href="#">Gemeente</a></li>
-                          <li><a href="#">Buurtrecht</a></li>
-                          <li class="active">Instrument</li>
-                        </ol>
-                        <div style="float:right">
-                            {{main.hovergemeente}}
+                            <h4>Zoeken op gemeente</h4>
+                            <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten" value-attr="value"></select>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="#">Gemeente</a>
+                                </li>
+
+                                <li class="active">Instrument</li>
+                            </ol>
+                            <div style="float:right">
+                                {{main.hovergemeente}}
+                            </div>
+                            <hr>
+
                         </div>
-                        <hr>
+
+                        <div style='padding:20px;padding-top:0px'>
+                            <h2>{{main.currentgemeente}}</h2>
+                            <p>
+                                Tekst hier<br>
+                                {{main.currentwysig}}
+                            </p><hr>
+                            <p>
+                                Instrumenten<br>
+                                <a ng-click="main.showInstru()">asdsadasdasd</a>
+                                {{main.currentInstrumenten}}
+                            </p><hr>
+                            <h4>Afbeeldingen</h4>
+
+
+                            <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
+                        </div>
 
                     </div>
+                </div>
+                <div class="col-md-7">
+                    <div ng-show="main.instruview">
+                        <div class="row" style="margin-top:20px !important">
+                            <div class="col-md-12">
+                                <div class="box box-widget">
+                                    <div class="box-header with-border">
+                                        <div class="user-block">
 
-                    <div style='padding:20px;padding-top:0px'>
-                        <h2>{{main.currentgemeente}}</h2>
-                        <p>
-                            Lorem ipsum dolor voorbeeldtekst sit amet, consectetur adipiscing elit. Vivamus molestie convallis pretium. Vivamus risus augue, dapibus sed luctus eget, ornare id orci.<br><br>
-                            Donec condimentum faucibus placerat. Nam tortor libero, euismod at rutrum ac, lobortis consequat lorem. Nunc ut ultrices purus. Aenean auctor lacus sit amet nunc finibus volutpat./n Donec varius nec nisi at fermentum. Sed accumsan lorem ac enim
-                            semper faucibus.
-                        </p><hr>
-                        <h4>Afbeeldingen</h4>
+                                            <span class="username">
+                                                <a href="#">Instrumentnaam</a>
+                                            </span>
 
-                        <ng-image-gallery
-                            images="main.images"
-                            thumbnails="true"
-                            inline="false"
-                            img-bubbles="true"
-                            bg-close="true"
-                            bubbles="true"></ng-image-gallery>
+                                        </div>
+                                        <div class="box-tools">
+                                            <button type="button" ng-click="main.hideInstru()">
+                                                <i>Sluit/Terug naar kaart</i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <p>Hier kunnen we het instrument beschrijven</p>
+
+                                        <p>En alle info inzetten, enz enz</p>
+
+                                        <div class="attachment-block clearfix">
+                                            <img class="attachment-img" src="http://lorempixel.com/400/300/nature/4/" alt="Attachment Image">
+                                            <div class="attachment-pushed">
+                                                <h4 class="attachment-heading">
+                                                    <a href="http://www.lipsum.com/">Lorem ipsum text generator</a>
+                                                </h4>
+                                                <div class="attachment-text">
+                                                    Foto omschrijving
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-default btn-xs">
+                                            <i class="fa fa-share"></i>
+                                            Link naar website</button>
+                                        <span class="pull-right text-muted">Laatst bijgewerkt :
+                                        </span>
+                                    </div>
+
+                                    <div class="box-footer">
+                                        <h5>__</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="main.loadingnow">
+                        <h3>{{main.loadingtext}}</h3>
+                    </div>
+                    <div ng-show="!main.loadingnow">
+                        <div ng-if="main.apiResp">
+                            <div svg-map></div>
+                        </div>
                     </div>
 
                 </div>
-            </div>
-            <div class="col-md-7">
-
-                <h3></h3>
-
-                <div ng-show="main.loadingnow">
-                    Laden..
-                </div>
-                <div ng-show="!main.loadingnow">
-                  <div ng-if="main.apiResp">
-                      <div svg-map></div>
-                  </div>
-
-                </div>
-
             </div>
         </div>
-    </div>
-    <div class="section">
-        <div class="container">
+        <div class="section">
+            <div class="container">
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>Info</h3>
-                            <ul class="media-list main-list">
-                                <li class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="http://placehold.it/150x90" alt="...">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Some news/h4>
-                                            <p class="by-author">...</p>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row">
                     <div class="col-md-4">
                         <div class="thumbnail">
                             <div class="caption">
-                                <h3>Laatst bijgewerkt</h3>
-                                <ul class="media-list main-list">
-                                    <li class="media">
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Gemeente</h4>
-                                            <p class="by-author">Buurtrecht</p>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Gemeente</h4>
-                                            <p class="by-author">Buurtrecht</p>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h3>Random</h3>
+                                <h3>Info</h3>
                                 <ul class="media-list main-list">
                                     <li class="media">
                                         <a class="pull-left" href="#">
                                             <img class="media-object" src="http://placehold.it/150x90" alt="...">
                                         </a>
                                         <div class="media-body">
-                                            <h4 class="media-heading">Something Random</h4>
-                                            <p class="by-author">Gemeente</p>
-                                        </div>
-                                    </li>
+                                            <h4 class="media-heading">Some news
+                                                <p class="by-author">...</p>
+                                            </div>
+                                        </li>
 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-
-        <div class="row" style="margin-top:60px !important">
-            <div class="col-md-12">
-                <div class="box box-widget">
-                    <div class="box-header with-border">
-                        <div class="user-block">
-                            <img class="img-circle" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User Image">
-                            <span class="username">
-                                <a href="#">Instrumentnaam</a>
-                            </span>
-                            <span class="description">Jupju</span>
-                        </div>
-                        <div class="box-tools">
-                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
-                                <i class="fa fa-circle-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-box-tool" data-widget="remove">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <p>Hier kunnen we het instrument beschrijven</p>
-
-                        <p>En alle info inzetten, enz enz</p>
-
-                        <div class="attachment-block clearfix">
-                            <img class="attachment-img" src="http://lorempixel.com/400/300/nature/4/" alt="Attachment Image">
-                            <div class="attachment-pushed">
-                                <h4 class="attachment-heading">
-                                    <a href="http://www.lipsum.com/">Lorem ipsum text generator</a>
-                                </h4>
-                                <div class="attachment-text">
-                                    Foto omschrijving
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-default btn-xs">
-                            <i class="fa fa-share"></i>
-                            Link naar website</button>
-                        <span class="pull-right text-muted">Laatst bijgewerkt :
-                        </span>
-                    </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h3>Laatst bijgewerkt</h3>
+                                    <ul class="media-list main-list">
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Gemeente</h4>
+                                                <p class="by-author">Buurtrecht</p>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Gemeente</h4>
+                                                <p class="by-author">Buurtrecht</p>
+                                            </div>
+                                        </li>
 
-                    <div class="box-footer">
-                        <h5>Coffee 2 Code</h5>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h3>Random</h3>
+                                    <ul class="media-list main-list">
+                                        <li class="media">
+                                            <a class="pull-left" href="#">
+                                                <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Something Random</h4>
+                                                <p class="by-author">Gemeente</p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1>Footer</h1>
-                    <p>Lorum ipsum
-                        <br>
-                        <br>^^ Beta</p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="text-info text-right"><br><br>asdasd</p>
+        <footer class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>Footer</h1>
 
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>

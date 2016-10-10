@@ -91,8 +91,9 @@ var app = angular
                         // TODO this aint the way, the hover doens't get recognised anymore
                         // so, must be another solutions
                         element.removeAttr("class");
+                        //element.removeAttr("gemeente");
+                        //element.attr("ng-class", "gemeente");
                         element.attr("ng-class", "gemeente");
-                        //element.attr("ng-class", "{active:''}");
                         console.log(scope.$parent.hoverRegionLast);
                         $compile(element)(scope);
                     }
@@ -112,6 +113,9 @@ var app = angular
 
                         // Paint them shizzle
                         switch (scope.buurtrechtarray.length) {
+                            case 0:
+                                element.attr("ng-attr-fill", "{{1 | map_colour2}}");
+                                break;
                             case 1:
                                 element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
                                 break;
@@ -128,8 +132,8 @@ var app = angular
 
                 //otherwise paint white
                 if (scope.komtvoor === false) {
-                  console.log("uhmz...")
-                  element.attr("ng-attr-fill", "{{1 | map_colour2}}");
+                    console.log("uhmz...")
+                    element.attr("ng-attr-fill", "{{1 | map_colour2}}");
                 }
 
 

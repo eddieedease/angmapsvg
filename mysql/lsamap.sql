@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 25 sep 2016 om 15:24
+-- Gegenereerd op: 10 okt 2016 om 08:39
 -- Serverversie: 5.6.32-1+deb.sury.org~xenial+0.1
--- PHP-versie: 7.0.11-1+deb.sury.org~xenial+1
+-- PHP-versie: 7.0.11-2+deb.sury.org~xenial+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -16,6 +16,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `lsamap`
+--
 
 -- --------------------------------------------------------
 
@@ -26,15 +29,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `api` (
   `id` int(11) NOT NULL,
   `ww` text NOT NULL,
-  `usr` text NOT NULL
+  `usr` text NOT NULL,
+  `email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `api`
 --
 
-INSERT INTO `api` (`id`, `ww`, `usr`) VALUES
-(1, '1721159c58afa5f80b61dfbfa3dced75', 'Admin');
+INSERT INTO `api` (`id`, `ww`, `usr`, `email`) VALUES
+(1, '1721159c58afa5f80b61dfbfa3dced75', 'Admin', 'test@test.nl');
 
 -- --------------------------------------------------------
 
@@ -47,8 +51,16 @@ CREATE TABLE `gemeenten` (
   `name` text NOT NULL,
   `wysig` text NOT NULL,
   `buurtrecht` text NOT NULL,
-  `date` date NOT NULL
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `gemeenten`
+--
+
+INSERT INTO `gemeenten` (`id`, `name`, `wysig`, `buurtrecht`, `date`) VALUES
+(1, 'Roosendaal', '<p>Dit is de Roosendaal tekst</p><br>HtmL Works', '1,2,3', '2016-10-08 22:00:00'),
+(2, 'Utrecht', 'Checkcheck<hr><hr>checkcheck<hr><hr>', '2,4', '2016-10-08 22:00:00');
 
 -- --------------------------------------------------------
 
@@ -64,6 +76,13 @@ CREATE TABLE `instrument` (
   `link` text NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `instrument`
+--
+
+INSERT INTO `instrument` (`id`, `naam`, `wysig`, `gemeentenlink`, `link`, `date`) VALUES
+(1, 'instrument 1', 'yes een html text', 'almere, eindhoven', 'www.edease.nl', '2016-10-07');
 
 -- --------------------------------------------------------
 
@@ -86,12 +105,14 @@ CREATE TABLE `uploads` (
 -- Indexen voor tabel `api`
 --
 ALTER TABLE `api`
+  ADD UNIQUE KEY `id_2` (`id`),
   ADD KEY `id` (`id`);
 
 --
 -- Indexen voor tabel `gemeenten`
 --
 ALTER TABLE `gemeenten`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
@@ -119,12 +140,12 @@ ALTER TABLE `api`
 -- AUTO_INCREMENT voor een tabel `gemeenten`
 --
 ALTER TABLE `gemeenten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `instrument`
 --
 ALTER TABLE `instrument`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `uploads`
 --

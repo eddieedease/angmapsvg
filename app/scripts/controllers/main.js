@@ -21,6 +21,8 @@ angular.module('lsamapApp')
 
         this.loadingnow = true;
 
+        this.loadingtext = "Laden..";
+
 
         // fill images
         this.images = [{
@@ -157,16 +159,26 @@ angular.module('lsamapApp')
                 if (oldValue) {
                     $scope.hoverRegionLast = oldValue.value;
                 }
-
-
-
-
                 //console.log($scope.hoverRegion);
                 //console.log($scope.hoverRegionLast);
-
-
             }
         }
+
+
+        // TODO manage al the things when a user clicks an instrument
+        this.instruview = false;
+
+        this.showInstru = function() {
+            this.loadingtext = "";
+            this.instruview = true;
+            this.loadingnow = true;
+        }
+
+        this.hideInstru = function() {
+          this.loadingtext = "Laden..";
+          this.instruview = false;
+          this.loadingnow = false;
+        };
 
 
 
