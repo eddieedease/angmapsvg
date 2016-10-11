@@ -22,7 +22,8 @@ var app = angular
         'angular-svg-round-progressbar',
         'ngTable',
         'thatisuday.ng-image-gallery',
-        'ngToast'
+        'ngToast',
+        'ngFileUpload',
     ])
     .config(function($routeProvider) {
         $routeProvider

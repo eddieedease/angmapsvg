@@ -8,10 +8,10 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MinadCtrl', function(ngToast, $scope, NgTableParams, $http, $timeout, $route, apis, ipa, md5) {
+    .controller('MinadCtrl', function(Upload, $scope, NgTableParams, $http, $timeout, $route, apis, ipa, md5, ngToast) {
 
         // NOTE NOTE change
-        // var nwlink = './api/';
+        //var nwlink = './api/';
         var nwlink = 'http://localhost:80/lsamap/app/api/';
 
         this.current = 0;
@@ -173,7 +173,6 @@ angular.module('lsamapApp')
                 for (var i = 0; i < self.apiResp.length; i++) {
 
                     if (self.apiResp[i].name === self.currentgemeente) {
-                        console.log("crazy");
                         self.tinymceModel = self.apiResp[i].wysig;
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
@@ -248,41 +247,33 @@ angular.module('lsamapApp')
         //
         //
 
-        // TODO uploading big photo's
-        this.mainfotoup = function(filez) {
-            //console.log(filez);
-            if (filez !== null) {
-                //console.log('uploadmain triggered');
-                // TODO TODO switch  http://localhost:8888/chaletrenesse/app/api/upload.php        -----   ./api/upload.php
-                Upload.upload({
-                    url: nwlink + 'uploadbig.php',
-                    method: 'POST',
-                    file: filez
-                }).then(function(resp) {
-                    ngToast.create('Geupload');
-                    self.updateService();
-                })
-            }
-        };
+        // TODO the upload script for images
+        this.uploadprep = function() {
+          //  if (self.file.$valid && self.file) {
+          self.uploadNow(this.file);
+          //  }
+        }
 
-        // TODO uploading small photo's
-        this.buurtfotoup = function(id) {
-            //console.log(id);
-            if (this.buurtfoto !== null) {
-                // TODO TODO switch  http://localhost:8888/chaletrenesse/app/api/upload.php        -----   ./api/upload.php
-                Upload.upload({
-                    url: nwlink + 'uploadsmall.php',
-                    method: 'POST',
-                    file: self.buurtfoto,
-                    sendFieldsAs: 'form',
-                    fields: {
-                        id: id
-                    }
-                }).then(function(resp) {
-                    ngToast.create('Geupload');
-                    self.updateService();
-                })
-            }
+        this.uploadNow = function(filez) {
+          //console.log(filez);
+          if (filez !== null) {
+            //console.log('upload triggered');
+            // TODO TODO switch  http://localhost:8888/chaletrenesse/app/api/upload.php        -----   ./api/upload.php
+            Upload.upload({
+              url: nwlink + 'upload.php',
+              method: 'POST',
+              file: filez,
+              data: {
+                'cat': "gemeente",
+                'description': "titelvoornu",
+                'extrainfo': "Extrainfo"
+              }
+            }).then(function(resp) {
+              console.log(resp);
+              //ngToast.create('Geupload');
+              //self.updateService();
+            })
+          }
         };
 
 

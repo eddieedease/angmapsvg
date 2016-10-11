@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 10 okt 2016 om 08:39
+-- Gegenereerd op: 10 okt 2016 om 20:56
 -- Serverversie: 5.6.32-1+deb.sury.org~xenial+0.1
 -- PHP-versie: 7.0.11-2+deb.sury.org~xenial+1
 
@@ -53,14 +53,6 @@ CREATE TABLE `gemeenten` (
   `buurtrecht` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `gemeenten`
---
-
-INSERT INTO `gemeenten` (`id`, `name`, `wysig`, `buurtrecht`, `date`) VALUES
-(1, 'Roosendaal', '<p>Dit is de Roosendaal tekst</p><br>HtmL Works', '1,2,3', '2016-10-08 22:00:00'),
-(2, 'Utrecht', 'Checkcheck<hr><hr>checkcheck<hr><hr>', '2,4', '2016-10-08 22:00:00');
 
 -- --------------------------------------------------------
 
@@ -140,7 +132,7 @@ ALTER TABLE `api`
 -- AUTO_INCREMENT voor een tabel `gemeenten`
 --
 ALTER TABLE `gemeenten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT voor een tabel `instrument`
 --

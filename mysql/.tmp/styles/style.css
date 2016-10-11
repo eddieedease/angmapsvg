@@ -1,0 +1,173 @@
+/* line 1, ../../app/styles/style.scss */
+.nav {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* line 5, ../../app/styles/style.scss */
+.jum-b {
+  background-color: #e13c3c !important;
+}
+
+/* line 8, ../../app/styles/style.scss */
+.jumbotron h1 {
+  color: #FFF !important;
+  text-shadow: 1px 1px #000, 2px 2px #000;
+}
+
+/* line 12, ../../app/styles/style.scss */
+.jumbotron p, small {
+  color: #FFF !important;
+}
+
+/* line 16, ../../app/styles/style.scss */
+em {
+  color: #000000 !important;
+  text-shadow: 1px 1px #FFF, 2px 2px #FFF;
+}
+
+/* line 23, ../../app/styles/style.scss */
+svg path:hover, path.active {
+  /* Amend this */
+  cursor: pointer;
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 0.8;
+}
+
+/* line 31, ../../app/styles/style.scss */
+svg .gemeente.active, .gemeente1.active, .gemeente2.active, .gemeente3.active, .gemeente4.active {
+  cursor: pointer;
+  fill: #fff;
+  stroke: #000;
+}
+
+/* line 37, ../../app/styles/style.scss */
+svg .gemeente.notactive, .gemeente1.notactive, .gemeente2.notactive, .gemeente3.notactive, .gemeente4.notactive {
+  stroke: #000;
+}
+
+/* line 44, ../../app/styles/style.scss */
+svg .gemeente {
+  stroke: #000;
+  stroke-width: 0.4;
+  transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+/* line 52, ../../app/styles/style.scss */
+svg .gemeente1 {
+  fill: #418830;
+  transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+/* line 61, ../../app/styles/style.scss */
+svg .gemeente2 {
+  fill: #c12727;
+  transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+/* line 70, ../../app/styles/style.scss */
+svg .gemeente3 {
+  fill: #505cc8;
+  transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+/* line 79, ../../app/styles/style.scss */
+svg .gemeente4 {
+  fill: black;
+  transition: stroke 0.5s, stroke-width 0.5s;
+}
+
+/* line 91, ../../app/styles/style.scss */
+svg .gemeente:hover, .gemeente1:hover, .gemeente2:hover, .gemeente3:hover, .gemeente4:hover, .state.active {
+  cursor: pointer;
+  stroke-width: 1;
+  stroke: #000;
+}
+
+/* line 101, ../../app/styles/style.scss */
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+/* line 106, ../../app/styles/style.scss */
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 113, ../../app/styles/style.scss */
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 30px;
+}
+/* line 118, ../../app/styles/style.scss */
+.form-signin .checkbox {
+  font-weight: normal;
+}
+/* line 122, ../../app/styles/style.scss */
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+}
+/* line 129, ../../app/styles/style.scss */
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+/* line 134, ../../app/styles/style.scss */
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/* line 140, ../../app/styles/style.scss */
+.form-signin input[type="password"] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* line 158, ../../app/styles/style.scss */
+blockquote {
+  border-left: none;
+}
+
+/* line 162, ../../app/styles/style.scss */
+.quote-badge {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* line 166, ../../app/styles/style.scss */
+.quote-box {
+  overflow: hidden;
+  margin-top: -50px;
+  padding-top: -100px;
+  border-radius: 17px;
+  background-color: #4ADFCC;
+  margin-top: 25px;
+  color: white;
+  width: 325px;
+  box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+
+/* line 180, ../../app/styles/style.scss */
+.quotation-mark {
+  margin-top: -10px;
+  font-weight: bold;
+  font-size: 100px;
+  color: white;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+
+/* line 190, ../../app/styles/style.scss */
+.quote-text {
+  font-size: 19px;
+  margin-top: -65px;
+}
+
+/*# sourceMappingURL=style.css.map */

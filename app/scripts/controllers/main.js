@@ -17,8 +17,6 @@ angular.module('lsamapApp')
 
         this.current = 0;
         this.max = 410;
-
-
         this.loadingnow = true;
 
         this.loadingtext = "Laden..";
@@ -154,11 +152,51 @@ angular.module('lsamapApp')
             //console.log("Hoe vaak!");
 
             if (newValue) {
+              self.currentwysig = "";
+              $scope.currentgemeente = newValue.value;
+              self.currentgemeente = newValue.value;
+              // first reset checkboxes
+              this.brechtcheckboxes = {
+                  Buurtrecht1: false,
+                  Buurtrecht2: false,
+                  Buurtrecht3: false,
+                  Buurtrecht4: false,
+                  Buurtrecht5: false,
+                  Buurtrecht6: false
+              };
+              // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
+              for (var i = 0; i < self.apiResp.length; i++) {
 
-                $scope.currentgemeente = newValue.value;
+                  if (self.apiResp[i].name === self.currentgemeente) {
+                      self.currentwysig = self.apiResp[i].wysig;
+                      // Check for buurtrechten
+                      var tempstring = self.apiResp[i].buurtrecht;
+                      var tempArray = tempstring.split(",");
+                      console.log(tempArray);
+                      for (var b = 0; b < tempArray.length; b++) {
+                          if (tempArray[b] === "1") {
+                              self.brechtcheckboxes.Buurtrecht1 = true;
+                          }
+                          if (tempArray[b] === "2") {
+                              self.brechtcheckboxes.Buurtrecht2 = true;
+                          }
+                          if (tempArray[b] === "3") {
+                              self.brechtcheckboxes.Buurtrecht3 = true;
+                          }
+                          if (tempArray[b] === "4") {
+                              self.brechtcheckboxes.Buurtrecht4 = true;
+                          }
+                          if (tempArray[b] === "5") {
+                              self.brechtcheckboxes.Buurtrecht5 = true;
+                          }
+                          if (tempArray[b] === "6") {
+                              self.brechtcheckboxes.Buurtrecht6 = true;
+                          }
 
-                //self.currenthtml = $sce.trustAsHtml(self.sersections[0].nl);
-
+                      }
+                      self.isnew = false;
+                  }
+              }
 
                 $scope.hoverRegion = newValue.value;
                 if (oldValue) {

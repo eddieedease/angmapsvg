@@ -23,4 +23,6 @@ if ($_FILES['file']['name']) {
   // execute the query
   $dbh = null;
     $stmt->execute();
+
+    echo $sql;
 }

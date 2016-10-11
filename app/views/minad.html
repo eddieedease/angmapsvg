@@ -148,8 +148,72 @@
                                             <div svg-map></div>
                                         </div>
                                     </div>
+                                    <div ng-if="minad.currentgemeente" class="panel panel-danger">
+                                        <div class="panel-heading">Fotobak Gemeente
+                                            {{minad.currentgemeente}}</div>
+                                        <div class="panel-body">
+                                            Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
+                                            <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 1000}">Selecteer bestand</div>
+
+                                            <button type="btn btn-primary" ng-click="minad.uploadprep()">Opslaan</button>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                                <div class="thumbnail">
+                                                    <img src="http://placehold.it/500x300" alt="">
+                                                    <div class="caption">
+                                                        <p>Titelfoto</p>
+                                                        <p>
+                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
+                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                                <div class="thumbnail">
+                                                    <img src="http://placehold.it/500x300" alt="">
+                                                    <div class="caption">
+                                                        <p>Titelfoto</p>
+                                                        <p>
+                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
+                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                                <div class="thumbnail">
+                                                    <img src="http://placehold.it/500x300" alt="">
+                                                    <div class="caption">
+                                                        <p>Titelfoto</p>
+                                                        <p>
+                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
+                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                                <div class="thumbnail">
+                                                    <img src="http://placehold.it/500x300" alt="">
+                                                    <div class="caption">
+                                                        <p>Titelfoto</p>
+                                                        <p>
+                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
+                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="col-md-5"></div>
+
                                 <div class="col-md-5">
                                     <div class="panel panel-danger">
                                         <div class="panel-heading">Selectie</div>
@@ -170,6 +234,7 @@
                                             </div>
                                             <h2>{{minad.currentgemeente}}</h2>
                                         </div>
+                                        <div class="panel-heading">Tekst {{minad.currentgemeente}}</div>
                                         <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
                                         <hr>
 
