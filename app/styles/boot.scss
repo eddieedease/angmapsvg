@@ -1137,6 +1137,7 @@ img {
   border-radius: 0;
 }
 .img-thumbnail {
+  max-width:100%;
   padding: 4px;
   line-height: 1.42857143;
   background-color: #ffffff;
@@ -5007,6 +5008,7 @@ a.badge:focus {
   }
 }
 .thumbnail {
+  max-width:100%;
   display: block;
   padding: 4px;
   margin-bottom: 21px;

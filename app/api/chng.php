@@ -7,7 +7,7 @@ $request = json_decode($postdata);
 
 // mysql tables are: api, gemeenten, instrument, uploads
 // TODO IMPORTANT TODO TODO Get validation from server side, aka save username and pw & check
-// TODO VALIDATION FIRST // TODO VALIDATIOM
+// TODO VALIDATION FIRST // TODO VALIDATION
 
 @$action = $request->action;
 @$id = $request->id;

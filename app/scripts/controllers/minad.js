@@ -249,6 +249,7 @@ angular.module('lsamapApp')
 
         // TODO the upload script for images
         this.uploadprep = function() {
+          console.log(this.file.$ngfName);
           //  if (self.file.$valid && self.file) {
           self.uploadNow(this.file);
           //  }
@@ -265,11 +266,12 @@ angular.module('lsamapApp')
               file: filez,
               data: {
                 'cat': "gemeente",
-                'description': "titelvoornu",
-                'extrainfo': "Extrainfo"
+                'description': self.afbtitel,
+                'extrainfo': self.currentgemeente
               }
             }).then(function(resp) {
               console.log(resp);
+              self.file = null;
               //ngToast.create('Geupload');
               //self.updateService();
             })

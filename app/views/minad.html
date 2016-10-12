@@ -153,9 +153,25 @@
                                             {{minad.currentgemeente}}</div>
                                         <div class="panel-body">
                                             Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
-                                            <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 1000}">Selecteer bestand</div>
 
-                                            <button type="btn btn-primary" ng-click="minad.uploadprep()">Opslaan</button>
+                                        <form style="padding-left:20px">
+                                            <div class="form-group">
+                                                <legend>Upload nieuwe afbeelding</legend>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 1000}">Selecteer bestand</div>
+                                            </div>
+                                            <div ng-if="minad.file.$ngfName"><div class="form-group">Titel voor afbeelding:
+                                                <input type="text" ng-model="minad.afbtitel"></div></div>
+
+
+                                            <div class="form-group">
+                                                <button class="btn btn-primary" ng-click="minad.uploadprep()">Opslaan</button>
+                                            </div>
+                                            <div class="form-group">
+                                                <legend>Verwijder afbeeldingen</legend>
+                                            </div>
+                                        </form>
 
                                         <div class="row">
 
@@ -165,49 +181,11 @@
                                                     <div class="caption">
                                                         <p>Titelfoto</p>
                                                         <p>
-                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
-                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                                                            <a href="#" class="btn btn-warning btn-xs" role="button">Verwijder</a>
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-3">
-                                                <div class="thumbnail">
-                                                    <img src="http://placehold.it/500x300" alt="">
-                                                    <div class="caption">
-                                                        <p>Titelfoto</p>
-                                                        <p>
-                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
-                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-3">
-                                                <div class="thumbnail">
-                                                    <img src="http://placehold.it/500x300" alt="">
-                                                    <div class="caption">
-                                                        <p>Titelfoto</p>
-                                                        <p>
-                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
-                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-3">
-                                                <div class="thumbnail">
-                                                    <img src="http://placehold.it/500x300" alt="">
-                                                    <div class="caption">
-                                                        <p>Titelfoto</p>
-                                                        <p>
-                                                            <a href="#" class="btn btn-info btn-xs" role="button">Button</a>
-                                                            <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
 
                                         </div>
 
@@ -234,7 +212,8 @@
                                             </div>
                                             <h2>{{minad.currentgemeente}}</h2>
                                         </div>
-                                        <div class="panel-heading">Tekst {{minad.currentgemeente}}</div>
+                                        <div class="panel-heading">Tekst
+                                            {{minad.currentgemeente}}</div>
                                         <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
                                         <hr>
 
