@@ -224,7 +224,6 @@
                                                 <label>
                                                     <input type="checkbox" ng-model="minad.brechtcheckboxes[checkboxx]"/>
                                                     <h5>{{checkboxx}}</h5>
-
                                                 </label>
                                             </div>
                                         </div>
@@ -260,7 +259,7 @@
                                             {{user.name}}</td>
 
                                         <td title="'Handelingen'">
-                                            <button ng-click="minad.goeditInstru()" class="btn btn-default btn-sm">
+                                            <button ng-click="minad.goeditInstru(user.id)" class="btn btn-default btn-sm">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </button>
                                             <button ng-click="minad.delInstru(user.id)" class="btn btn-danger btn-sm">

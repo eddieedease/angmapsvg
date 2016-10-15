@@ -63,20 +63,20 @@ angular.module('lsamapApp')
 
 
         this.getgetget = function() {
-          apis.getApi().then(function(dataResponse) {
-              // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
+            apis.getApi().then(function(dataResponse) {
+                // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
 
-              apis.setSerGemeenten(dataResponse.data[0]);
-              self.apiResp = dataResponse.data[0];
+                apis.setSerGemeenten(dataResponse.data[0]);
+                self.apiResp = dataResponse.data[0];
 
-              // some hocus pocus to fill the table for instruments // WORKS
-              data = dataResponse.data[1];
-              self.tableParams = new NgTableParams({}, {
-                  dataset: data
-              });
-              self.instrumenten = dataResponse.data[1];
+                // some hocus pocus to fill the table for instruments // WORKS
+                data = dataResponse.data[1];
+                self.tableParams = new NgTableParams({}, {
+                    dataset: data
+                });
+                self.instrumenten = dataResponse.data[1];
 
-          });
+            });
         }
 
         this.getgetget();
@@ -252,9 +252,20 @@ angular.module('lsamapApp')
             }
         }
 
-        this.goeditInstru = function() {
+        this.goeditInstru = function(id) {
             this.instruaction = "editexisting";
             self.editinstru = true;
+
+            for (var i = 0; i < self.instrumenten.length; i++) {
+                if (self.instrumenten[i].id === id) {
+                    this.instruName = self.instrumenten[i].name;
+                    this.tinymceModelinstru = self.instrumenten[i].wysig;
+                    this.instrugems = self.instrumenten[i].gemeentenlink.split(',');
+                    this.instrulink = self.instrumenten[i].link;
+                }
+            }
+            console.log(id);
+            self.gemeenteidpass = id;
             // TODO implement to take current objectnode and assign view
         }
 
@@ -341,8 +352,7 @@ angular.module('lsamapApp')
         // NOTE NOTE NOTE NOTE Handling all the request
         // NOTE update RECORDS
         this.updateGemeenten = function() {
-            console.log('poging tot opslaan');
-
+            var escapedwysig = self.tinymceModel.replace("'", "''");
             var arrayforstring = [];
             //arrayforstring.push("1");
             // collect buurtrechten
@@ -376,7 +386,7 @@ angular.module('lsamapApp')
                     data: {
                         action: "newgemeente",
                         name: self.currentgemeente,
-                        wysig: self.tinymceModel,
+                        wysig: escapedwysig,
                         buurtrechten: buurtrechtstring
                     },
                     headers: {
@@ -397,7 +407,7 @@ angular.module('lsamapApp')
                     data: {
                         action: "editgemeente",
                         name: self.currentgemeente,
-                        wysig: self.tinymceModel,
+                        wysig: escapedwysig,
                         buurtrechten: buurtrechtstring
                     },
                     headers: {
@@ -416,15 +426,15 @@ angular.module('lsamapApp')
 
         // editting the instrument, switch on action for new one if one doesn't exist
         this.editInstru = function() {
-            console.log('editting Instru');
             console.log(this.instruName);
             console.log(this.tinymceModelinstru);
 
 
             var instrustringg = this.instrugems.join();
             console.log(instrustringg);
-
             console.log(this.instrulink);
+
+            var escapedwysig = self.tinymceModelinstru.replace("'", "''");
 
 
             switch (this.instruaction) {
@@ -436,7 +446,7 @@ angular.module('lsamapApp')
                         data: {
                             action: "newinstrument",
                             name: self.instruName,
-                            wysig: self.tinymceModelinstru,
+                            wysig: escapedwysig,
                             gemeenten: instrustringg,
                             buurtrechten: this.instrulink
                         },
@@ -451,11 +461,31 @@ angular.module('lsamapApp')
                         self.editinstru = false;
 
                     });
-
-
                     break;
                 case "editexisting":
+                    this.myPromise = $http({
+                        method: "post",
+                        url: nwlink + 'chng.php',
+                        // actions and parameters
+                        data: {
+                            action: "editinstrument",
+                            id: self.gemeenteidpass,
+                            name: self.instruName,
+                            wysig: escapedwysig,
+                            gemeenten: instrustringg,
+                            buurtrechten: this.instrulink
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    });
+                    /* Check whether the HTTP Request is Successfull or not. */
+                    this.myPromise.success(function(data) {
+                        console.log(data);
+                        self.getgetget();
+                        self.editinstru = false;
 
+                    });
                     break;
                 default:
 

@@ -112,20 +112,36 @@ var app = angular
                         scope.buurtrechtarray = apis.serGemeenten[i].buurtrecht.split(',');
 
 
+                        // TODO TODO TODO TODO TODO
+                        // TODO TODO TODO TODO TODO
+                        // place here the script that loads the different maps? Switch?
+                        // TODO TODO also set the currentMap name in the service!
+                        // TODO think it needs to be set in the controller
+
+
                         // Paint them shizzle
                         switch (scope.buurtrechtarray.length) {
                             case 0:
                                 element.attr("ng-attr-fill", "{{1 | map_colour2}}");
                                 break;
                             case 1:
-                                element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+                                element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
                                 break;
                             case 2:
-                                element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                element.attr("ng-attr-fill", "{{0.6 | map_colour}}");
                                 break;
                             case 3:
+                                element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                break;
+                            case 4:
+                                element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+                                break;
+                            case 5:
                                 element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
                                 break;
+                                case 6:
+                                    element.attr("ng-attr-fill", "{{1 | map_colour}}");
+                                    break;
                             default:
                         }
                     }

@@ -15,8 +15,10 @@ $request = json_decode($postdata);
 @$name = $request->name;
 @$buurtrechten = $request->buurtrechten;
 @$gemeenten = $request->gemeenten;
-
 @$id = $request->id;
+
+
+
 @$pos = $request->pos;
 @$photolink = $request->photolink;
 @$thumblink = $request->thumblink;
@@ -35,7 +37,10 @@ include 'db.php';
 
 // connect to the database
 $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-// a query get all the records from the users table
+
+// Escape some shit
+
+
 
 // for the wysig
 function mynl2br($text)
@@ -71,7 +76,7 @@ switch ($action) {
     case 'editinstrument': //TODO
         // title, wysigtekst, link, buurtrechtenlink
         //$nlsafe = mynl2br($nl);
-        $sql = "INSERT INTO instrument (nl,en,du,titlenl,titledu,titleen) VALUES ('$nl','$en','$du','$titlenl','$titledu','$titleen')";
+        $sql = "UPDATE instrument SET  name = '$name', wysig = '$wysig',gemeentenlink ='$gemeenten',link ='$buurtrechten' WHERE id = '$id'";
         break;
     case 'removeinstrument': //TODO
         $sql = "DELETE FROM instrument WHERE id = '$id'";
