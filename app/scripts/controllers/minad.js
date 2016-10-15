@@ -13,6 +13,8 @@ angular.module('lsamapApp')
         // NOTE NOTE change
         //var nwlink = './api/';
         var nwlink = 'http://localhost:80/lsamap/app/api/';
+        // instru
+        var data;
 
         this.current = 0;
         // make ref
@@ -21,7 +23,7 @@ angular.module('lsamapApp')
         this.md5message = 'Your pwd encryption is: ' + md5.createHash("goudvis" || '');
         this.tinymceModel = "Verander...";
 
-
+        this.editinstru = false;
 
         this.brechtcheckboxes = {
             Buurtrecht1: false,
@@ -59,18 +61,20 @@ angular.module('lsamapApp')
 
             apis.setSerGemeenten(dataResponse.data[0]);
             self.apiResp = dataResponse.data[0];
-            //self.apiResp = "chck";
 
-            // TODO set everything up
-            //self.currenthtml = $sce.trustAsHtml(self.sersections[0].nl);
-            //self.currentitle = $sce.trustAsHtml(self.sersections[0].titlenl);
-            //self.ryx();
+            // some hocus pocus to fill the table for instruments // WORKS
+            data = dataResponse.data[1];
+            self.tableParams = new NgTableParams({}, {
+                dataset: data
+            });
+            self.instrumenten = dataResponse.data[1];
+
         });
 
 
 
-        // NOTE testing for the table sorting stuff
-        var data = [{
+        // isn called but example for table
+        /*var data = [{
             name: "Instrument 1",
             id: 50
         }, {
@@ -80,9 +84,12 @@ angular.module('lsamapApp')
             name: "Instrument 3",
             id: 10
         }];
-        self.tableParams = new NgTableParams({}, {
-            dataset: data
-        });
+*/
+
+
+
+
+
 
         // options for the editor
         this.tinymceOptions = {
@@ -225,6 +232,20 @@ angular.module('lsamapApp')
             //$scope.$apply()
         }
 
+        // NOTE NOTE vieuw controll
+        //switching the instru views
+        this.goInstruEdit = function() {
+            if (this.editinstru === false) {
+                this.editinstru = true;
+            } else if (this.editinstru === true) {
+                this.editinstru = false;
+            }
+        }
+
+        this.editInstru = function() {
+            self.editinstru = true;
+        }
+
         // Logging in over here, Now for testing purposes
         // TODO MD5 PHP MSQL COnnect, special login script
         this.inlogger = function() {
@@ -243,47 +264,70 @@ angular.module('lsamapApp')
 
 
         // The API stuff
-        // TODO allot of copied from other project, adjust
+        //
         //
         //
 
-        // TODO the upload script for images
+        // NOTE NOTE NOTE
+        // NOTE NOTE NOTE
+        // NOTE NOTE NOTE Voorbeeldfunctie
+        this.voorbeeldfunc = function() {
+            this.myPromise = $http({
+                method: "post",
+                url: nwlink + 'chng.php',
+                // actions and parameters
+                data: {
+                    action: "newgemeente",
+                    name: self.currentgemeente,
+                    wysig: self.tinymceModel,
+                    buurtrechten: buurtrechtstring
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            this.myPromise.success(function(data) {
+                console.log(data);
+            });
+        }
+
+        // NOTE NOTE the upload script for images // WORKS
         this.uploadprep = function() {
-          console.log(this.file.$ngfName);
-          //  if (self.file.$valid && self.file) {
-          self.uploadNow(this.file);
-          //  }
+            console.log(this.file.$ngfName);
+            //  if (self.file.$valid && self.file) {
+            self.uploadNow(this.file);
+            //  }
         }
 
         this.uploadNow = function(filez) {
-          //console.log(filez);
-          if (filez !== null) {
-            //console.log('upload triggered');
-            // TODO TODO switch  http://localhost:8888/chaletrenesse/app/api/upload.php        -----   ./api/upload.php
-            Upload.upload({
-              url: nwlink + 'upload.php',
-              method: 'POST',
-              file: filez,
-              data: {
-                'cat': "gemeente",
-                'description': self.afbtitel,
-                'extrainfo': self.currentgemeente
-              }
-            }).then(function(resp) {
-              console.log(resp);
-              self.file = null;
-              //ngToast.create('Geupload');
-              //self.updateService();
-            })
-          }
+            //console.log(filez);
+            if (filez !== null) {
+                //console.log('upload triggered');
+                // TODO TODO switch  http://localhost:8888/chaletrenesse/app/api/upload.php        -----   ./api/upload.php
+                Upload.upload({
+                    url: nwlink + 'upload.php',
+                    method: 'POST',
+                    file: filez,
+                    data: {
+                        'cat': "gemeente",
+                        'description': self.afbtitel,
+                        'extrainfo': self.currentgemeente
+                    }
+                }).then(function(resp) {
+                    console.log(resp);
+                    self.file = null;
+                    //ngToast.create('Geupload');
+                    //self.updateService();
+                })
+            }
         };
+
 
 
         // NOTE NOTE NOTE NOTE NOTE
         // NOTE NOTE NOTE NOTE Handling all the request
         // NOTE update RECORDS
-
-
         this.updateGemeenten = function() {
             console.log('poging tot opslaan');
 
@@ -334,7 +378,7 @@ angular.module('lsamapApp')
                     ngToast.create('Instellingen opgeslagen');
                     $route.reload();
                 });
-            } else if (self.isnew === false && self.currentgemeente !== undefined){
+            } else if (self.isnew === false && self.currentgemeente !== undefined) {
                 this.myPromise = $http({
                     method: "post",
                     url: nwlink + 'chng.php',
@@ -355,8 +399,13 @@ angular.module('lsamapApp')
                     $route.reload();
                 });
             }
+        };
 
 
 
+
+        this.delInstru = function() {
+            console.log("Deleting instrument")
         }
+
     });

@@ -161,9 +161,10 @@
                                             <div class="form-group">
                                                 <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 1000}">Selecteer bestand</div>
                                             </div>
-                                            <div ng-if="minad.file.$ngfName"><div class="form-group">Titel voor afbeelding:
-                                                <input type="text" ng-model="minad.afbtitel"></div></div>
-
+                                            <div ng-if="minad.file.$ngfName">
+                                                <div class="form-group">Titel voor afbeelding:
+                                                    <input type="text" ng-model="minad.afbtitel"></div>
+                                            </div>
 
                                             <div class="form-group">
                                                 <button class="btn btn-primary" ng-click="minad.uploadprep()">Opslaan</button>
@@ -249,27 +250,36 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="tab3">
+                        <div class="container">
+                            <div ng-show="!minad.editinstru">
 
-                        <div ng-show="!main.instruments">
-                            <table ng-table="minad.tableParams" class="table" show-filter="true">
-                                <tr ng-repeat="user in $data">
-                                    <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-                                        {{user.name}}</td>
-                                    <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
-                                        {{user.age}}</td>
-                                    <td title="'extra'">
-                                        <button class="btn btn-default btn-sm">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                              <div ng-if='minad.instrumenten'>
+                                <table ng-table="minad.tableParams" class="table" show-filter="true">
+                                    <tr ng-repeat="user in $data">
+                                        <td title="'Naam instrument'" filter="{ name: 'text'}" sortable="'name'">
+                                            {{user.name}}</td>
+
+                                        <td title="'Handelingen'">
+                                            <button ng-click="minad.editInstru()" class="btn btn-default btn-sm">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button ng-click="minad.delInstru()" class="btn btn-danger btn-sm">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                              </div>
+
+                                Of ....
+                                <br><br>
+                                <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
+                                    Voeg een nieuw instrument toe
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="row" ng-show="!main.instruments">
+                        <div class="row" ng-show="minad.editinstru">
                             <div class="container">
                                 <form class="form-horizontal">
                                     <fieldset>
@@ -280,25 +290,60 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Titel</label>
                                             <div class="col-md-6">
-                                                <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
-                                                <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelinstru"></textarea>
+                                                <input id="textinput" name="textinput" type="text" placeholder="Titel" class="form-control input-md" required="">
                                             </div>
 
                                         </div>
+
                                         <div class="form-group">
-                                            <div class="col-md-6"></div>
+                                            <label class="col-md-4 control-label" for="textinput">Tekst edit</label>
+                                            <div class="col-md-6"><textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelinstru"></textarea></div>
                                         </div>
 
-                                        <!-- Text input-->
-
-                                        <!-- Multiple Checkboxes (inline) -->
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="notification"></label>
-                                            <div class="col-md-4">
-                                                <label class="checkbox-inline" for="notification-0">
-                                                    <input type="checkbox" name="notification" id="notification-0" value="1">
-                                                    Voorbeeld checkbox
-                                                </label>
+                                            <label class="col-md-4 control-label" for="textinput">Gekoppelde gemeenten</label>
+                                            <div class="col-md-6"><select selector multi="true" model="minad.instrugems" options="minad.gemeenten" value-attr="value"></select></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Titel</label>
+                                            <div class="col-md-6">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="chickenEgg" value="1" ng-model="formData.chickenEgg">
+                                                        Buurtrecht 1
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="chickenEgg" value="2" ng-model="minad.instrulink">
+                                                        Buurtrecht 2
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="chickenEgg" value="3" ng-model="formData.chickenEgg">
+                                                        Buurtrecht 3
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="chickenEgg" value="4" ng-model="minad.instrulink">
+                                                        Buurtrecht 4
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="chickenEgg" value="5" ng-model="formData.chickenEgg">
+                                                        Buurtrecht 5
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="chickenEgg" value="6" ng-model="minad.instrulink">
+                                                        Buurtrecht 6
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -307,6 +352,9 @@
                                             <label class="col-md-4 control-label" for="submitButton"></label>
                                             <div class="col-md-8">
                                                 <button id="submitButton" name="submitButton" class="btn btn-success">Opslaan</button>
+                                                <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
+                                                    Annuleer
+                                                </button>
 
                                             </div>
                                         </div>
