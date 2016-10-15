@@ -14,6 +14,7 @@ $request = json_decode($postdata);
 @$wysig = $request->wysig;
 @$name = $request->name;
 @$buurtrechten = $request->buurtrechten;
+@$gemeenten = $request->gemeenten;
 
 @$id = $request->id;
 @$pos = $request->pos;
@@ -62,9 +63,14 @@ switch ($action) {
         //$nlsafe = mynl2br($nl);
         $sql = "UPDATE gemeenten SET  name = '$name', wysig = '$wysig',buurtrecht ='$buurtrechten' WHERE name = '$name'";
         break;
+    case 'newinstrument': //TODO
+        // title, wysigtekst, link, buurtrechtenlink
+        //$nlsafe = mynl2br($nl);
+        $sql = "INSERT INTO instrument (name,wysig,gemeentenlink,link) VALUES ('$name','$wysig','$gemeenten','$buurtrechten')";
+        break;
     case 'editinstrument': //TODO
         // title, wysigtekst, link, buurtrechtenlink
-        $nlsafe = mynl2br($nl);
+        //$nlsafe = mynl2br($nl);
         $sql = "INSERT INTO instrument (nl,en,du,titlenl,titledu,titleen) VALUES ('$nl','$en','$du','$titlenl','$titledu','$titleen')";
         break;
     case 'removeinstrument': //TODO

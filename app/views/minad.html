@@ -260,10 +260,10 @@
                                             {{user.name}}</td>
 
                                         <td title="'Handelingen'">
-                                            <button ng-click="minad.editInstru()" class="btn btn-default btn-sm">
+                                            <button ng-click="minad.goeditInstru()" class="btn btn-default btn-sm">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </button>
-                                            <button ng-click="minad.delInstru()" class="btn btn-danger btn-sm">
+                                            <button ng-click="minad.delInstru(user.id)" class="btn btn-danger btn-sm">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                             </button>
                                         </td>
@@ -290,7 +290,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Titel</label>
                                             <div class="col-md-6">
-                                                <input id="textinput" name="textinput" type="text" placeholder="Titel" class="form-control input-md" required="">
+                                                <input id="textinput" ng-model="minad.instruName" name="textinput" type="text" placeholder="Titel" class="form-control input-md" required="">
                                             </div>
 
                                         </div>
@@ -306,11 +306,11 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Titel</label>
+                                            <label class="col-md-4 control-label" for="textinput">Koppeling buurtrecht</label>
                                             <div class="col-md-6">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="chickenEgg" value="1" ng-model="formData.chickenEgg">
+                                                        <input type="radio" name="chickenEgg" value="1" ng-model="minad.instrulink">
                                                         Buurtrecht 1
                                                     </label>
                                                 </div>
@@ -322,7 +322,7 @@
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="chickenEgg" value="3" ng-model="formData.chickenEgg">
+                                                        <input type="radio" name="chickenEgg" value="3" ng-model="minad.instrulink">
                                                         Buurtrecht 3
                                                     </label>
                                                 </div>
@@ -334,7 +334,7 @@
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="chickenEgg" value="5" ng-model="formData.chickenEgg">
+                                                        <input type="radio" name="chickenEgg" value="5" ng-model="minad.instrulink">
                                                         Buurtrecht 5
                                                     </label>
                                                 </div>
@@ -351,7 +351,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="submitButton"></label>
                                             <div class="col-md-8">
-                                                <button id="submitButton" name="submitButton" class="btn btn-success">Opslaan</button>
+                                                <button id="submitButton" ng-click="minad.editInstru()"name="submitButton" class="btn btn-success">Opslaan</button>
                                                 <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
                                                     Annuleer
                                                 </button>

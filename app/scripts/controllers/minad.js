@@ -56,21 +56,30 @@ angular.module('lsamapApp')
 
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
-        apis.getApi().then(function(dataResponse) {
-            // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
 
-            apis.setSerGemeenten(dataResponse.data[0]);
-            self.apiResp = dataResponse.data[0];
 
-            // some hocus pocus to fill the table for instruments // WORKS
-            data = dataResponse.data[1];
-            self.tableParams = new NgTableParams({}, {
-                dataset: data
-            });
-            self.instrumenten = dataResponse.data[1];
 
-        });
 
+
+
+        this.getgetget = function() {
+          apis.getApi().then(function(dataResponse) {
+              // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
+
+              apis.setSerGemeenten(dataResponse.data[0]);
+              self.apiResp = dataResponse.data[0];
+
+              // some hocus pocus to fill the table for instruments // WORKS
+              data = dataResponse.data[1];
+              self.tableParams = new NgTableParams({}, {
+                  dataset: data
+              });
+              self.instrumenten = dataResponse.data[1];
+
+          });
+        }
+
+        this.getgetget();
 
 
         // isn called but example for table
@@ -235,6 +244,7 @@ angular.module('lsamapApp')
         // NOTE NOTE vieuw controll
         //switching the instru views
         this.goInstruEdit = function() {
+            this.instruaction = "new";
             if (this.editinstru === false) {
                 this.editinstru = true;
             } else if (this.editinstru === true) {
@@ -242,8 +252,10 @@ angular.module('lsamapApp')
             }
         }
 
-        this.editInstru = function() {
+        this.goeditInstru = function() {
+            this.instruaction = "editexisting";
             self.editinstru = true;
+            // TODO implement to take current objectnode and assign view
         }
 
         // Logging in over here, Now for testing purposes
@@ -294,7 +306,7 @@ angular.module('lsamapApp')
 
         // NOTE NOTE the upload script for images // WORKS
         this.uploadprep = function() {
-            console.log(this.file.$ngfName);
+            //console.log(this.file.$ngfName);
             //  if (self.file.$valid && self.file) {
             self.uploadNow(this.file);
             //  }
@@ -402,10 +414,75 @@ angular.module('lsamapApp')
         };
 
 
+        // editting the instrument, switch on action for new one if one doesn't exist
+        this.editInstru = function() {
+            console.log('editting Instru');
+            console.log(this.instruName);
+            console.log(this.tinymceModelinstru);
 
 
-        this.delInstru = function() {
+            var instrustringg = this.instrugems.join();
+            console.log(instrustringg);
+
+            console.log(this.instrulink);
+
+
+            switch (this.instruaction) {
+                case "new":
+                    this.myPromise = $http({
+                        method: "post",
+                        url: nwlink + 'chng.php',
+                        // actions and parameters
+                        data: {
+                            action: "newinstrument",
+                            name: self.instruName,
+                            wysig: self.tinymceModelinstru,
+                            gemeenten: instrustringg,
+                            buurtrechten: this.instrulink
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    });
+                    /* Check whether the HTTP Request is Successfull or not. */
+                    this.myPromise.success(function(data) {
+                        console.log(data);
+                        self.getgetget();
+                        self.editinstru = false;
+
+                    });
+
+
+                    break;
+                case "editexisting":
+
+                    break;
+                default:
+
+            }
+
+        }
+
+
+        // TODO implement deleting of instruments by id
+        this.delInstru = function(delthis) {
             console.log("Deleting instrument")
+            this.myPromise = $http({
+                method: "post",
+                url: nwlink + 'chng.php',
+                // actions and parameters
+                data: {
+                    action: "removeinstrument",
+                    id: delthis
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            this.myPromise.success(function(data) {
+                self.getgetget();
+            });
         }
 
     });
