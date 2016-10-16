@@ -122,7 +122,7 @@ var app = angular
                         // Paint them shizzle
                         switch (scope.buurtrechtarray.length) {
                             case 0:
-                                element.attr("ng-attr-fill", "{{1 | map_colour2}}");
+                                element.attr("ng-attr-fill", "{{0.2 | map_colour}}");
                                 break;
                             case 1:
                                 element.attr("ng-attr-fill", "{{0.5 | map_colour}}");

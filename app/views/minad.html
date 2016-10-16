@@ -148,7 +148,7 @@
                                             <div svg-map></div>
                                         </div>
                                     </div>
-                                    <div ng-if="minad.currentgemeente" class="panel panel-danger">
+                                    <div ng-if="minad.gemeenteactive" class="panel panel-danger">
                                         <div class="panel-heading">Fotobak Gemeente
                                             {{minad.currentgemeente}}</div>
                                         <div class="panel-body">
@@ -252,23 +252,23 @@
                         <div class="container">
                             <div ng-show="!minad.editinstru">
 
-                              <div ng-if='minad.instrumenten'>
-                                <table ng-table="minad.tableParams" class="table" show-filter="true">
-                                    <tr ng-repeat="user in $data">
-                                        <td title="'Naam instrument'" filter="{ name: 'text'}" sortable="'name'">
-                                            {{user.name}}</td>
+                                <div ng-if='minad.instrumenten'>
+                                    <table ng-table="minad.tableParams" class="table" show-filter="true">
+                                        <tr ng-repeat="user in $data">
+                                            <td title="'Naam instrument'" filter="{ name: 'text'}" sortable="'name'">
+                                                {{user.name}}</td>
 
-                                        <td title="'Handelingen'">
-                                            <button ng-click="minad.goeditInstru(user.id)" class="btn btn-default btn-sm">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </button>
-                                            <button ng-click="minad.delInstru(user.id)" class="btn btn-danger btn-sm">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                              </div>
+                                            <td title="'Handelingen'">
+                                                <button ng-click="minad.goeditInstru(user.id)" class="btn btn-default btn-sm">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button>
+                                                <button ng-click="minad.delInstru(user.id)" class="btn btn-danger btn-sm">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
 
                                 Of ....
                                 <br><br>
@@ -296,12 +296,16 @@
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Tekst edit</label>
-                                            <div class="col-md-6"><textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelinstru"></textarea></div>
+                                            <div class="col-md-6">
+                                                <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelinstru"></textarea>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Gekoppelde gemeenten</label>
-                                            <div class="col-md-6"><select selector multi="true" model="minad.instrugems" options="minad.gemeenten" value-attr="value"></select></div>
+                                            <div class="col-md-6">
+                                                <select selector multi="true" model="minad.instrugems" options="minad.gemeenten" value-attr="value"></select>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
@@ -350,7 +354,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="submitButton"></label>
                                             <div class="col-md-8">
-                                                <button id="submitButton" ng-click="minad.editInstru()"name="submitButton" class="btn btn-success">Opslaan</button>
+                                                <button id="submitButton" ng-click="minad.editInstru()" name="submitButton" class="btn btn-success">Opslaan</button>
                                                 <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
                                                     Annuleer
                                                 </button>
@@ -358,11 +362,48 @@
                                             </div>
                                         </div>
                                     </fieldset>
+
                                 </form>
+
+                                <div class="panel-heading">Fotobak Gemeente
+                                    {{minad.currentgemeente}}</div>
+                                <div class="panel-body">
+                                    Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
+
+                                <form style="padding-left:20px">
+                                    <div class="form-group">
+                                        <legend>Upload nieuwe afbeelding</legend>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 1000}">Selecteer bestand</div>
+                                    </div>
+                                    <div ng-if="minad.file.$ngfName">
+                                        <div class="form-group">Titel voor afbeelding:
+                                            <input type="text" ng-model="minad.afbtitel"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" ng-click="minad.uploadprep()">Opslaan</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <legend>Verwijder afbeeldingen</legend>
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-3">
+                                        <div class="thumbnail">
+                                            <img src="http://placehold.it/500x300" alt="">
+                                            <div class="caption">
+                                                <p>Titelfoto</p>
+                                                <p>
+                                                    <a href="#" class="btn btn-warning btn-xs" role="button">Verwijder</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
                     <div class="tab-pane" id="tab4">
                         <div class="container">

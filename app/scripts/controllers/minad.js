@@ -15,16 +15,13 @@ angular.module('lsamapApp')
         var nwlink = 'http://localhost:80/lsamap/app/api/';
         // instru
         var data;
-
         this.current = 0;
         // make ref
         var self = this;
         // scope variables
         this.md5message = 'Your pwd encryption is: ' + md5.createHash("goudvis" || '');
-        this.tinymceModel = "Verander...";
-
+        this.tinymceModel = "";
         this.editinstru = false;
-
         this.brechtcheckboxes = {
             Buurtrecht1: false,
             Buurtrecht2: false,
@@ -33,13 +30,11 @@ angular.module('lsamapApp')
             Buurtrecht5: false,
             Buurtrecht6: false
         };
-
         self.body = "<div>  </div>"; // this is important for tinymce. without content, the error does not occur
         // for linkin
         this.curmap = apis.currentMap;
         this.wrongpwtext = "";
         this.gemeenten = [];
-
         if (ipa.xzy === false) {
             this.minn = true;
             this.minnn = false;
@@ -47,21 +42,16 @@ angular.module('lsamapApp')
             this.minn = false;
             this.minnn = true;
         }
-
         self.isnew = true;
-
-
+        // for view photobak
+        this.gemeenteactive = false;
         this.loadingnow = true;
         this.loadingtext = "Laden..";
 
+
+
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
-
-
-
-
-
-
         this.getgetget = function() {
             apis.getApi().then(function(dataResponse) {
                 // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
@@ -174,6 +164,8 @@ angular.module('lsamapApp')
             //console.log("Hoe vaak!");
 
             if (newValue) {
+                this.tinymceModel = "";
+                this.gemeenteactive = false;
                 $scope.currentgemeente = newValue.value;
                 self.currentgemeente = newValue.value;
                 // first reset checkboxes
@@ -187,8 +179,9 @@ angular.module('lsamapApp')
                 };
                 // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
                 for (var i = 0; i < self.apiResp.length; i++) {
-
+                    self.isnew = true;
                     if (self.apiResp[i].name === self.currentgemeente) {
+                        this.gemeenteactive = true;
                         self.tinymceModel = self.apiResp[i].wysig;
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
@@ -323,11 +316,11 @@ angular.module('lsamapApp')
             //  }
         }
 
+        // TODO TODO TODO
+        // TODO TODO TODO Make a switch between gemeente/instrument add
         this.uploadNow = function(filez) {
             //console.log(filez);
             if (filez !== null) {
-                //console.log('upload triggered');
-                // TODO TODO switch  http://localhost:8888/chaletrenesse/app/api/upload.php        -----   ./api/upload.php
                 Upload.upload({
                     url: nwlink + 'upload.php',
                     method: 'POST',
