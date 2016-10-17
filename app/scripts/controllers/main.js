@@ -158,7 +158,9 @@ angular.module('lsamapApp')
                 for (var i = 0; i < self.apiResp.length; i++) {
 
                     if (self.apiResp[i].name === self.currentgemeente) {
-                        self.currentwysig = self.apiResp[i].wysig;
+                        var wysigsce = self.apiResp[i].wysig;
+
+                        self.currentwysig = $sce.trustAsHtml(wysigsce);
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
                         var tempArray = tempstring.split(",");
@@ -240,7 +242,9 @@ angular.module('lsamapApp')
             if (self.instrumenten[i].id === thisidd) {
               console.log("Altijd prijsssss!");
               self.instrumentnaam = self.instrumenten[i].name;
-              self.instrumentwysig = self.instrumenten[i].wysig;
+              var wysiginstrsce = self.instrumenten[i].wysig;
+              self.instrumentwysig = $sce.trustAsHtml(wysiginstrsce);
+
               self.instrumentgemeenten = self.instrumenten[i].gemeentenlink;
             }
           }

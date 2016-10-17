@@ -75,6 +75,15 @@ angular.module('lsamapApp')
                 });
                 self.instrumenten = dataResponse.data[1];
 
+                // updating for photos;
+                self.photoArray = [];
+                for (var z = 0; z < self.uploads.length; z++) {
+                  if (self.uploads[z].extrainfo === self.currentgemeente) {
+                     self.photoArray.push(self.uploads[z]);
+                     console.log("toegevoegd aan array!");
+                  }
+                }
+
             });
         }
 
@@ -107,10 +116,10 @@ angular.module('lsamapApp')
                 "advlist autolink lists link image charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars code fullscreen",
                 "insertdatetime nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor code"
+                "emoticons template paste textcolor media code"
             ],
             toolbar1: "insertfile undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent",
-            toolbar2: "styleselect forecolor backcolor | link | code",
+            toolbar2: "styleselect forecolor backcolor | link | media | code",
             image_advtab: true,
             relative_urls: false,
             height: "300px",
@@ -376,6 +385,13 @@ angular.module('lsamapApp')
                         }).then(function(resp) {
                             self.file = null;
                             self.afbtitel = null;
+
+
+
+                            self.getgetget();
+
+
+
                             //ngToast.create('Geupload');
                             //self.updateService();
                         })
@@ -397,6 +413,8 @@ angular.module('lsamapApp')
                         }).then(function(resp) {
                             self.file = null;
                             self.afbtitel = null;
+
+
                             //ngToast.create('Geupload');
                             //self.updateService();
                         })
