@@ -13,6 +13,8 @@ angular.module('lsamapApp')
         // NOTE NOTE change
         //var nwlink = './api/';
         var nwlink = 'http://localhost:80/lsamap/app/api/';
+
+
         // instru
         var data;
         this.current = 0;
@@ -48,6 +50,10 @@ angular.module('lsamapApp')
         this.loadingnow = true;
         this.loadingtext = "Laden..";
 
+        // this one is set up so that the uploader can decide what cat to put the photo's.
+        var currentview = "";
+
+        var currentinstruid;
 
 
         // NOTE NOTE SERVICE CALLS
@@ -137,19 +143,15 @@ angular.module('lsamapApp')
                 label: gem
             }
             self.gemeenten.push(nieuw);
-
             // sort alphabetical
             self.gemeenten.sort(function(a, b) {
                 // ascending alfabetical
                 if (a.label < b.label) return -1;
                 if (a.label > b.label) return 1;
             });
-
-
             // write to the loader - but thus kinda doens't work
             self.current = self.current + 1;
             //console.log(self.current);
-
             if (self.current === 401) {
                 //console.log("halloooo");
                 self.loadingnow = false;
@@ -251,6 +253,8 @@ angular.module('lsamapApp')
 
             for (var i = 0; i < self.instrumenten.length; i++) {
                 if (self.instrumenten[i].id === id) {
+
+                    currentinstruid = self.instrumenten[i].id;
                     this.instruName = self.instrumenten[i].name;
                     this.tinymceModelinstru = self.instrumenten[i].wysig;
                     this.instrugems = self.instrumenten[i].gemeentenlink.split(',');
@@ -309,7 +313,9 @@ angular.module('lsamapApp')
         }
 
         // NOTE NOTE the upload script for images // WORKS
-        this.uploadprep = function() {
+        this.uploadprep = function(dezeview) {
+
+            currentview = dezeview;
             //console.log(this.file.$ngfName);
             //  if (self.file.$valid && self.file) {
             self.uploadNow(this.file);
@@ -319,24 +325,58 @@ angular.module('lsamapApp')
         // TODO TODO TODO
         // TODO TODO TODO Make a switch between gemeente/instrument add
         this.uploadNow = function(filez) {
-            //console.log(filez);
-            if (filez !== null) {
-                Upload.upload({
-                    url: nwlink + 'upload.php',
-                    method: 'POST',
-                    file: filez,
-                    data: {
-                        'cat': "gemeente",
-                        'description': self.afbtitel,
-                        'extrainfo': self.currentgemeente
+
+            switch (currentview) {
+                case 'gemeente':
+                    console.log('upload gemeente photo');
+                    if (filez !== null) {
+                        Upload.upload({
+                            url: nwlink + 'upload.php',
+                            method: 'POST',
+                            file: filez,
+                            data: {
+                                'cat': "gemeente",
+                                'description': self.afbtitel,
+                                'extrainfo': self.currentgemeente
+                            }
+                        }).then(function(resp) {
+                            self.file = null;
+                            self.afbtitel = null;
+                            //ngToast.create('Geupload');
+                            //self.updateService();
+                        })
                     }
-                }).then(function(resp) {
-                    console.log(resp);
-                    self.file = null;
-                    //ngToast.create('Geupload');
-                    //self.updateService();
-                })
+
+                    break;
+                case 'instrument':
+                    console.log('upload instru photo');
+                    if (filez !== null) {
+                        Upload.upload({
+                            url: nwlink + 'upload.php',
+                            method: 'POST',
+                            file: filez,
+                            data: {
+                                'cat': "instrument",
+                                'description': self.afbtitel,
+                                'extrainfo': currentinstruid
+                            }
+                        }).then(function(resp) {
+                            self.file = null;
+                            self.afbtitel = null;
+                            //ngToast.create('Geupload');
+                            //self.updateService();
+                        })
+                    }
+
+                    break;
+
             }
+
+
+
+
+            //console.log(filez);
+
         };
 
 
