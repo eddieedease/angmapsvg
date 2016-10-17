@@ -22,30 +22,17 @@ angular.module('lsamapApp')
         this.loadingtext = "Laden..";
 
 
-        // fill images
-        this.images = [{
-            title: 'Coole titel',
-            thumbUrl: 'images/castle1.jpg',
-            url: 'images/castle1.jpg',
-        }, {
-          title: 'Check het uit',
-            url: 'images/castle2.jpg'
-        }, {
-          title: 'Owyey',
-            thumbUrl: 'images/castle3.jpeg',
-            url: 'images/castle3.jpeg'
-        }];
-
-
-
 
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
         apis.getApi().then(function(dataResponse) {
             // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
 
+            //update the service so that directive kan acces it
             apis.setSerGemeenten(dataResponse.data[0]);
             self.apiResp = dataResponse.data[0];
+            self.instrumenten = dataResponse.data[1];
+            self.uploads = dataResponse.data[2];
             //self.apiResp = "chck";
 
             // TODO set everything up
@@ -152,51 +139,75 @@ angular.module('lsamapApp')
             //console.log("Hoe vaak!");
 
             if (newValue) {
-              self.currentwysig = "";
-              $scope.currentgemeente = newValue.value;
-              self.currentgemeente = newValue.value;
-              // first reset checkboxes
-              this.brechtcheckboxes = {
-                  Buurtrecht1: false,
-                  Buurtrecht2: false,
-                  Buurtrecht3: false,
-                  Buurtrecht4: false,
-                  Buurtrecht5: false,
-                  Buurtrecht6: false
-              };
-              // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
-              for (var i = 0; i < self.apiResp.length; i++) {
 
-                  if (self.apiResp[i].name === self.currentgemeente) {
-                      self.currentwysig = self.apiResp[i].wysig;
-                      // Check for buurtrechten
-                      var tempstring = self.apiResp[i].buurtrecht;
-                      var tempArray = tempstring.split(",");
-                      console.log(tempArray);
-                      for (var b = 0; b < tempArray.length; b++) {
-                          if (tempArray[b] === "1") {
-                              self.brechtcheckboxes.Buurtrecht1 = true;
-                          }
-                          if (tempArray[b] === "2") {
-                              self.brechtcheckboxes.Buurtrecht2 = true;
-                          }
-                          if (tempArray[b] === "3") {
-                              self.brechtcheckboxes.Buurtrecht3 = true;
-                          }
-                          if (tempArray[b] === "4") {
-                              self.brechtcheckboxes.Buurtrecht4 = true;
-                          }
-                          if (tempArray[b] === "5") {
-                              self.brechtcheckboxes.Buurtrecht5 = true;
-                          }
-                          if (tempArray[b] === "6") {
-                              self.brechtcheckboxes.Buurtrecht6 = true;
-                          }
+                //clear everything
+                self.images = [];
+                self.currentwysig = "";
+                $scope.currentgemeente = newValue.value;
+                self.currentgemeente = newValue.value;
+                // first reset checkboxes
+                this.brechtcheckboxes = {
+                    Buurtrecht1: false,
+                    Buurtrecht2: false,
+                    Buurtrecht3: false,
+                    Buurtrecht4: false,
+                    Buurtrecht5: false,
+                    Buurtrecht6: false
+                };
+                // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
+                for (var i = 0; i < self.apiResp.length; i++) {
 
-                      }
-                      self.isnew = false;
-                  }
-              }
+                    if (self.apiResp[i].name === self.currentgemeente) {
+                        self.currentwysig = self.apiResp[i].wysig;
+                        // Check for buurtrechten
+                        var tempstring = self.apiResp[i].buurtrecht;
+                        var tempArray = tempstring.split(",");
+                        console.log(tempArray);
+                        for (var b = 0; b < tempArray.length; b++) {
+                            if (tempArray[b] === "1") {
+                                self.brechtcheckboxes.Buurtrecht1 = true;
+                            }
+                            if (tempArray[b] === "2") {
+                                self.brechtcheckboxes.Buurtrecht2 = true;
+                            }
+                            if (tempArray[b] === "3") {
+                                self.brechtcheckboxes.Buurtrecht3 = true;
+                            }
+                            if (tempArray[b] === "4") {
+                                self.brechtcheckboxes.Buurtrecht4 = true;
+                            }
+                            if (tempArray[b] === "5") {
+                                self.brechtcheckboxes.Buurtrecht5 = true;
+                            }
+                            if (tempArray[b] === "6") {
+                                self.brechtcheckboxes.Buurtrecht6 = true;
+                            }
+
+                        }
+                        self.isnew = false;
+
+
+
+                        // TODO build the new images array
+                        // expects   this.images: Array of objects
+                        /*  {
+                              title: 'Coole titel',
+                              thumbUrl: 'images/castle1.jpg',
+                              url: 'images/castle1.jpg',
+                          }*/
+
+                        for (var z = 0; z < self.uploads.length; z++) {
+                            if (self.uploads[z].extrainfo === self.currentgemeente) {
+                                var object = {
+                                    title: self.uploads[z].description,
+                                    thumbUrl: self.uploads[z].location,
+                                    url: self.uploads[z].location
+                                }
+                                self.images.push(object);
+                            }
+                        }
+                    }
+                }
 
                 $scope.hoverRegion = newValue.value;
                 if (oldValue) {
@@ -218,9 +229,9 @@ angular.module('lsamapApp')
         }
 
         this.hideInstru = function() {
-          this.loadingtext = "Laden..";
-          this.instruview = false;
-          this.loadingnow = false;
+            this.loadingtext = "Laden..";
+            this.instruview = false;
+            this.loadingnow = false;
         };
 
 

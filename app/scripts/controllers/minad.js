@@ -52,8 +52,10 @@ angular.module('lsamapApp')
 
         // this one is set up so that the uploader can decide what cat to put the photo's.
         var currentview = "";
-
         var currentinstruid;
+
+        // photoarray
+        self.photoArray = [];
 
 
         // NOTE NOTE SERVICE CALLS
@@ -64,6 +66,7 @@ angular.module('lsamapApp')
 
                 apis.setSerGemeenten(dataResponse.data[0]);
                 self.apiResp = dataResponse.data[0];
+                self.uploads = dataResponse.data[2];
 
                 // some hocus pocus to fill the table for instruments // WORKS
                 data = dataResponse.data[1];
@@ -211,6 +214,17 @@ angular.module('lsamapApp')
 
                         }
                         self.isnew = false;
+
+
+                        // TODO photo array. So first = clear then loop and fill (same goes for instruments)
+                        self.photoArray = [];
+                        for (var z = 0; z < self.uploads.length; z++) {
+                          if (self.uploads[z].extrainfo === self.currentgemeente) {
+                             self.photoArray.push(self.uploads[z]);
+                             console.log("toegevoegd aan array!");
+                          }
+                        }
+
                     }
                 }
 
@@ -259,6 +273,18 @@ angular.module('lsamapApp')
                     this.tinymceModelinstru = self.instrumenten[i].wysig;
                     this.instrugems = self.instrumenten[i].gemeentenlink.split(',');
                     this.instrulink = self.instrumenten[i].link;
+
+                    self.photoArray = [];
+                    for (var z = 0; z < self.uploads.length; z++) {
+                      if (self.uploads[z].extrainfo === currentinstruid) {
+                         self.photoArray.push(self.uploads[z]);
+                         console.log("toegevoegd aan array!");
+                      }
+                    }
+
+
+                  // TODO get Photo array - see value gemeente change
+
                 }
             }
             console.log(id);
@@ -459,17 +485,9 @@ angular.module('lsamapApp')
 
         // editting the instrument, switch on action for new one if one doesn't exist
         this.editInstru = function() {
-            console.log(this.instruName);
-            console.log(this.tinymceModelinstru);
 
-
-            var instrustringg = this.instrugems.join();
-            console.log(instrustringg);
-            console.log(this.instrulink);
-
-            var escapedwysig = self.tinymceModelinstru.replace("'", "''");
-
-
+            var instrustringg = this.instrugems.join()
+            var escapedwysig = self.tinymceModelinstru.replace("'", "''")
             switch (this.instruaction) {
                 case "new":
                     this.myPromise = $http({

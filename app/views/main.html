@@ -69,9 +69,11 @@
                                 <a ng-click="main.showInstru()">asdsadasdasd</a>
                                 {{main.currentInstrumenten}}
                             </p><hr>
-                            <h4>Afbeeldingen</h4>
+                            <div ng-if="main.images.length">
+                                <h4>Afbeeldingen</h4>
+                                <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
+                            </div>
 
-                            <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                         </div>
 
                     </div>
@@ -206,18 +208,17 @@
                 </div>
             </div>
 
+            <footer class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h1>Footer</h1>
 
-        <footer class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h1>Footer</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
 
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
