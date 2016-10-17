@@ -139,9 +139,9 @@ angular.module('lsamapApp')
             //console.log("Hoe vaak!");
 
             if (newValue) {
-
                 //clear everything
                 self.images = [];
+                self.instrus = [];
                 self.currentwysig = "";
                 $scope.currentgemeente = newValue.value;
                 self.currentgemeente = newValue.value;
@@ -206,6 +206,17 @@ angular.module('lsamapApp')
                                 self.images.push(object);
                             }
                         }
+
+                        for (var x = 0; x < self.instrumenten.length; x++) {
+                          var isoarray = self.instrumenten[x].gemeentenlink.split(",");
+                          console.log(isoarray);
+                          for (var a = 0; a < isoarray.length; a++) {
+                            if (isoarray[a] === self.currentgemeente) {
+                              console.log("we got a winner over here!");
+                              self.instrus.push(self.instrumenten[x]);
+                            }
+                          }
+                        }
                     }
                 }
 
@@ -222,7 +233,20 @@ angular.module('lsamapApp')
         // TODO manage al the things when a user clicks an instrument
         this.instruview = false;
 
-        this.showInstru = function() {
+        this.showInstru = function(thisidd) {
+
+
+          for (var i = 0; i < self.instrumenten.length; i++) {
+            if (self.instrumenten[i].id === thisidd) {
+              console.log("Altijd prijsssss!");
+              self.instrumentnaam = self.instrumenten[i].name;
+              self.instrumentwysig = self.instrumenten[i].wysig;
+              self.instrumentgemeenten = self.instrumenten[i].gemeentenlink;
+            }
+          }
+
+
+
             this.loadingtext = "";
             this.instruview = true;
             this.loadingnow = true;

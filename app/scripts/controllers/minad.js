@@ -282,18 +282,26 @@ angular.module('lsamapApp')
                       }
                     }
 
+                    self.instruArray = [];
+                    for (var z = 0; z < self.uploads.length; z++) {
+                      if (self.uploads[z].extrainfo === currentinstruid) {
+                         self.photoArray.push(self.uploads[z]);
+                         console.log("toegevoegd aan array!");
+                      }
+                    }
+
 
                   // TODO get Photo array - see value gemeente change
 
                 }
             }
-            console.log(id);
             self.gemeenteidpass = id;
             // TODO implement to take current objectnode and assign view
         }
 
         // Logging in over here, Now for testing purposes
-        // TODO MD5 PHP MSQL COnnect, special login script
+        // TODO TODO TODO TODO TODO MD5 PHP MSQL COnnect, special login script
+        // TODO TODO TODO TODO TODO
         this.inlogger = function() {
             //console.log("controller HIITTTTTT");
             //console.log(idid);

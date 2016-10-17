@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row">
+    <div id="totop" class="row">
         <img src="images/banner2.png" class="img-responsive" style="width:100%">
     </div>
 </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="totop">
         <div class="container-fluid">
             <div class="row">
 
@@ -64,15 +64,20 @@
                             <p>
                                 <div ng-bind-html="main.currentwysig"></div>
                             </p><hr>
-                            <p>
-                                Instrumenten<br>
-                                <a ng-click="main.showInstru()">asdsadasdasd</a>
-                                {{main.currentInstrumenten}}
-                            </p><hr>
+
+                            <div ng-if="main.instrus.length">
+                                <h4>Instrumenten</h4>
+                                <div ng-repeat="instr in main.instrus">
+                                  <a ng-click="main.showInstru(instr.id)" href="" scroll-to="#totop" offset="0" container="html, body">{{instr.name}}</a>
+                                </div>
+                            </div>
+                            <hr>
                             <div ng-if="main.images.length">
                                 <h4>Afbeeldingen</h4>
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
+
+
 
                         </div>
 
@@ -87,7 +92,7 @@
                                         <div class="user-block">
 
                                             <span class="username">
-                                                <a href="#">Instrumentnaam</a>
+                                                {{main.instrumentnaam}}
                                             </span>
 
                                         </div>
@@ -99,26 +104,16 @@
                                         </div>
                                     </div>
                                     <div class="box-body">
-                                        <p>Hier kunnen we het instrument beschrijven</p>
+                                      <div ng-bind-html="main.instrumentwysig">
 
-                                        <p>En alle info inzetten, enz enz</p>
-
+                                      </div>
                                         <div class="attachment-block clearfix">
-                                            <img class="attachment-img" src="http://lorempixel.com/400/300/nature/4/" alt="Attachment Image">
                                             <div class="attachment-pushed">
                                                 <h4 class="attachment-heading">
-                                                    <a href="http://www.lipsum.com/">Lorem ipsum text generator</a>
-                                                </h4>
-                                                <div class="attachment-text">
-                                                    Foto omschrijving
-                                                </div>
+                                                  Wordt ingezet in:
+                                                </h4>{{main.instrumentgemeenten}}
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-default btn-xs">
-                                            <i class="fa fa-share"></i>
-                                            Link naar website</button>
-                                        <span class="pull-right text-muted">Laatst bijgewerkt :
-                                        </span>
                                     </div>
 
                                     <div class="box-footer">

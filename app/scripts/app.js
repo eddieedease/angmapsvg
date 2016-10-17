@@ -24,6 +24,7 @@ var app = angular
         'thatisuday.ng-image-gallery',
         'ngToast',
         'ngFileUpload',
+        'scrollto'
     ])
     .config(function($routeProvider) {
         $routeProvider
