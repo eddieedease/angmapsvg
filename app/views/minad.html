@@ -181,7 +181,7 @@
                                                     <img ng-src="{{photo.location}}" alt="">
                                                     <div class="caption">
                                                         <p>
-                                                            <a href="#" class="btn btn-warning btn-xs" role="button">Verwijder</a>
+                                                            <a ng-click="minad.delPhoto(photo.id)" class="btn btn-warning btn-xs" role="button">Verwijder</a>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -364,7 +364,7 @@
 
                                 </form>
 
-                                <div class="panel-heading">Fotobak Gemeente
+                                <!--<div class="panel-heading">Fotobak Gemeente
                                     {{minad.currentgemeente}}</div>
                                 <div class="panel-body">
                                     Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
@@ -399,7 +399,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>

@@ -592,4 +592,25 @@ angular.module('lsamapApp')
             });
         }
 
+        // TODO implement deleting of instruments by id
+        this.delPhoto = function(delthis) {
+            console.log("Deleting photo")
+            this.myPromise = $http({
+                method: "post",
+                url: nwlink + 'chng.php',
+                // actions and parameters
+                data: {
+                    action: "removephoto",
+                    id: delthis
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            this.myPromise.success(function(data) {
+                self.getgetget();
+            });
+        }
+
     });
