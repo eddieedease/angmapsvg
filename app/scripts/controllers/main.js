@@ -21,6 +21,8 @@ angular.module('lsamapApp')
 
         this.loadingtext = "Laden..";
 
+        this.soortkaart = "Geheel overzicht";
+
 
 
         // NOTE NOTE SERVICE CALLS
