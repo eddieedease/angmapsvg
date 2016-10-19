@@ -116,6 +116,7 @@ angular.module('lsamapApp')
 
             var thismap = parseInt(whichmap)
 
+            console.log(thismap);
             console.log(typeof thismap);
             apis.currentMap = thismap;
             //self.loadingnow = true;

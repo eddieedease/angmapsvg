@@ -101,11 +101,15 @@ var app = angular
                         $compile(element)(scope);
                     }
                 });
-
-
-                // Load the service vars
                 // count aantal buurtrechten & paint
                 scope.komtvoor = false;
+
+
+
+
+
+
+
 
                 for (var i = 0; i < apis.serGemeenten.length; i++) {
                     if (apis.serGemeenten[i].name === scope.elementGem) {
@@ -113,38 +117,119 @@ var app = angular
                         scope.buurtrechtarray = apis.serGemeenten[i].buurtrecht.split(',');
 
 
+
                         // TODO TODO TODO TODO TODO
                         // TODO TODO TODO TODO TODO
                         // place here the script that loads the different maps? Switch?
                         // TODO TODO also set the currentMap name in the service!
-                        // TODO think it needs to be set in the controller
+                        // TODO think it needs to be set in the service
 
 
-                        // Paint them shizzle
-                        switch (scope.buurtrechtarray.length) {
+
+
+
+                        switch (apis.currentMap) {
                             case 0:
-                                element.attr("ng-attr-fill", "{{0.2 | map_colour}}");
+
+                                // Paint them shizzle
+                                switch (scope.buurtrechtarray.length) {
+                                    case 0:
+                                        element.attr("ng-attr-fill", "{{0.2 | map_colour}}");
+                                        break;
+                                    case 1:
+                                        element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
+                                        break;
+                                    case 2:
+                                        element.attr("ng-attr-fill", "{{0.6 | map_colour}}");
+                                        break;
+                                    case 3:
+                                        element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                        break;
+                                    case 4:
+                                        element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+                                        break;
+                                    case 5:
+                                        element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
+                                        break;
+                                    case 6:
+                                        element.attr("ng-attr-fill", "{{1 | map_colour}}");
+                                        break;
+                                    default:
+                                }
                                 break;
                             case 1:
-                                element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
+
+                                var switch1 = false;
+                                for (var q = 0; q < scope.buurtrechtarray.length; q++) {
+                                    console.log(scope.buurtrechtarray[q]);
+                                    if (scope.buurtrechtarray[q] === "1") {
+                                        switch1 = true;
+                                    }
+                                }
+
+                                if (switch1 === true) {
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                } else {
+                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                };
+
+                                //element.attr("ng-attr-fill", "{{1 | map_colour}}");
+
                                 break;
                             case 2:
-                                element.attr("ng-attr-fill", "{{0.6 | map_colour}}");
+                                var switch2 = false;
+                                for (var w = 0; w < scope.buurtrechtarray.length; w++) {
+                                    
+                                    if (scope.buurtrechtarray[w] === "2") {
+                                        switch2 = true;
+                                    }
+                                }
+
+                                if (switch2 === true) {
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                } else {
+                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                };
+
                                 break;
                             case 3:
-                                element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+
+
+                                var switch3 = false;
+                                for (var e = 0; e < scope.buurtrechtarray.length; e++) {
+
+                                    if (scope.buurtrechtarray[e] === "3") {
+                                        switch3 = true;
+                                    }
+                                }
+
+                                if (switch3 === true) {
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                } else {
+                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                };
+
                                 break;
                             case 4:
-                                element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+
                                 break;
                             case 5:
-                                element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
+
                                 break;
-                                case 6:
-                                    element.attr("ng-attr-fill", "{{1 | map_colour}}");
-                                    break;
-                            default:
+                            case 6:
+
+                                break;
+
+
                         }
+
+
+
+
+
+
+
+
                     }
                 }
 
@@ -189,33 +274,24 @@ var app = angular
 
 
                 */
-
-
-
-
                 // before reompiling remove gemeente id
                 element.removeAttr("gemeente");
-
                 // NOTE NOTE this are the functions clicks
-
                 // The functions of this DIRECTIVE
                 scope.gemeenteClick = function() {
                     var gem = scope.elementGem;
                     // NOTE this calls the parent scope, I WAS in scope mess
                     scope.$parent.mouseclicked(gem);
                 };
-
                 // triggered on Mouse-Enter
                 scope.mouseEnter = function() {
                     var gem = scope.elementGem;
                     scope.$parent.mouseoverselection(gem);
                 };
-
                 scope.mouseLeaves = function() {
                     var gem = scope.elementGem;
                     scope.$parent.mouseremoveselection(gem);
                 };
-
                 scope.regionMouseOver = function() { //<
                     scope.hoverRegion = scope.elementId; //<--- Add this
                     element[0].parentNode.appendChild(element[0]); //<

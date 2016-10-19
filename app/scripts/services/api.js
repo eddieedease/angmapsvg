@@ -32,7 +32,7 @@ angular.module('lsamapApp')
 
     // the currentMap needs to be binded to the scope (I guess)
     // 2 types of maps I suppose?
-    this.currentMap = 1;
+    this.currentMap = 0;
 
 
     // This one gets called from the controller api call to update the service just before rendering the map directive
