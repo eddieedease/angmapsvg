@@ -21,7 +21,34 @@ angular.module('lsamapApp')
 
         this.loadingtext = "Laden..";
 
+        this.starttekst = "Klik op een gemeente voor informatie, ook kunt u een bepaalde kaart selecteren"
+
+
         this.soortkaart = "Geheel overzicht";
+
+        switch (apis.currentMap) {
+            case 0:
+                this.soortkaart = "Heel overzicht";
+                break;
+            case 1:
+                this.soortkaart = "Beheer van voorzieningen";
+                break;
+            case 2:
+                this.soortkaart = "Toegang tot geld";
+                break;
+            case 3:
+                this.soortkaart = "Open overheid";
+                break;
+            case 4:
+                this.soortkaart = "Zelfgekozen ondersteuning";
+                break;
+            case 5:
+                this.soortkaart = "Maatschappelijk aanbesteden";
+                break;
+            case 6:
+                this.soortkaart = "Plannen voor de buurt";
+                break;
+        }
 
 
 
@@ -91,7 +118,6 @@ angular.module('lsamapApp')
 
             // write to the loader - but thus kinda doens't work
             self.current = self.current + 1;
-            //console.log(self.current);
 
             if (self.current === 401) {
                 self.loadingnow = false;
@@ -115,9 +141,6 @@ angular.module('lsamapApp')
         this.setMap = function(whichmap) {
 
             var thismap = parseInt(whichmap)
-
-            console.log(thismap);
-            console.log(typeof thismap);
             apis.currentMap = thismap;
             //self.loadingnow = true;
             // NOTE for the record, when the page view is changed, we need to reload the route
@@ -140,7 +163,7 @@ angular.module('lsamapApp')
         // NOTE NOTE this one is called when value is changed
         this.onChangeFromList = function(newValue, oldValue) {
             //console.log("Hoe vaak!");
-
+            this.starttekst = "";
             if (newValue) {
                 //clear everything
                 self.images = [];
@@ -167,7 +190,6 @@ angular.module('lsamapApp')
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
                         var tempArray = tempstring.split(",");
-                        console.log(tempArray);
                         for (var b = 0; b < tempArray.length; b++) {
                             if (tempArray[b] === "1") {
                                 self.brechtcheckboxes.Buurtrecht1 = true;
@@ -213,14 +235,12 @@ angular.module('lsamapApp')
                         }
 
                         for (var x = 0; x < self.instrumenten.length; x++) {
-                          var isoarray = self.instrumenten[x].gemeentenlink.split(",");
-                          console.log(isoarray);
-                          for (var a = 0; a < isoarray.length; a++) {
-                            if (isoarray[a] === self.currentgemeente) {
-                              console.log("we got a winner over here!");
-                              self.instrus.push(self.instrumenten[x]);
+                            var isoarray = self.instrumenten[x].gemeentenlink.split(",");
+                            for (var a = 0; a < isoarray.length; a++) {
+                                if (isoarray[a] === self.currentgemeente) {
+                                    self.instrus.push(self.instrumenten[x]);
+                                }
                             }
-                          }
                         }
                     }
                 }
@@ -229,8 +249,6 @@ angular.module('lsamapApp')
                 if (oldValue) {
                     $scope.hoverRegionLast = oldValue.value;
                 }
-                //console.log($scope.hoverRegion);
-                //console.log($scope.hoverRegionLast);
             }
         }
 
@@ -241,16 +259,14 @@ angular.module('lsamapApp')
         this.showInstru = function(thisidd) {
 
 
-          for (var i = 0; i < self.instrumenten.length; i++) {
-            if (self.instrumenten[i].id === thisidd) {
-              console.log("Altijd prijsssss!");
-              self.instrumentnaam = self.instrumenten[i].name;
-              var wysiginstrsce = self.instrumenten[i].wysig;
-              self.instrumentwysig = $sce.trustAsHtml(wysiginstrsce);
-
-              self.instrumentgemeenten = self.instrumenten[i].gemeentenlink;
+            for (var i = 0; i < self.instrumenten.length; i++) {
+                if (self.instrumenten[i].id === thisidd) {
+                    self.instrumentnaam = self.instrumenten[i].name;
+                    var wysiginstrsce = self.instrumenten[i].wysig;
+                    self.instrumentwysig = $sce.trustAsHtml(wysiginstrsce);
+                    self.instrumentgemeenten = self.instrumenten[i].gemeentenlink;
+                }
             }
-          }
 
 
 

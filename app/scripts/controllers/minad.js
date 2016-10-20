@@ -80,7 +80,6 @@ angular.module('lsamapApp')
                 for (var z = 0; z < self.uploads.length; z++) {
                   if (self.uploads[z].extrainfo === self.currentgemeente) {
                      self.photoArray.push(self.uploads[z]);
-                     console.log("toegevoegd aan array!");
                   }
                 }
 
@@ -132,8 +131,6 @@ angular.module('lsamapApp')
         // NOTE NOTE NOTE DIRECTIVES CALLS
         // NOTE these ones get called from the gemeenten directives
         $scope.mouseoverselection = function(idid) {
-            //console.log("controller HIITTTTTT");
-            //console.log(idid);
             self.hovergemeente = idid;
         }
 
@@ -142,10 +139,7 @@ angular.module('lsamapApp')
         }
 
         $scope.mouseclicked = function(idid) {
-            //console.log("controller HIITTTTTT");
-            //console.log(idid + "clicked");
             self.currentgemeente = idid;
-
         }
 
         // calls from the directive
@@ -163,9 +157,7 @@ angular.module('lsamapApp')
             });
             // write to the loader - but thus kinda doens't work
             self.current = self.current + 1;
-            //console.log(self.current);
             if (self.current === 401) {
-                //console.log("halloooo");
                 self.loadingnow = false;
                 self.current = 1;
             }
@@ -175,8 +167,6 @@ angular.module('lsamapApp')
         // gets also the new and the oldvalue-
         // NOTE NOTE this one is called when value is changed
         this.onChangeFromList = function(newValue, oldValue) {
-            //console.log("Hoe vaak!");
-
             if (newValue) {
                 this.tinymceModel = "";
                 this.gemeenteactive = false;
@@ -200,7 +190,6 @@ angular.module('lsamapApp')
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
                         var tempArray = tempstring.split(",");
-                        console.log(tempArray);
                         for (var b = 0; b < tempArray.length; b++) {
                             if (tempArray[b] === "1") {
                                 self.brechtcheckboxes.Buurtrecht1 = true;
@@ -230,7 +219,6 @@ angular.module('lsamapApp')
                         for (var z = 0; z < self.uploads.length; z++) {
                           if (self.uploads[z].extrainfo === self.currentgemeente) {
                              self.photoArray.push(self.uploads[z]);
-                             console.log("toegevoegd aan array!");
                           }
                         }
 
@@ -287,7 +275,6 @@ angular.module('lsamapApp')
                     for (var z = 0; z < self.uploads.length; z++) {
                       if (self.uploads[z].extrainfo === currentinstruid) {
                          self.photoArray.push(self.uploads[z]);
-                         console.log("toegevoegd aan array!");
                       }
                     }
 
@@ -295,7 +282,6 @@ angular.module('lsamapApp')
                     for (var z = 0; z < self.uploads.length; z++) {
                       if (self.uploads[z].extrainfo === currentinstruid) {
                          self.photoArray.push(self.uploads[z]);
-                         console.log("toegevoegd aan array!");
                       }
                     }
 
@@ -312,8 +298,6 @@ angular.module('lsamapApp')
         // TODO TODO TODO TODO TODO MD5 PHP MSQL COnnect, special login script
         // TODO TODO TODO TODO TODO
         this.inlogger = function() {
-            //console.log("controller HIITTTTTT");
-            //console.log(idid);
             if (this.user === "Admin" && this.userpw === "goudvis") {
                 this.wrongpwtext = "Alllright Good";
                 this.minn = false;
@@ -351,27 +335,19 @@ angular.module('lsamapApp')
             });
             /* Check whether the HTTP Request is Successfull or not. */
             this.myPromise.success(function(data) {
-                console.log(data);
+                //console.log(data);
             });
         }
 
         // NOTE NOTE the upload script for images // WORKS
         this.uploadprep = function(dezeview) {
-
             currentview = dezeview;
-            //console.log(this.file.$ngfName);
-            //  if (self.file.$valid && self.file) {
             self.uploadNow(this.file);
-            //  }
         }
 
-        // TODO TODO TODO
-        // TODO TODO TODO Make a switch between gemeente/instrument add
         this.uploadNow = function(filez) {
-
             switch (currentview) {
                 case 'gemeente':
-                    console.log('upload gemeente photo');
                     if (filez !== null) {
                         Upload.upload({
                             url: nwlink + 'upload.php',
@@ -385,21 +361,12 @@ angular.module('lsamapApp')
                         }).then(function(resp) {
                             self.file = null;
                             self.afbtitel = null;
-
-
-
                             self.getgetget();
-
-
-
-                            //ngToast.create('Geupload');
-                            //self.updateService();
                         })
                     }
 
                     break;
                 case 'instrument':
-                    console.log('upload instru photo');
                     if (filez !== null) {
                         Upload.upload({
                             url: nwlink + 'upload.php',
@@ -413,22 +380,10 @@ angular.module('lsamapApp')
                         }).then(function(resp) {
                             self.file = null;
                             self.afbtitel = null;
-
-
-                            //ngToast.create('Geupload');
-                            //self.updateService();
                         })
                     }
-
                     break;
-
             }
-
-
-
-
-            //console.log(filez);
-
         };
 
 
@@ -439,9 +394,6 @@ angular.module('lsamapApp')
         this.updateGemeenten = function() {
             var escapedwysig = self.tinymceModel.replace("'", "''");
             var arrayforstring = [];
-            //arrayforstring.push("1");
-            // collect buurtrechten
-            console.log(this.brechtcheckboxes.Buurtrecht1);
             if (this.brechtcheckboxes.Buurtrecht1) {
                 arrayforstring.push("1");
             }
@@ -461,8 +413,6 @@ angular.module('lsamapApp')
                 arrayforstring.push("6");
             }
             var buurtrechtstring = arrayforstring.join();
-
-            console.log(self.currentgemeente);
             // first check if it is a edit or a new one
             if (self.isnew === true && self.currentgemeente !== undefined) {
                 this.myPromise = $http({
@@ -480,8 +430,6 @@ angular.module('lsamapApp')
                 });
                 /* Check whether the HTTP Request is Successfull or not. */
                 this.myPromise.success(function(data) {
-                    //self.updateService();
-                    console.log(data);
                     ngToast.create('Instellingen opgeslagen');
                     $route.reload();
                 });
@@ -502,7 +450,7 @@ angular.module('lsamapApp')
                 /* Check whether the HTTP Request is Successfull or not. */
                 this.myPromise.success(function(data) {
                     //self.updateService();
-                    console.log(data);
+                    //console.log(data);
                     $route.reload();
                 });
             }
@@ -533,7 +481,6 @@ angular.module('lsamapApp')
                     });
                     /* Check whether the HTTP Request is Successfull or not. */
                     this.myPromise.success(function(data) {
-                        console.log(data);
                         self.getgetget();
                         self.editinstru = false;
 
@@ -558,7 +505,6 @@ angular.module('lsamapApp')
                     });
                     /* Check whether the HTTP Request is Successfull or not. */
                     this.myPromise.success(function(data) {
-                        console.log(data);
                         self.getgetget();
                         self.editinstru = false;
 
@@ -573,7 +519,6 @@ angular.module('lsamapApp')
 
         // TODO implement deleting of instruments by id
         this.delInstru = function(delthis) {
-            console.log("Deleting instrument")
             this.myPromise = $http({
                 method: "post",
                 url: nwlink + 'chng.php',
@@ -594,7 +539,6 @@ angular.module('lsamapApp')
 
         // TODO implement deleting of instruments by id
         this.delPhoto = function(delthis) {
-            console.log("Deleting photo")
             this.myPromise = $http({
                 method: "post",
                 url: nwlink + 'chng.php',

@@ -13,7 +13,7 @@ angular.module('lsamapApp')
         var self = this;
 
         // change for quick acces
-        this.xzy = true;
+        this.xzy = false;
 
         this.xyzg = function() {
             self.xzy = true;

@@ -54,7 +54,6 @@ var app = angular
             restrict: 'A',
             templateUrl: 'images/Nederland2016.svg',
             link: function(scope, element, attrs) {
-
             }
         } // NOTE Below showing of the directive to take over 'gemeente' nodes
     }).directive('gemeente', function($compile, apis) {
@@ -67,71 +66,33 @@ var app = angular
             },
             link: function(scope, element, attrs) {
                 scope.elementGem = element.attr("gem");
-
-
-                //console.log(apis.serGemeenten);
-
-
-
-
                 scope.$parent.collectGemeenten(scope.elementGem);
-
                 element.attr("ng-click", "gemeenteClick()");
                 element.attr("ng-mouseenter", "mouseEnter()");
-
                 element.attr("ng-mouseleave", "mouseLeaves()");
                 element.attr("mouseoverselection", "mouseoverselection");
-
                 // NOTE NOTE - now works -  really long struggles here
                 // Add a watcher so that controller selector can influence directive
                 scope.$parent.$watch('hoverRegion', function() {
                     if (scope.$parent.hoverRegion === scope.elementGem) {
                         element.attr("ng-class", "{active:true}");
-                        console.log(scope.$parent.hoverRegion);
                         $compile(element)(scope);
                     }
                     if (scope.$parent.hoverRegionLast === scope.elementGem) {
-                        // TODO this aint the way, the hover doens't get recognised anymore
-                        // so, must be another solutions
                         element.removeAttr("class");
-                        //element.removeAttr("gemeente");
-                        //element.attr("ng-class", "gemeente");
                         element.attr("ng-class", "gemeente");
-                        console.log(scope.$parent.hoverRegionLast);
                         $compile(element)(scope);
                     }
                 });
                 // count aantal buurtrechten & paint
                 scope.komtvoor = false;
-
-
-
-
-
-
-
-
+                // NOTE painting the svg elements.
                 for (var i = 0; i < apis.serGemeenten.length; i++) {
                     if (apis.serGemeenten[i].name === scope.elementGem) {
                         scope.komtvoor = true;
                         scope.buurtrechtarray = apis.serGemeenten[i].buurtrecht.split(',');
-
-
-
-                        // TODO TODO TODO TODO TODO
-                        // TODO TODO TODO TODO TODO
-                        // place here the script that loads the different maps? Switch?
-                        // TODO TODO also set the currentMap name in the service!
-                        // TODO think it needs to be set in the service
-
-
-
-
-
                         switch (apis.currentMap) {
                             case 0:
-
-                                // Paint them shizzle
                                 switch (scope.buurtrechtarray.length) {
                                     case 0:
                                         element.attr("ng-attr-fill", "{{0.2 | map_colour}}");
@@ -158,23 +119,17 @@ var app = angular
                                 }
                                 break;
                             case 1:
-
                                 var switch1 = false;
                                 for (var q = 0; q < scope.buurtrechtarray.length; q++) {
-                                    console.log(scope.buurtrechtarray[q]);
                                     if (scope.buurtrechtarray[q] === "1") {
                                         switch1 = true;
                                     }
                                 }
-
                                 if (switch1 === true) {
                                     element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
                                 } else {
                                     element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                                 };
-
-                                //element.attr("ng-attr-fill", "{{1 | map_colour}}");
-
                                 break;
                             case 2:
                                 var switch2 = false;
@@ -190,11 +145,8 @@ var app = angular
                                 } else {
                                     element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                                 };
-
                                 break;
                             case 3:
-
-
                                 var switch3 = false;
                                 for (var r = 0; r < scope.buurtrechtarray.length; r++) {
 
@@ -208,10 +160,8 @@ var app = angular
                                 } else {
                                     element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                                 };
-
                                 break;
                             case 4:
-
                                 var switch4 = false;
                                 for (var e = 0; e < scope.buurtrechtarray.length; e++) {
 
@@ -219,13 +169,11 @@ var app = angular
                                         switch4 = true;
                                     }
                                 }
-
                                 if (switch4 === true) {
                                     element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
                                 } else {
                                     element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                                 };
-
                                 break;
                             case 5:
                                 var switch5 = false;
@@ -235,14 +183,11 @@ var app = angular
                                         switch5 = true;
                                     }
                                 }
-
                                 if (switch5 === true) {
                                     element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
                                 } else {
                                     element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                                 };
-
-
                                 break;
                             case 6:
                                 var switch6 = false;
@@ -252,16 +197,12 @@ var app = angular
                                         switch6 = true;
                                     }
                                 }
-
                                 if (switch6 === true) {
                                     element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
                                 } else {
                                     element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                                 };
-
                                 break;
-
-
                         }
                     }
                 }
@@ -270,9 +211,7 @@ var app = angular
                 if (scope.komtvoor === false) {
                     element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
                 }
-
-
-
+                //randomizing the elements
                 /*
                                 // NOTE todo colour testing// THIS IS THE MAKING OF THE MAPS // WORKS
                                 // use a switch to determine what kind of map should be drawn
@@ -304,8 +243,6 @@ var app = angular
                                         break;
                                     default:
                                 }
-
-
                 */
                 // before reompiling remove gemeente id
                 element.removeAttr("gemeente");
@@ -328,9 +265,7 @@ var app = angular
                 scope.regionMouseOver = function() { //<
                     scope.hoverRegion = scope.elementId; //<--- Add this
                     element[0].parentNode.appendChild(element[0]); //<
-                    console.log("Is Hoverrr");
                 };
-
                 // NOTE rewrite is needed
                 $compile(element)(scope);
 
@@ -346,6 +281,5 @@ var app = angular
     }]).filter('map_colour2', [function() {
         return function(input) {
             return "rgba(248, 225, 225, 1)";
-
         }
     }]);;
