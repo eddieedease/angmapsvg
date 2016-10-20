@@ -179,7 +179,7 @@ var app = angular
                             case 2:
                                 var switch2 = false;
                                 for (var w = 0; w < scope.buurtrechtarray.length; w++) {
-                                    
+
                                     if (scope.buurtrechtarray[w] === "2") {
                                         switch2 = true;
                                     }
@@ -196,9 +196,9 @@ var app = angular
 
 
                                 var switch3 = false;
-                                for (var e = 0; e < scope.buurtrechtarray.length; e++) {
+                                for (var r = 0; r < scope.buurtrechtarray.length; r++) {
 
-                                    if (scope.buurtrechtarray[e] === "3") {
+                                    if (scope.buurtrechtarray[r] === "3") {
                                         switch3 = true;
                                     }
                                 }
@@ -212,24 +212,57 @@ var app = angular
                                 break;
                             case 4:
 
+                                var switch4 = false;
+                                for (var e = 0; e < scope.buurtrechtarray.length; e++) {
+
+                                    if (scope.buurtrechtarray[e] === "4") {
+                                        switch4 = true;
+                                    }
+                                }
+
+                                if (switch4 === true) {
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                } else {
+                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                };
+
                                 break;
                             case 5:
+                                var switch5 = false;
+                                for (var t = 0; t < scope.buurtrechtarray.length; t++) {
+
+                                    if (scope.buurtrechtarray[t] === "5") {
+                                        switch5 = true;
+                                    }
+                                }
+
+                                if (switch5 === true) {
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                } else {
+                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                };
+
 
                                 break;
                             case 6:
+                                var switch6 = false;
+                                for (var y = 0; y < scope.buurtrechtarray.length; y++) {
+
+                                    if (scope.buurtrechtarray[y] === "6") {
+                                        switch6 = true;
+                                    }
+                                }
+
+                                if (switch6 === true) {
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                } else {
+                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                };
 
                                 break;
 
 
                         }
-
-
-
-
-
-
-
-
                     }
                 }
 
