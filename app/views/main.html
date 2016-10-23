@@ -67,16 +67,15 @@
                         <div style='padding:20px;padding-top:0px'>
                             <h4>{{main.starttekst}}</h4>
                             <h2>{{main.currentgemeente}}</h2>
-                            <p>
-                                <div ng-bind-html="main.currentwysig"></div>
-                            </p><hr>
-
                             <div ng-if="main.instrus.length">
-                                <h4>Instrumenten</h4>
+                                <h4>Instrumenten die worden ingezet:</h4>
                                 <div ng-repeat="instr in main.instrus">
                                     <a ng-click="main.showInstru(instr.id)" href="" scroll-to="#totop" offset="0" container="html, body">{{instr.name}}</a>
                                 </div>
                             </div>
+                            <p>
+                                <div ng-bind-html="main.currentwysig"></div>
+                            </p><hr>
                             <hr>
                             <div ng-if="main.images.length">
                                 <h4>Afbeeldingen</h4>
