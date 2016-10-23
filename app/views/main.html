@@ -22,8 +22,24 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Info</h3>
                         </div>
+                        <script type="text/ng-template" id="selector/demo/browserWithURL">
+                            {{option.label}}
+                            <a class="small" ng-href="{{option.url}}" ng-bind="option.url"></a>
+                        </script>
+
+                        <script type="text/ng-template" id="selector/demo/browserWithIcon">
+                            <img ng-src="{{option.icon}}">
+                            {{option.label}}
+                        </script>
+                        <select selector model="main.mappselect" options="main.mapps" value-attr="code" dropdown-item-template="'selector/demo/browserWithIcon'"></select>
+
+                        <p>
+                            Current value:
+                            <code ng-bind="myBrowsers|json"></code>
+                        </p>
                         <div class="panel-body">
-                            <h4>Soort kaart: {{main.soortkaart}}</h4>
+                            <h4>Soort kaart:
+                                {{main.soortkaart}}</h4>
                             <select ng-model="main.curmap" ng-change="main.setMap(main.curmap)" name="buurtrecht">
                                 <option class="lt" value="0">Heel overzicht</option>
                                 <option class="lt" value="1">Beheer van voorzieningen</option>

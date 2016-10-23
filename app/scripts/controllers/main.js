@@ -21,7 +21,39 @@ angular.module('lsamapApp')
 
         this.loadingtext = "Laden..";
 
-        this.starttekst = "Klik op een gemeente voor informatie, ook kunt u een bepaalde kaart selecteren"
+        this.starttekst = "Klik op een gemeente voor informatie, ook kunt u een bepaalde kaart selecteren";
+
+        this.mappselect = ["1"];
+
+        this.mapps = [{
+            code: "0",
+            label: "Geheel overzicht",
+            icon: "images/smallicons/small1.png"
+        }, {
+            code: "1",
+            label: "Beheer van voorzieningen",
+            icon: "images/smallicons/small1.png"
+        }, {
+            code: "2",
+            label: "Toegang tot geld",
+            icon: "images/smallicons/small2.png"
+        }, {
+            code: "3",
+            label: "Open Overheid",
+            icon: "images/smallicons/small3.png"
+        }, {
+            code: "4",
+            label: "Zelfgekozen ondersteuning",
+            icon: "images/smallicons/small4.png"
+        }, {
+            code: "5",
+            label: "Maatschappelijk aanbesteden",
+            icon: "images/smallicons/small5.png"
+        }, {
+            code: "6",
+            label: "Plannen voor de buurt",
+            icon: "images/smallicons/small6.png"
+        }];
 
 
         this.soortkaart = "Geheel overzicht";
