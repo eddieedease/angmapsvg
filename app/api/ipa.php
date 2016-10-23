@@ -1,8 +1,16 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-        // set up the connection variables
-        include 'db.php';
+  header('Access-Control-Allow-Origin: *');
+
+  $postdata = file_get_contents('php://input');
+  $request = json_decode($postdata);
+
+  @$wwww = $request->wwww;
+
+  $www = md5($wwww);
+
+  // set up the connection variables
+  include 'db.php';
         // connect to the database
         $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
         // NOTE fixing the api over here
@@ -17,13 +25,18 @@ header('Access-Control-Allow-Origin: *');
         $stmtipa->execute();
         // fetch the results into an array
         $resultipa = $stmtipa->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultipa as $row) {
+            $ww = $row['ww'];
+        }
 
-        // NOTE collecting everything for converting
-        $result = array();
-        array_push($result, $resultipa);
-        // convert it all to jSON TODO change result
-        $json = json_encode($result);
-        // undo PDO connection
+        //first off close connection
         $dbh = null;
+
+        // only pass when pwd is correct
+        if ($www == $ww) {
+            echo $ww;
+        } else {
+          echo "reject";
+        }
+
         // echo the json string
-        echo $json;

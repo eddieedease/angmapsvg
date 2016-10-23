@@ -58,12 +58,39 @@ angular.module('lsamapApp')
         self.photoArray = [];
 
 
+        // Ok this is logging in
+
+
+        // Logging in over here, Now for testing purposes
+        // TODO TODO TODO TODO TODO MD5 PHP MSQL COnnect, special login script
+        // TODO TODO TODO TODO TODO
+        this.inlogger = function() {
+            // NOTE new nd secure
+            apis.pwd = this.userpw;
+            // AUTH WORKS
+            apis.getIpa().then(function(dataResponse) {
+                var check = dataResponse.data;
+                console.log(check);
+            });
+            /*if (this.user === "Admin" && this.userpw === "goudvis") {
+                this.wrongpwtext = "Alllright Good";
+                this.minn = false;
+                this.minnn = true;
+                //enables api
+                ipa.xyzg();
+            } else {
+                this.wrongpwtext = "Fout";
+            }*/
+        }
+
+
+
+
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
         this.getgetget = function() {
             apis.getApi().then(function(dataResponse) {
                 // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
-
                 apis.setSerGemeenten(dataResponse.data[0]);
                 self.apiResp = dataResponse.data[0];
                 self.uploads = dataResponse.data[2];
@@ -78,9 +105,9 @@ angular.module('lsamapApp')
                 // updating for photos;
                 self.photoArray = [];
                 for (var z = 0; z < self.uploads.length; z++) {
-                  if (self.uploads[z].extrainfo === self.currentgemeente) {
-                     self.photoArray.push(self.uploads[z]);
-                  }
+                    if (self.uploads[z].extrainfo === self.currentgemeente) {
+                        self.photoArray.push(self.uploads[z]);
+                    }
                 }
 
             });
@@ -217,9 +244,9 @@ angular.module('lsamapApp')
                         // TODO photo array. So first = clear then loop and fill (same goes for instruments)
                         self.photoArray = [];
                         for (var z = 0; z < self.uploads.length; z++) {
-                          if (self.uploads[z].extrainfo === self.currentgemeente) {
-                             self.photoArray.push(self.uploads[z]);
-                          }
+                            if (self.uploads[z].extrainfo === self.currentgemeente) {
+                                self.photoArray.push(self.uploads[z]);
+                            }
                         }
 
                     }
@@ -273,20 +300,20 @@ angular.module('lsamapApp')
 
                     self.photoArray = [];
                     for (var z = 0; z < self.uploads.length; z++) {
-                      if (self.uploads[z].extrainfo === currentinstruid) {
-                         self.photoArray.push(self.uploads[z]);
-                      }
+                        if (self.uploads[z].extrainfo === currentinstruid) {
+                            self.photoArray.push(self.uploads[z]);
+                        }
                     }
 
                     self.instruArray = [];
                     for (var z = 0; z < self.uploads.length; z++) {
-                      if (self.uploads[z].extrainfo === currentinstruid) {
-                         self.photoArray.push(self.uploads[z]);
-                      }
+                        if (self.uploads[z].extrainfo === currentinstruid) {
+                            self.photoArray.push(self.uploads[z]);
+                        }
                     }
 
 
-                  // TODO get Photo array - see value gemeente change
+                    // TODO get Photo array - see value gemeente change
 
                 }
             }
@@ -294,19 +321,7 @@ angular.module('lsamapApp')
             // TODO implement to take current objectnode and assign view
         }
 
-        // Logging in over here, Now for testing purposes
-        // TODO TODO TODO TODO TODO MD5 PHP MSQL COnnect, special login script
-        // TODO TODO TODO TODO TODO
-        this.inlogger = function() {
-            if (this.user === "Admin" && this.userpw === "goudvis") {
-                this.wrongpwtext = "Alllright Good";
-                this.minn = false;
-                this.minnn = true;
-                ipa.xyzg();
-            } else {
-                this.wrongpwtext = "Fout";
-            }
-        }
+
 
 
 

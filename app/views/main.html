@@ -31,30 +31,10 @@
                             <img ng-src="{{option.icon}}">
                             {{option.label}}
                         </script>
-                        <select selector model="main.mappselect" options="main.mapps" value-attr="code" dropdown-item-template="'selector/demo/browserWithIcon'"></select>
 
-                        <p>
-                            Current value:
-                            <code ng-bind="myBrowsers|json"></code>
-                        </p>
                         <div class="panel-body">
-                            <h4>Soort kaart:
-                                {{main.soortkaart}}</h4>
-                            <select ng-model="main.curmap" ng-change="main.setMap(main.curmap)" name="buurtrecht">
-                                <option class="lt" value="0">Heel overzicht</option>
-                                <option class="lt" value="1">Beheer van voorzieningen</option>
-                                <option class="lt" value="2">Toegang tot geld</option>
-                                <option class="lt" value="3">Open overheid</option>
-                                <option class="lt" value="4">Zelfgekozen ondersteuning</option>
-                                <option class="lt" value="5">Maatschappelijk aanbesteden</option>
-                                <option class="lt" value="6">Plannen voor de buurt</option>
-                            </select><br>
-
-                            <img src="images/1.png" ng-click="main.setMap('1')" class="img-rounded" alt="Cinque Terre" width="100" height="100"><img src="images/2.png" ng-click="main.setMap('2')" class="img-rounded" alt="Cinque Terre" width="100" height="100"><img src="images/3.png" ng-click="main.setMap('3')" class="img-rounded" alt="Cinque Terre" width="100" height="100">
-                            <br>
-
-                            <img src="images/4.png" ng-click="main.setMap('4')" class="img-rounded" alt="Cinque Terre" width="100" height="100"><img src="images/5.png" ng-click="main.setMap('5')" class="img-rounded" alt="Cinque Terre" width="100" height="100"><img src="images/6.png" ng-click="main.setMap('6')" class="img-rounded" alt="Cinque Terre" width="100" height="100">
-
+                          <h4>Soort kaart:</h4>
+                          <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code" dropdown-item-template="'selector/demo/browserWithIcon'"></select>
                             <!--<p>
               <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
             </p>
@@ -66,13 +46,6 @@
             </div>-->
                             <h4>Zoeken op gemeente</h4>
                             <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten" value-attr="value"></select>
-                            <ol class="breadcrumb">
-                                <li>
-                                    <a href="#">Gemeente</a>
-                                </li>
-
-                                <li class="active">Instrument</li>
-                            </ol>
                             <div style="float:right">
                                 {{main.hovergemeente}}
                             </div>

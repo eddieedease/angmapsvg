@@ -19,4 +19,7 @@ angular.module('lsamapApp')
             self.xzy = true;
         };
 
+
+        
+
     });
