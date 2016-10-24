@@ -95,16 +95,7 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.success(function(data) {
-              if (data == "reject"){
-                console.log('verkeerde inlog');
-              } else {
-                self.xzy = true;
-              }
-                //self.updateService();
-                //console.log(data);
-                //$route.reload();
-            });
+            
         };
 
     });

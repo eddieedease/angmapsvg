@@ -70,17 +70,16 @@ angular.module('lsamapApp')
             // AUTH WORKS
             apis.getIpa().then(function(dataResponse) {
                 var check = dataResponse.data;
-                console.log(check);
+                if (check !== "reject") {
+                    self.wrongpwtext = "Alllright Good";
+                    self.minn = false;
+                    self.minnn = true;
+                    //enables api
+                    ipa.xyzg();
+                } else {
+                    self.wrongpwtext = "Fout";
+                }
             });
-            /*if (this.user === "Admin" && this.userpw === "goudvis") {
-                this.wrongpwtext = "Alllright Good";
-                this.minn = false;
-                this.minnn = true;
-                //enables api
-                ipa.xyzg();
-            } else {
-                this.wrongpwtext = "Fout";
-            }*/
         }
 
 
@@ -434,6 +433,7 @@ angular.module('lsamapApp')
                     method: "post",
                     url: nwlink + 'chng.php',
                     data: {
+                        token: self.userpw,
                         action: "newgemeente",
                         name: self.currentgemeente,
                         wysig: escapedwysig,
@@ -453,6 +453,7 @@ angular.module('lsamapApp')
                     method: "post",
                     url: nwlink + 'chng.php',
                     data: {
+                        token: self.userpw,
                         action: "editgemeente",
                         name: self.currentgemeente,
                         wysig: escapedwysig,
@@ -484,6 +485,7 @@ angular.module('lsamapApp')
                         url: nwlink + 'chng.php',
                         // actions and parameters
                         data: {
+                            token: self.userpw,
                             action: "newinstrument",
                             name: self.instruName,
                             wysig: escapedwysig,
@@ -507,6 +509,7 @@ angular.module('lsamapApp')
                         url: nwlink + 'chng.php',
                         // actions and parameters
                         data: {
+                            token: self.userpw,
                             action: "editinstrument",
                             id: self.gemeenteidpass,
                             name: self.instruName,
@@ -539,6 +542,7 @@ angular.module('lsamapApp')
                 url: nwlink + 'chng.php',
                 // actions and parameters
                 data: {
+                    token: self.userpw,
                     action: "removeinstrument",
                     id: delthis
                 },
@@ -559,6 +563,7 @@ angular.module('lsamapApp')
                 url: nwlink + 'chng.php',
                 // actions and parameters
                 data: {
+                    token: self.userpw,
                     action: "removephoto",
                     id: delthis
                 },

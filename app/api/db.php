@@ -1,4 +1,3 @@
-
 <?php
 $db_name = 'lsamap';
 $hostname = 'localhost';
