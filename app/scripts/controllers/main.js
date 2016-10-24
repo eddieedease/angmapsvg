@@ -61,24 +61,31 @@ angular.module('lsamapApp')
         switch (apis.currentMap) {
             case 0:
                 this.soortkaart = "Heel overzicht";
+                this.fulllegenda = true;
                 break;
             case 1:
                 this.soortkaart = "Beheer van voorzieningen";
+                this.fulllegenda = false;
                 break;
             case 2:
                 this.soortkaart = "Toegang tot geld";
+                this.fulllegenda = false;
                 break;
             case 3:
                 this.soortkaart = "Open overheid";
+                this.fulllegenda = false;
                 break;
             case 4:
                 this.soortkaart = "Zelfgekozen ondersteuning";
+                this.fulllegenda = false;
                 break;
             case 5:
                 this.soortkaart = "Maatschappelijk aanbesteden";
+                this.fulllegenda = false;
                 break;
             case 6:
                 this.soortkaart = "Plannen voor de buurt";
+                this.fulllegenda = false;
                 break;
         }
 

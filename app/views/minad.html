@@ -2,10 +2,8 @@
     <div class="wrapper">
         <form class="form-signin">
             <h2 class="form-signin-heading">Hier inloggen</h2>
-            <code>User: Admin</code><br>
             <code>Password: goudvis</code>
             <hr>
-            <input ng-model="minad.user" type="text" class="form-control" name="username" placeholder="Gebruikersnaam" required="" autofocus=""/>
             <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required=""/>
             {{minad.wrongpwtext}}
             <button class="btn btn-lg btn-dangerbtn-block" ng-click="minad.inlogger()" type="submit">Inloggen</button>
@@ -75,18 +73,6 @@
                                                 <tr>
                                                     <td>
                                                         <strong>
-                                                            <span class="glyphicon glyphicon-bookmark text-primary"></span>
-                                                            Username
-                                                        </strong>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        ..
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <strong>
                                                             <span class="glyphicon glyphicon-eye-open text-primary"></span>
                                                             Role
                                                         </strong>
@@ -99,7 +85,7 @@
                                                     <td>
                                                         <strong>
                                                             <span class="glyphicon glyphicon-envelope text-primary"></span>
-                                                            Email
+                                                            Using Email:
                                                         </strong>
                                                     </td>
                                                     <td class="text-primary">
@@ -222,7 +208,7 @@
                                             <div class="checkbox" ng-repeat="(checkboxx,enabled) in minad.brechtcheckboxes">
                                                 <label>
                                                     <input type="checkbox" ng-model="minad.brechtcheckboxes[checkboxx]"/>
-                                                    <h5>{{checkboxx}}</h5>
+                                                    <h5>{{minad.buurtrnames[$index]}}</h5>
                                                 </label>
                                             </div>
                                         </div>
@@ -428,75 +414,40 @@
                                             </div>
                                         </div>
 
-                                        <!-- Multiple Checkboxes (inline) -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="notification"></label>
-                                            <div class="col-md-4">
-                                                <label class="checkbox-inline" for="notification-0">
-                                                    <input type="checkbox" name="notification" id="notification-0" value="1">
-                                                    Voorbeeld checkbox
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- Select Basic -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="threshold">Optie menu</label>
-                                            <div class="col-md-4">
-                                                <select id="threshold" name="threshold" class="form-control">
-                                                    <option value="1">Optie 1</option>
-                                                    <option value="2">Optie 2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- Multiple Radios (inline) -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="reqType">Request Type</label>
-                                            <div class="col-md-4">
-                                                <label class="radio-inline" for="reqType-0">
-                                                    <input type="radio" name="reqType" id="reqType-0" value="post" checked="checked">
-                                                    POST
-                                                </label>
-                                                <label class="radio-inline" for="reqType-1">
-                                                    <input type="radio" name="reqType" id="reqType-1" value="get">
-                                                    GET
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- Multiple Radios (inline) -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="dataFormat">Data Format</label>
-                                            <div class="col-md-4">
-                                                <label class="radio-inline" for="dataFormat-0">
-                                                    <input type="radio" name="dataFormat" id="dataFormat-0" value="json" checked="checked">
-                                                    JSON
-                                                </label>
-                                                <label class="radio-inline" for="dataFormat-1">
-                                                    <input type="radio" name="dataFormat" id="dataFormat-1" value="xml">
-                                                    XML
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- Multiple Checkboxes (inline) -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="appendUrlParams"></label>
-                                            <div class="col-md-4">
-                                                <label class="checkbox-inline" for="appendUrlParams-0">
-                                                    <input type="checkbox" name="appendUrlParams" id="appendUrlParams-0" value="1">
-                                                    Append URL Params
-                                                </label>
-                                            </div>
-                                        </div>
                                         <!-- Button (Double) -->
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="submitButton"></label>
                                             <div class="col-md-8">
                                                 <button id="submitButton" name="submitButton" class="btn btn-success">Save</button>
-                                                <button id="cancel" name="cancel" class="btn btn-inverse">Cancel</button>
+                                            </div>
+                                        </div>
+
+                                        <h3>Wachtwoord wijzigen:</h3>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Oude wachtwoord</label>
+                                            <div class="col-md-6">
+                                                <input id="textinput" name="textinput" type="password" placeholder="Oud wachtwoord" class="form-control input-md" required="">
+                                            </div>
+                                        </div>
+                                        <!-- Text input-->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="color">Nieuwe wachtwoord</label>
+                                            <div class="col-md-6">
+                                                <input id="color" name="email" type="password" placeholder="Nieuw wachtwoord" class="form-control input-md">
+                                            </div>
+                                        </div>
+
+                                        <!-- Button (Double) -->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="submitButton"></label>
+                                            <div class="col-md-8">
+                                                <button id="submitButton" name="submitButton" class="btn btn-success">Save</button>
                                             </div>
                                         </div>
                                     </fieldset>
                                 </form>
                             </div>
+
                         </div>
                     </div>
                 </div>

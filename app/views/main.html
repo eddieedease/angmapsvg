@@ -44,6 +44,7 @@
                 <div>{{gemeente.value | number}}</div>
               </div>
             </div>-->
+
                             <h4>Zoeken op gemeente</h4>
                             <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten" value-attr="value"></select>
                             <div style="float:right">
@@ -119,6 +120,8 @@
                     </div>
                     <div ng-show="!main.loadingnow">
                         <div ng-if="main.apiResp">
+                            <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
+                            <img ng-show="!main.fulllegenda" src="images/legendapart.png" style="position:absolute" class="img-responsive" alt="legendafull">
                             <div svg-map scroll-to="#viewgem"></div>
                         </div>
                     </div>

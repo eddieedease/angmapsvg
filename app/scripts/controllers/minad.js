@@ -11,8 +11,8 @@ angular.module('lsamapApp')
     .controller('MinadCtrl', function(Upload, $scope, NgTableParams, $http, $timeout, $route, apis, ipa, md5, ngToast) {
 
         // NOTE NOTE change
-        //var nwlink = './api/';
-        var nwlink = 'http://localhost:80/lsamap/app/api/';
+        var nwlink = './api/';
+        //var nwlink = 'http://localhost:80/lsamap/app/api/';
 
 
         // instru
@@ -32,6 +32,10 @@ angular.module('lsamapApp')
             Buurtrecht5: false,
             Buurtrecht6: false
         };
+
+
+        this.buurtrnames = ["Beheer van voorzieningen","Toegang tot geld","Open Overheid","Zelfgekozen ondersteuning","Maatschappelijk aanbesteden","Plannen voor de buurt"];
+
         self.body = "<div>  </div>"; // this is important for tinymce. without content, the error does not occur
         // for linkin
         this.curmap = apis.currentMap;
@@ -207,6 +211,9 @@ angular.module('lsamapApp')
                     Buurtrecht5: false,
                     Buurtrecht6: false
                 };
+
+
+
                 // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
                 for (var i = 0; i < self.apiResp.length; i++) {
                     self.isnew = true;
@@ -433,7 +440,7 @@ angular.module('lsamapApp')
                     method: "post",
                     url: nwlink + 'chng.php',
                     data: {
-                        token: self.userpw,
+                        token: apis.pwd,
                         action: "newgemeente",
                         name: self.currentgemeente,
                         wysig: escapedwysig,
@@ -453,7 +460,7 @@ angular.module('lsamapApp')
                     method: "post",
                     url: nwlink + 'chng.php',
                     data: {
-                        token: self.userpw,
+                        token: apis.pwd,
                         action: "editgemeente",
                         name: self.currentgemeente,
                         wysig: escapedwysig,
@@ -485,7 +492,7 @@ angular.module('lsamapApp')
                         url: nwlink + 'chng.php',
                         // actions and parameters
                         data: {
-                            token: self.userpw,
+                            token: apis.pwd,
                             action: "newinstrument",
                             name: self.instruName,
                             wysig: escapedwysig,
@@ -509,7 +516,7 @@ angular.module('lsamapApp')
                         url: nwlink + 'chng.php',
                         // actions and parameters
                         data: {
-                            token: self.userpw,
+                            token: apis.pwd,
                             action: "editinstrument",
                             id: self.gemeenteidpass,
                             name: self.instruName,
@@ -542,7 +549,7 @@ angular.module('lsamapApp')
                 url: nwlink + 'chng.php',
                 // actions and parameters
                 data: {
-                    token: self.userpw,
+                    token: apis.pwd,
                     action: "removeinstrument",
                     id: delthis
                 },
@@ -563,7 +570,7 @@ angular.module('lsamapApp')
                 url: nwlink + 'chng.php',
                 // actions and parameters
                 data: {
-                    token: self.userpw,
+                    token: apis.pwd,
                     action: "removephoto",
                     id: delthis
                 },

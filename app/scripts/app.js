@@ -53,8 +53,7 @@ var app = angular
         return {
             restrict: 'A',
             templateUrl: 'images/Nederland2016.svg',
-            link: function(scope, element, attrs) {
-            }
+            link: function(scope, element, attrs) {}
         } // NOTE Below showing of the directive to take over 'gemeente' nodes
     }).directive('gemeente', function($compile, apis) {
         return {
@@ -91,32 +90,38 @@ var app = angular
                     if (apis.serGemeenten[i].name === scope.elementGem) {
                         scope.komtvoor = true;
                         scope.buurtrechtarray = apis.serGemeenten[i].buurtrecht.split(',');
+                        console.log(scope.buurtrechtarray);
+
+
+
                         switch (apis.currentMap) {
                             case 0:
-                                switch (scope.buurtrechtarray.length) {
-                                    case 0:
-                                        element.attr("ng-attr-fill", "{{0.2 | map_colour}}");
-                                        break;
-                                    case 1:
-                                        element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
-                                        break;
-                                    case 2:
-                                        element.attr("ng-attr-fill", "{{0.6 | map_colour}}");
-                                        break;
-                                    case 3:
-                                        element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
-                                        break;
-                                    case 4:
-                                        element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
-                                        break;
-                                    case 5:
-                                        element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
-                                        break;
-                                    case 6:
-                                        element.attr("ng-attr-fill", "{{1 | map_colour}}");
-                                        break;
-                                    default:
+                                if (scope.buurtrechtarray.length === 1 && scope.buurtrechtarray[0] === "") {
+                                    element.attr("ng-attr-fill", "{{0.1 | map_colour}}");
+                                } else {
+                                  switch (scope.buurtrechtarray.length) {
+                                      case 1:
+                                          element.attr("ng-attr-fill", "{{0.3 | map_colour}}");
+                                          break;
+                                      case 2:
+                                          element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
+                                          break;
+                                      case 3:
+                                          element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                          break;
+                                      case 4:
+                                          element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
+                                          break;
+                                      case 5:
+                                          element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
+                                          break;
+                                      case 6:
+                                          element.attr("ng-attr-fill", "{{1 | map_colour}}");
+                                          break;
+                                      default:
+                                  }
                                 }
+
                                 break;
                             case 1:
                                 var switch1 = false;
