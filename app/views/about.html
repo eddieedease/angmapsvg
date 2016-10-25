@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label for="name">
                                     Naam</label>
-                                <input type="text" class="form-control" id="name" placeholder="Naam" required="required"/>
+                                <input type="text" ng-model='about.naamm' class="form-control" id="name" placeholder="Naam" required="required"/>
                             </div>
                             <div class="form-group">
                                 <label for="email">
@@ -50,16 +50,16 @@
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-envelope"></span>
                                     </span>
-                                    <input type="email" class="form-control" id="email" placeholder="Voer uw emailadres in" required="required"/></div>
+                                    <input type="email" ng-model='about.usemail' class="form-control" id="email" placeholder="Voer uw emailadres in" required="required"/></div>
                             </div>
                             <div class="form-group">
                                 <label for="subject">
                                     Onderwerp</label>
-                                <select id="subject" name="subject" class="form-control" required="required">
-                                    <option value="na" selected="">Kies uit:</option>
-                                    <option value="service">Vraag</option>
-                                    <option value="suggestions">Opmerking</option>
-                                    <option value="product">Toevoeging</option>
+                                <select id="subject" ng-model='about.onderwerpp' name="subject" class="form-control" required="required">
+                                    <option value="Geen soort gekozen" selected="">Kies uit:</option>
+                                    <option value="Vraag">Vraag</option>
+                                    <option value="Opmerking">Opmerking</option>
+                                    <option value="Toevoeging">Toevoeging</option>
                                 </select>
                             </div>
                         </div>
@@ -67,15 +67,19 @@
                             <div class="form-group">
                                 <label for="name">
                                     Bericht</label>
-                                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Bericht"></textarea>
+                                <textarea ng-model='about.berichtt' name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Bericht"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                            <button type="submit" ng-click="about.contactuse()" class="btn btn-primary pull-right" id="btnContactUs">
                                 Verstuur bericht</button>
                         </div>
                     </div>
                 </form>
+                <div ng-show="about.mailsend" class="alert alert-success">
+                    <strong>Verstuurd!</strong>
+                    We proberen, indien nodig, zo spoedig mogelijk contact met u op te nemen.
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -93,7 +97,7 @@
                 </address>
                 <address>
                     <strong>Full Name</strong><br>
-                    <a href="mailto:#">first.last@example.com</a>
+                    <a href="mailto:#">info@lsabewoners.nl</a>
                 </address>
             </form>
         </div>

@@ -11,8 +11,8 @@ angular.module('lsamapApp')
     .controller('MinadCtrl', function(Upload, $scope, NgTableParams, $http, $timeout, $route, apis, ipa, md5, ngToast) {
 
         // NOTE NOTE change
-        var nwlink = './api/';
-        //var nwlink = 'http://localhost:80/lsamap/app/api/';
+        //var nwlink = './api/';
+        var nwlink = 'http://localhost:80/lsamap/app/api/';
 
 
         // instru

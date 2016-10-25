@@ -12,6 +12,8 @@
 angular.module('lsamapApp')
     .controller('MainCtrl', function($scope, $timeout, $http, $sce, $route, apis) {
 
+
+        
         // always bind self for various (aqr) reasons
         var self = this;
 
