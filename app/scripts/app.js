@@ -52,7 +52,7 @@ var app = angular
         // loading the svgMap, TODO connect to service
         return {
             restrict: 'A',
-            templateUrl: 'images/Nederland2016.svg',
+            templateUrl: 'images/Nederland2016_.svg',
             link: function(scope, element, attrs) {}
         } // NOTE Below showing of the directive to take over 'gemeente' nodes
     }).directive('gemeente', function($compile, apis) {
@@ -64,6 +64,7 @@ var app = angular
 
             },
             link: function(scope, element, attrs) {
+                console.log("check");
                 scope.elementGem = element.attr("gem");
                 scope.$parent.collectGemeenten(scope.elementGem);
                 element.attr("ng-click", "gemeenteClick()");

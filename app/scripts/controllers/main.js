@@ -194,7 +194,7 @@ angular.module('lsamapApp')
             var nieuw = {
                 value: gem,
                 label: gem
-            }
+            };
             self.gemeenten.push(nieuw);
 
             // sort alphabetical
@@ -207,8 +207,9 @@ angular.module('lsamapApp')
 
             // write to the loader - but thus kinda doens't work
             self.current = self.current + 1;
-
-            if (self.current === 401) {
+            console.log(self.current);
+            // NOTE NOTE NOTE NOTE ER ZIJN NU 390 ACTIEVE GEMEENTEN!
+            if (self.current === 390) {
                 self.loadingnow = false;
                 self.current = 1;
             }
@@ -222,9 +223,6 @@ angular.module('lsamapApp')
 
         // NOTE NOTE NOTE
         // NOTE FUNCTIONS FROM SELF/CONTROLLER
-
-
-
 
 
         this.setMap = function(whichmap) {
