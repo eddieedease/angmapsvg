@@ -13,13 +13,15 @@ angular.module('lsamapApp')
     .controller('MainCtrl', function($scope, $timeout, $http, $sce, $route, apis) {
 
 
-        
+
         // always bind self for various (aqr) reasons
         var self = this;
 
         this.current = 0;
         this.max = 410;
         this.loadingnow = true;
+
+        this.datesArray = [];
 
         this.loadingtext = "Laden..";
 
@@ -105,10 +107,51 @@ angular.module('lsamapApp')
             self.uploads = dataResponse.data[2];
             //self.apiResp = "chck";
 
-            // TODO set everything up
-            //self.currenthtml = $sce.trustAsHtml(self.sersections[0].nl);
-            //self.currentitle = $sce.trustAsHtml(self.sersections[0].titlenl);
-            //self.ryx();
+            // TODO assign the random values and last editted set everything up
+            var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
+
+
+            // Get the Random one
+            self.randinstrumentnaam = rand.name;
+            var ranwysigin = rand.wysig;
+            self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
+            self.randinstrumentgemeenten = rand.gemeentenlink;
+
+            // Get the last editted
+            // first convert timestamps to date and put in array
+            for (var i = 0; i < self.apiResp.length; i++) {
+              var t = self.apiResp[i].date.split(/[- :]/);
+              // Apply each element to the Date function
+              var d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5]));
+              self.datesArray.push(d);
+              console.log(d);
+            }
+
+            var lastposition = 0;
+            var enalastposition = 0;
+            var enaenalastposition = 0;
+            var d = new Date("2010-10-17 17:05:2");
+            var e = new Date("2009-10-17 17:05:2");
+            var f = new Date("2008-10-17 17:05:2");
+            // now loop through though id and get current id number.
+            for (var r = 0; r < self.datesArray.length; r++) {
+              if (self.datesArray[r] > d) {
+                d = self.datesArray[r];
+                lastposition = r;
+              } else if (self.datesArray[r] < d && self.datesArray[r] > e){
+                e = self.datesArray[r];
+                enaenalastposition = enalastposition;
+                enalastposition = r;
+              }
+            }
+
+            self.lastgemedit = self.apiResp[lastposition].name;
+            self.enalastgemedit = self.apiResp[enalastposition].name;
+
+            self.lastgemedittime = self.apiResp[lastposition].date;
+            self.enalastgemedittime = self.apiResp[enalastposition].date;
+            console.log(self.lastgemedittime);
+
         });
 
 
@@ -124,6 +167,11 @@ angular.module('lsamapApp')
         $scope.hoverRegion = "";
         // NOTE DIRECTIVES/ SCOPE CALLS
         // these ones get called from the gemeenten directives
+
+        this.lasteditclick = function(gem) {
+            self.currentgemeente = gem;
+
+        }
 
 
         $scope.mouseoverselection = function(idid) {

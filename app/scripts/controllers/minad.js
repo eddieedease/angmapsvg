@@ -118,25 +118,6 @@ angular.module('lsamapApp')
 
         this.getgetget();
 
-
-        // isn called but example for table
-        /*var data = [{
-            name: "Instrument 1",
-            id: 50
-        }, {
-            name: "Instrument 2",
-            id: 24
-        }, {
-            name: "Instrument 3",
-            id: 10
-        }];
-*/
-
-
-
-
-
-
         // options for the editor
         this.tinymceOptions = {
             extended_valid_elements: "iframe[src|frameborder|style|scrolling|class|width|height|name|align]",
@@ -284,6 +265,11 @@ angular.module('lsamapApp')
         //switching the instru views
         this.goInstruEdit = function() {
             this.instruaction = "new";
+            currentinstruid = null;
+            this.instruName = "";
+            this.tinymceModelinstru = "";
+            this.instrugems = null;
+            this.instrulink = null;
             if (this.editinstru === false) {
                 this.editinstru = true;
             } else if (this.editinstru === true) {

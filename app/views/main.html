@@ -133,25 +133,7 @@
             <div class="container">
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h3>Info</h3>
-                                <ul class="media-list main-list">
-                                    <li class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="http://placehold.it/150x90" alt="...">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Some news
-                                                <p class="by-author">...</p>
-                                            </div>
-                                        </li>
 
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-4">
                             <div class="thumbnail">
                                 <div class="caption">
@@ -159,12 +141,12 @@
                                     <ul class="media-list main-list">
                                         <li class="media">
                                             <div class="media-body">
-                                                <h4 class="media-heading">Gemeente</h4>
-                                                <p class="by-author">Buurtrecht</p>
+                                                <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.lastgemedit)"><h4 class="media-heading">{{main.lastgemedit}}</h4></a>
+                                                <p class="by-author">{{main.lastgemedittime}}</p>
                                             </div>
                                             <div class="media-body">
-                                                <h4 class="media-heading">Gemeente</h4>
-                                                <p class="by-author">Buurtrecht</p>
+                                                <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.enalastgemedit)"><h4 class="media-heading">{{main.enalastgemedit}}</h4></a>
+                                                <p class="by-author">{{main.enalastgemedittime}}</p>
                                             </div>
                                         </li>
 
@@ -172,18 +154,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-8">
                             <div class="thumbnail">
                                 <div class="caption">
-                                    <h3>Random</h3>
+                                    <h3>Willekeurig instrument</h3>
                                     <ul class="media-list main-list">
                                         <li class="media">
-                                            <a class="pull-left" href="#">
-                                                <img class="media-object" src="http://placehold.it/150x90" alt="...">
-                                            </a>
+
                                             <div class="media-body">
-                                                <h4 class="media-heading">Something Random</h4>
-                                                <p class="by-author">Gemeente</p>
+                                                <h4 class="media-heading">{{main.randinstrumentnaam}}</h4>
+                                                <h5>Wordt ingezet in: {{main.randinstrumentgemeenten}}</h5>
+                                                <p ng-bind-html="main.randinstrumentwysig" class="by-author"></p>
+
                                             </div>
                                         </li>
 
