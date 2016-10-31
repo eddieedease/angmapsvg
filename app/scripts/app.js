@@ -64,7 +64,6 @@ var app = angular
 
             },
             link: function(scope, element, attrs) {
-                console.log("check");
                 scope.elementGem = element.attr("gem");
                 scope.$parent.collectGemeenten(scope.elementGem);
                 element.attr("ng-click", "gemeenteClick()");
@@ -91,10 +90,6 @@ var app = angular
                     if (apis.serGemeenten[i].name === scope.elementGem) {
                         scope.komtvoor = true;
                         scope.buurtrechtarray = apis.serGemeenten[i].buurtrecht.split(',');
-                        console.log(scope.buurtrechtarray);
-
-
-
                         switch (apis.currentMap) {
                             case 0:
                                 if (scope.buurtrechtarray.length === 1 && scope.buurtrechtarray[0] === "") {

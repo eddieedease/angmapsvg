@@ -25,14 +25,14 @@ angular.module('lsamapApp')
 
         this.loadingtext = "Laden..";
 
-        this.starttekst = "Klik op een gemeente voor informatie";
+        this.starttekst = "Klik op een gemeente/Gebruik de zoekbalk hierboven voor verdere informatie.";
 
         this.mappselect = [apis.currentMap];
 
         this.mapps = [{
             code: 0,
             label: "Geheel overzicht",
-            icon: "images/smallicons/small1.png"
+            icon: "images/smallicons/lsa.png"
         }, {
             code: 1,
             label: "Beheer van voorzieningen",
@@ -124,7 +124,6 @@ angular.module('lsamapApp')
               // Apply each element to the Date function
               var d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5]));
               self.datesArray.push(d);
-              console.log(d);
             }
 
             var lastposition = 0;
@@ -150,8 +149,6 @@ angular.module('lsamapApp')
 
             self.lastgemedittime = self.apiResp[lastposition].date;
             self.enalastgemedittime = self.apiResp[enalastposition].date;
-            console.log(self.lastgemedittime);
-
         });
 
 
@@ -207,7 +204,6 @@ angular.module('lsamapApp')
 
             // write to the loader - but thus kinda doens't work
             self.current = self.current + 1;
-            console.log(self.current);
             // NOTE NOTE NOTE NOTE ER ZIJN NU 390 ACTIEVE GEMEENTEN!
             if (self.current === 390) {
                 self.loadingnow = false;
@@ -238,9 +234,6 @@ angular.module('lsamapApp')
         }
 
         this.onMapChange = function(newValue, oldValue) {
-            //console.log("Hoe vaak!");
-            console.log(newValue);
-            console.log(oldValue);
             if (newValue && oldValue !== undefined) {
                 apis.currentMap = newValue.code;
                 this.loadingnow = true;

@@ -15,6 +15,7 @@ angular.module('lsamapApp')
         var nwlink = 'http://localhost:80/lsamap/app/api/';
 
 
+
         // instru
         var data;
         this.current = 0;
@@ -33,8 +34,10 @@ angular.module('lsamapApp')
             Buurtrecht6: false
         };
 
+        self.pwchanged = "";
 
-        this.buurtrnames = ["Beheer van voorzieningen","Toegang tot geld","Open Overheid","Zelfgekozen ondersteuning","Maatschappelijk aanbesteden","Plannen voor de buurt"];
+
+        this.buurtrnames = ["Beheer van voorzieningen", "Toegang tot geld", "Open Overheid", "Zelfgekozen ondersteuning", "Maatschappelijk aanbesteden", "Plannen voor de buurt"];
 
         self.body = "<div>  </div>"; // this is important for tinymce. without content, the error does not occur
         // for linkin
@@ -168,7 +171,7 @@ angular.module('lsamapApp')
             });
             // write to the loader - but thus kinda doens't work
             self.current = self.current + 1;
-            if (self.current === 401) {
+            if (self.current === 390) {
                 self.loadingnow = false;
                 self.current = 1;
             }
@@ -464,6 +467,34 @@ angular.module('lsamapApp')
                 });
             }
         };
+
+
+        this.editBasis3 = function() {
+            var makehash = md5.createHash(self.tnew || '');
+
+            if (self.passold  === apis.pwd) {
+                this.myPromise = $http({
+                    method: "post",
+                    url: nwlink + 'chng.php',
+                    // actions and parameters
+                    data: {
+                        token: apis.pwd,
+                        action: "editbasis3",
+                        tokennew: makehash
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                /* Check whether the HTTP Request is Successfull or not. */
+                this.myPromise.success(function(data) {
+                    self.pwchanged = "Wachtwoord is gewijzigd";
+                    self.getgetget();
+                });
+            }
+
+
+        }
 
 
         // editting the instrument, switch on action for new one if one doesn't exist

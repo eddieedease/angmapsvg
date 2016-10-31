@@ -27,6 +27,7 @@ $request = json_decode($postdata);
 
 @$text = $request->text;
 @$token = $request->token;
+@$tokennew = $request->tokennew;
 
 $tokenm5 = md5($token);
 
@@ -58,13 +59,13 @@ function mynl2br($text)
 if ($tokenm5 == $ww) {
   switch ($action) {
       case 'editbasis': //TODO
-          $sql = "UPDATE basis SET context1 = '$context1', emailcontact = '$emailcontact',maintenance ='$maintenance',facebook ='$facebook',multilang ='$multilang' WHERE id = 0";
+          $sql = "UPDATE api SET usr = '$title', email = '$emailcontact' WHERE id = 1";
           break;
-      case 'editbasis2': //TODO
-          $sql = "UPDATE basis SET adres1 = '$adres1', adres2 = '$adres2',adres3 ='$adres3' WHERE id = 0";
+      case 'editbasis2':
+          $sql = "UPDATE basis SET adres1 = '$adres1', adres2 = '$adres2',adres3 ='$adres3' WHERE id = 1";
           break;
       case 'editbasis3': //TODO
-          $sql = "UPDATE ipa SET token = '$token' WHERE sec = 'wo'";
+          $sql = "UPDATE api SET ww = '$tokennew' WHERE id = 1";
           break;
       case 'newgemeente':
           // NEED - id gemeente, wysigtekst

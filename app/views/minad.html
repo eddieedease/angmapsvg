@@ -1,8 +1,7 @@
 <div ng-show="minad.minn" class="section">
     <div class="wrapper">
         <form class="form-signin">
-            <h2 class="form-signin-heading">Hier inloggen</h2>
-            <code>Password: goudvis</code>
+            <h2 class="form-signin-heading">Inloggen</h2>
             <hr>
             <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required=""/>
             {{minad.wrongpwtext}}
@@ -10,24 +9,19 @@
         </form>
     </div>
 </div>
-
 <div ng-show="minad.minnn" class="section">
-
     <div class="col-md-12">
         <div class="jumbotron jum-b" style="margin-bottom:0px">
-
             <h1>ADMIN</h1>
             <small>Voor het aanpassen van de kaart</small>
         </div>
     </div>
-
     <div class="col-md-12">
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <h3 class="panel-title">Admin Menu ->
                 </h3>
                 <span class="pull-right">
-                    <!-- Tabs -->
                     <ul class="nav panel-tabs">
                         <li class="active">
                             <a data-target="#tab2" data-toggle="tab">Kaart</a>
@@ -36,91 +30,14 @@
                             <a data-target="#tab3" data-toggle="tab">Instrumenten</a>
                         </li>
                         <li>
-                            <a data-target="#tab1" data-toggle="tab">Info</a>
-                        </li>
-                        <li>
-                            <a data-target="#tab4" data-toggle="tab">Instellingen</a>
+                            <a data-target="#tab4" data-toggle="tab">Info/Instellingen</a>
                         </li>
                     </ul>
                 </span>
             </div>
             <div class="panel-body">
                 <div class="tab-content">
-                    <div class="tab-pane" id="tab1">
-                        <div class="panel-body inf-content">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="images/lsalogo.png" data-original-title="Usuario">
-
-                                </div>
-                                <div class="col-md-6">
-                                    <strong>Informatie</strong><br>
-                                    <div class="table-responsive">
-                                        <table class="table table-condensed table-responsive table-user-information">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <strong>
-                                                            <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                                            AppID
-                                                        </strong>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        123456789
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <strong>
-                                                            <span class="glyphicon glyphicon-eye-open text-primary"></span>
-                                                            Role
-                                                        </strong>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        Admin
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <strong>
-                                                            <span class="glyphicon glyphicon-envelope text-primary"></span>
-                                                            Using Email:
-                                                        </strong>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        noreply@email.com
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <strong>
-                                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                                            created
-                                                        </strong>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        1 okt 2016
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <strong>
-                                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                                            Modified
-                                                        </strong>
-                                                    </td>
-                                                    <td class="text-primary">
-                                                        1 okt 2016
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="tab-pane" id="tab1"></div>
                     <div class="tab-pane active" id="tab2">
                         <div class="container-fluid">
                             <div class="row">
@@ -159,9 +76,7 @@
                                                 <legend>Verwijder afbeeldingen</legend>
                                             </div>
                                         </form>
-
                                         <div class="row">
-
                                             <div ng-repeat="photo in minad.photoArray" class="col-xs-12 col-sm-12 col-md-3">
                                                 <div class="thumbnail">
                                                     <img ng-src="{{photo.location}}" alt="">
@@ -172,12 +87,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
-
                                 <div class="col-md-5">
                                     <div class="panel panel-danger">
                                         <div class="panel-heading">Selectie</div>
@@ -190,7 +102,6 @@
                                                 <li>
                                                     <a href="#">Gemeente</a>
                                                 </li>
-
                                                 <li class="active">Instrument</li>
                                             </ol>
                                             <div style="float:right">
@@ -202,7 +113,6 @@
                                             {{minad.currentgemeente}}</div>
                                         <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
                                         <hr>
-
                                         <div class="panel-heading">Buurtrechten toewijzen</div>
                                         <div class="panel-body">
                                             <div class="checkbox" ng-repeat="(checkboxx,enabled) in minad.brechtcheckboxes">
@@ -215,7 +125,6 @@
                                         <div>
                                             <button class="btn btn-primary center-block" type="submit" ng-click="minad.updateGemeenten()">Opslaan</button>
                                         </div>
-
                                     </div>
 
                                     <!--<p>
@@ -390,63 +299,117 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="tab4">
-                        <div class="container">
-                            <div class="row">
-                                <form class="form-horizontal">
-                                    <fieldset>
-                                        <!-- Form Name -->
-                                        <legend>Basis instellingen/ Extra functionaliteit</legend>
-                                        <p>
-                                            Hier kunnen we zaken zoals het email adres veranderen waar de contactmail verstuurd naar zal worden, evenals bijv het wijzigen van het wachtwoord, nieuws bericht aanpassen.
-                                        </p>
-                                        <!-- Text input-->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Naam</label>
-                                            <div class="col-md-6">
-                                                <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
-                                            </div>
-                                        </div>
-                                        <!-- Text input-->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="color">E-mail</label>
-                                            <div class="col-md-6">
-                                                <input id="color" name="email" type="email" placeholder="voorbeeld@voorbeeld.nl" class="form-control input-md">
-                                            </div>
-                                        </div>
 
-                                        <!-- Button (Double) -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="submitButton"></label>
-                                            <div class="col-md-8">
-                                                <button id="submitButton" name="submitButton" class="btn btn-success">Save</button>
-                                            </div>
-                                        </div>
-
-                                        <h3>Wachtwoord wijzigen:</h3>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Oude wachtwoord</label>
-                                            <div class="col-md-6">
-                                                <input id="textinput" name="textinput" type="password" placeholder="Oud wachtwoord" class="form-control input-md" required="">
-                                            </div>
-                                        </div>
-                                        <!-- Text input-->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="color">Nieuwe wachtwoord</label>
-                                            <div class="col-md-6">
-                                                <input id="color" name="email" type="password" placeholder="Nieuw wachtwoord" class="form-control input-md">
-                                            </div>
-                                        </div>
-
-                                        <!-- Button (Double) -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="submitButton"></label>
-                                            <div class="col-md-8">
-                                                <button id="submitButton" name="submitButton" class="btn btn-success">Save</button>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="images/lsalogo.png" data-original-title="Usuario">
                             </div>
+                            <div class="col-md-6">
+                                <strong>Informatie</strong><br>
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-responsive table-user-information">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <strong>
+                                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                        AppID
+                                                    </strong>
+                                                </td>
+                                                <td class="text-primary">
+                                                    EDease_7bc
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <strong>
+                                                        <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                                        Ingelogd als
+                                                    </strong>
+                                                </td>
+                                                <td class="text-primary">
+                                                    Admin
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>
+                                                        <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                                        Email adres contactformulier:
+                                                    </strong>
+                                                </td>
+                                                <td class="text-primary">
+                                                    lsa@lsabewoners.nl
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>
+                                                        <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                                        Aangemaakt
+                                                    </strong>
+                                                </td>
+                                                <td class="text-primary">
+                                                    1 okt 2016
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>
+                                                        <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                                        Gewijzigd
+                                                    </strong>
+                                                </td>
+                                                <td class="text-primary">
+                                                    26 okt 2016
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <!-- Form Name -->
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+
+                                        <label class="col-md-4 control-label" for="textinput"></label>
+                                        <div class="col-md-6">
+                                            <legend>Wachtwoord wijzigen</legend>
+                                            <p>
+                                                Hier kun je je wachtwoord wijzigen.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Oude wachtwoord</label>
+                                        <div class="col-md-6">
+                                            <input id="textinput" ng-model="minad.passold" name="textinput" type="password" placeholder="Oud wachtwoord" class="form-control input-md" required="">
+                                        </div>
+                                    </div>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="color">Nieuwe wachtwoord</label>
+                                        <div class="col-md-6">
+                                            <input id="color" ng-model="minad.tnew" name="email" type="password" placeholder="Nieuw wachtwoord" class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="submitButton"></label>
+                                        <div class="col-md-8">
+                                            <button ng-click="minad.editBasis3()" id="submitButton" name="submitButton" class="btn btn-success">Opslaan</button>
+                                            {{minad.pwchanged}}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
 
                         </div>
                     </div>
