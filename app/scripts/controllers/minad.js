@@ -77,6 +77,7 @@ angular.module('lsamapApp')
             // AUTH WORKS
             apis.getIpa().then(function(dataResponse) {
                 var check = dataResponse.data;
+                console.log(check);
                 if (check !== "reject") {
                     self.wrongpwtext = "Alllright Good";
                     self.minn = false;

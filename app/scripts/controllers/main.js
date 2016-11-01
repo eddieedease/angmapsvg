@@ -10,21 +10,20 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MainCtrl', function($scope, $timeout, $http, $sce, $route, apis) {
+      .controller('MainCtrl', function($scope,$rootScope, $timeout, $http, $sce, $route, apis, $routeParams) {
 
-
-
+        // try to take routing
+        //this.keyyy = $location.url();
+        //this.keyy = $scope.keyyy.replace('/', '');
+        console.log($routeParams.some);
+        //console.log($route);
         // always bind self for various (aqr) reasons
         var self = this;
-
         this.current = 0;
         this.max = 410;
         this.loadingnow = true;
-
         this.datesArray = [];
-
         this.loadingtext = "Laden..";
-
         this.starttekst = "Klik op een gemeente/Gebruik de zoekbalk hierboven voor verdere informatie.";
 
         this.mappselect = [apis.currentMap];
@@ -120,10 +119,10 @@ angular.module('lsamapApp')
             // Get the last editted
             // first convert timestamps to date and put in array
             for (var i = 0; i < self.apiResp.length; i++) {
-              var t = self.apiResp[i].date.split(/[- :]/);
-              // Apply each element to the Date function
-              var d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5]));
-              self.datesArray.push(d);
+                var t = self.apiResp[i].date.split(/[- :]/);
+                // Apply each element to the Date function
+                var d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5]));
+                self.datesArray.push(d);
             }
 
             var lastposition = 0;
@@ -134,14 +133,14 @@ angular.module('lsamapApp')
             var f = new Date("2008-10-17 17:05:2");
             // now loop through though id and get current id number.
             for (var r = 0; r < self.datesArray.length; r++) {
-              if (self.datesArray[r] > d) {
-                d = self.datesArray[r];
-                lastposition = r;
-              } else if (self.datesArray[r] < d && self.datesArray[r] > e){
-                e = self.datesArray[r];
-                enaenalastposition = enalastposition;
-                enalastposition = r;
-              }
+                if (self.datesArray[r] > d) {
+                    d = self.datesArray[r];
+                    lastposition = r;
+                } else if (self.datesArray[r] < d && self.datesArray[r] > e) {
+                    e = self.datesArray[r];
+                    enaenalastposition = enalastposition;
+                    enalastposition = r;
+                }
             }
 
             self.lastgemedit = self.apiResp[lastposition].name;
