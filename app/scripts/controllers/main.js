@@ -10,7 +10,7 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-      .controller('MainCtrl', function($scope,$rootScope, $timeout, $http, $sce, $route, apis, $routeParams) {
+    .controller('MainCtrl', function($scope, $rootScope, $timeout, $http, $sce, $route, apis, $routeParams) {
 
         // try to take routing
         //this.keyyy = $location.url();
@@ -118,6 +118,8 @@ angular.module('lsamapApp')
 
             // Get the last editted
             // first convert timestamps to date and put in array
+
+
             for (var i = 0; i < self.apiResp.length; i++) {
                 var t = self.apiResp[i].date.split(/[- :]/);
                 // Apply each element to the Date function
@@ -148,6 +150,96 @@ angular.module('lsamapApp')
 
             self.lastgemedittime = self.apiResp[lastposition].date;
             self.enalastgemedittime = self.apiResp[enalastposition].date;
+
+            // NOTE check for routeparam NOTE this func is a copy of the onListChange, since I couldn't get it to work otherwise
+            if ($routeParams.some !== undefined) {
+                console.log("before" + self.currentgemeente);
+                self.currentgemeente = $routeParams.some;
+                console.log("after" + self.currentgemeente);
+
+                //console.log("Hoe vaak!");
+                self.starttekst = "";
+                //clear everything
+                self.images = [];
+                self.instrus = [];
+                self.currentwysig = "";
+                // first reset checkboxes
+                self.brechtcheckboxes = {
+                    Buurtrecht1: false,
+                    Buurtrecht2: false,
+                    Buurtrecht3: false,
+                    Buurtrecht4: false,
+                    Buurtrecht5: false,
+                    Buurtrecht6: false
+                };
+                // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
+                for (var i = 0; i < self.apiResp.length; i++) {
+
+                    if (self.apiResp[i].name === self.currentgemeente) {
+                        var wysigsce = self.apiResp[i].wysig;
+                        self.currentgemeente = self.apiResp[i].name;
+                        $scope.currentgemeente = self.apiResp[i].name;
+                        self.curcur = self.apiResp[i].name;
+                        self.currentwysig = $sce.trustAsHtml(wysigsce);
+                        // Check for buurtrechten
+                        var tempstring = self.apiResp[i].buurtrecht;
+                        var tempArray = tempstring.split(",");
+                        for (var b = 0; b < tempArray.length; b++) {
+                            if (tempArray[b] === "1") {
+                                self.brechtcheckboxes.Buurtrecht1 = true;
+                            }
+                            if (tempArray[b] === "2") {
+                                self.brechtcheckboxes.Buurtrecht2 = true;
+                            }
+                            if (tempArray[b] === "3") {
+                                self.brechtcheckboxes.Buurtrecht3 = true;
+                            }
+                            if (tempArray[b] === "4") {
+                                self.brechtcheckboxes.Buurtrecht4 = true;
+                            }
+                            if (tempArray[b] === "5") {
+                                self.brechtcheckboxes.Buurtrecht5 = true;
+                            }
+                            if (tempArray[b] === "6") {
+                                self.brechtcheckboxes.Buurtrecht6 = true;
+                            }
+
+                        }
+                        self.isnew = false;
+
+
+
+                        // TODO build the new images array
+                        // expects   this.images: Array of objects
+                        /*  {
+                              title: 'Coole titel',
+                              thumbUrl: 'images/castle1.jpg',
+                              url: 'images/castle1.jpg',
+                          }*/
+
+                        for (var z = 0; z < self.uploads.length; z++) {
+                            if (self.uploads[z].extrainfo === self.currentgemeente) {
+                                var object = {
+                                    title: self.uploads[z].description,
+                                    thumbUrl: self.uploads[z].location,
+                                    url: self.uploads[z].location
+                                }
+                                self.images.push(object);
+                            }
+                        }
+
+                        for (var x = 0; x < self.instrumenten.length; x++) {
+                            var isoarray = self.instrumenten[x].gemeentenlink.split(",");
+                            for (var a = 0; a < isoarray.length; a++) {
+                                if (isoarray[a] === self.currentgemeente) {
+                                    self.instrus.push(self.instrumenten[x]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         });
 
 
@@ -258,6 +350,7 @@ angular.module('lsamapApp')
                 self.currentwysig = "";
                 $scope.currentgemeente = newValue.value;
                 self.currentgemeente = newValue.value;
+                self.curcur = newValue.value;
                 // first reset checkboxes
                 this.brechtcheckboxes = {
                     Buurtrecht1: false,
