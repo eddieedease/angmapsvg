@@ -36,6 +36,10 @@ $tokenm5 = md5($token);
 @$title = $request->title;
 @$type = $request->type;
 
+
+// Sooooo.... escape the wysig
+//$wysig = $mysqli->real_escape_string($wysig);
+
 include 'db.php';
 
 // connect to the database
@@ -54,7 +58,8 @@ function mynl2br($text)
     return strtr($text, array("\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
 }
 
-
+$wysig = str_replace("'", "''", $wysig);
+//$wysig = mysqli_escape_string($wysig);
 
 if ($tokenm5 == $ww) {
   switch ($action) {

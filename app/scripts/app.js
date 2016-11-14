@@ -28,7 +28,7 @@ var app = angular
     ])
     .config(function($routeProvider) {
         $routeProvider
-            .when('/:some?', {
+            .when('/', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl',
                 controllerAs: 'main'

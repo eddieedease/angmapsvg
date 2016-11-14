@@ -15,7 +15,7 @@ angular.module('lsamapApp')
         // try to take routing
         //this.keyyy = $location.url();
         //this.keyy = $scope.keyyy.replace('/', '');
-        console.log($routeParams.some);
+        console.log($routeParams.gemeente);
         //console.log($route);
         // always bind self for various (aqr) reasons
         var self = this;
@@ -152,9 +152,9 @@ angular.module('lsamapApp')
             self.enalastgemedittime = self.apiResp[enalastposition].date;
 
             // NOTE check for routeparam NOTE this func is a copy of the onListChange, since I couldn't get it to work otherwise
-            if ($routeParams.some !== undefined) {
+          if ($routeParams.gemeente !== undefined) {
                 console.log("before" + self.currentgemeente);
-                self.currentgemeente = $routeParams.some;
+                self.currentgemeente = $routeParams.gemeente;
                 console.log("after" + self.currentgemeente);
 
                 //console.log("Hoe vaak!");
