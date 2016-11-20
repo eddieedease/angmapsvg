@@ -15,6 +15,7 @@
 
     <div class="section" id="totop">
         <div class="container-fluid">
+          <hr>
             <div class="row">
 
                 <div class="col-md-5" id="viewgem">
@@ -64,7 +65,7 @@
                                 </div>
                             </div>
                             <p>
-                                <div ng-bind-html="main.currentwysig"></div>
+                                <div style="height:200px;" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
                             </p><hr>
                             <hr>
                             <div ng-if="main.images.length">

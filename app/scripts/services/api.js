@@ -29,16 +29,11 @@ angular.module('lsamapApp')
         };
         // A fake service for now
         this.service1 = "owheywwweye";
-
         this.pwd = "";
-
         // the currentMap needs to be binded to the scope (I guess)
         // 2 types of maps I suppose?
         this.currentMap = 0;
-
         this.xzy = false;
-
-
         // This one gets called from the controller api call to update the service just before rendering the map directive
         this.setSerGemeenten = function(serser) {
             //this.sergemeenten =
@@ -46,21 +41,11 @@ angular.module('lsamapApp')
             self.serGemeenten = serser;
             console.log(self.serGemeenten);
         };
-
-
-
-
-
-
-
-
         // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
         // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
         // Here are the API CALLS - Change ´nwlink' when needed
 
         //var nwlink = 'http://localhost:80/chaletrenesse/app/api/';
-
-
         this.getApi = function() {
             // $http() returns a $promise that we can add handlers with .then()
             return $http({
@@ -73,13 +58,9 @@ angular.module('lsamapApp')
                 cache: false
             }).success(function(data, status, headers, config) {
                 //console.log(data);
-
                 //console.log(data);
             });
         };
-
-
-
 
         // authenticatin' NOTE NOTE // works // store password in variable
         this.getIpa = function() {
@@ -95,7 +76,6 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-
         };
 
     });

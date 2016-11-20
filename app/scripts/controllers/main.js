@@ -312,6 +312,11 @@ angular.module('lsamapApp')
         // NOTE FUNCTIONS FROM SELF/CONTROLLER
 
 
+          this.showFullText = function() {
+            console.log("show more text!");
+          }
+
+
         this.setMap = function(whichmap) {
             var thismap = parseInt(whichmap)
             apis.currentMap = thismap;

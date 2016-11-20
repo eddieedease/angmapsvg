@@ -24,7 +24,8 @@ var app = angular
         'thatisuday.ng-image-gallery',
         'ngToast',
         'ngFileUpload',
-        'scrollto'
+        'scrollto',
+        'dibari.angular-ellipsis'
     ])
     .config(function($routeProvider) {
         $routeProvider
