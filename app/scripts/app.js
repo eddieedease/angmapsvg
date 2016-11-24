@@ -96,27 +96,27 @@ var app = angular
                                 if (scope.buurtrechtarray.length === 1 && scope.buurtrechtarray[0] === "") {
                                     element.attr("ng-attr-fill", "{{0.1 | map_colour}}");
                                 } else {
-                                  switch (scope.buurtrechtarray.length) {
-                                      case 1:
-                                          element.attr("ng-attr-fill", "{{0.3 | map_colour}}");
-                                          break;
-                                      case 2:
-                                          element.attr("ng-attr-fill", "{{0.5 | map_colour}}");
-                                          break;
-                                      case 3:
-                                          element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
-                                          break;
-                                      case 4:
-                                          element.attr("ng-attr-fill", "{{0.8 | map_colour}}");
-                                          break;
-                                      case 5:
-                                          element.attr("ng-attr-fill", "{{0.9 | map_colour}}");
-                                          break;
-                                      case 6:
-                                          element.attr("ng-attr-fill", "{{1 | map_colour}}");
-                                          break;
-                                      default:
-                                  }
+                                    switch (scope.buurtrechtarray.length) {
+                                        case 1:
+                                            element.attr("ng-attr-fill", "{{1 | map_colour1}}");
+                                            break;
+                                        case 2:
+                                            element.attr("ng-attr-fill", "{{1 | map_colour2}}");
+                                            break;
+                                        case 3:
+                                            element.attr("ng-attr-fill", "{{1 | map_colour3}}");
+                                            break;
+                                        case 4:
+                                            element.attr("ng-attr-fill", "{{1 | map_colour4}}");
+                                            break;
+                                        case 5:
+                                            element.attr("ng-attr-fill", "{{1 | map_colour5}}");
+                                            break;
+                                        case 6:
+                                            element.attr("ng-attr-fill", "{{1 | map_colour6}}");
+                                            break;
+                                        default:
+                                    }
                                 }
 
                                 break;
@@ -128,9 +128,9 @@ var app = angular
                                     }
                                 }
                                 if (switch1 === true) {
-                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour4}}");
                                 } else {
-                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                    element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
                                 };
                                 break;
                             case 2:
@@ -143,9 +143,9 @@ var app = angular
                                 }
 
                                 if (switch2 === true) {
-                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour4}}");
                                 } else {
-                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                    element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
                                 };
                                 break;
                             case 3:
@@ -158,9 +158,9 @@ var app = angular
                                 }
 
                                 if (switch3 === true) {
-                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour4}}");
                                 } else {
-                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                    element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
                                 };
                                 break;
                             case 4:
@@ -172,9 +172,9 @@ var app = angular
                                     }
                                 }
                                 if (switch4 === true) {
-                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour4}}");
                                 } else {
-                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                    element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
                                 };
                                 break;
                             case 5:
@@ -186,9 +186,9 @@ var app = angular
                                     }
                                 }
                                 if (switch5 === true) {
-                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour4}}");
                                 } else {
-                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                    element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
                                 };
                                 break;
                             case 6:
@@ -200,9 +200,9 @@ var app = angular
                                     }
                                 }
                                 if (switch6 === true) {
-                                    element.attr("ng-attr-fill", "{{0.7 | map_colour}}");
+                                    element.attr("ng-attr-fill", "{{0.7 | map_colour4}}");
                                 } else {
-                                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                                    element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
                                 };
                                 break;
                         }
@@ -211,7 +211,7 @@ var app = angular
 
                 //otherwise paint other color
                 if (scope.komtvoor === false) {
-                    element.attr("ng-attr-fill", "{{0.5 | map_colour2}}");
+                    element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
                 }
                 //randomizing the elements
                 /*
@@ -275,13 +275,37 @@ var app = angular
         } // NOTE below is the filter for the map colour
     }).filter('map_colour', [function() {
         return function(input) {
-            var b = 255 - Math.floor(input * 255);
-            var g = Math.floor(input * 255);
-            return "rgba(255," + g + "," + b + ",1)";
-
+            var r = 20 - Math.floor(input * 20);
+            var b = 103 - Math.floor(input * 103);
+            var g = Math.floor(input * 99);
+            return "rgba(" + r + "," + g + "," + 99 + ",1)";
         }
-    }]).filter('map_colour2', [function() {
+    }]).filter('map_coloursec', [function() {
         return function(input) {
             return "rgba(248, 225, 225, 1)";
         }
-    }]);;
+    }]).filter('map_colour6', [function() {
+        return function(input) {
+            return "rgba(20, 103, 99, 1)";
+        }
+    }]).filter('map_colour5', [function() {
+        return function(input) {
+            return "rgba(27, 154, 148, 1)";
+        }
+    }]).filter('map_colour4', [function() {
+        return function(input) {
+            return "rgba(96, 198, 198, 1)";
+        }
+    }]).filter('map_colour3', [function() {
+        return function(input) {
+            return "rgba(140, 211, 213, 1)";
+        }
+    }]).filter('map_colour2', [function() {
+        return function(input) {
+            return "rgba(191, 229, 230, 1)";
+        }
+    }]).filter('map_colour1', [function() {
+        return function(input) {
+            return "rgba(223, 242, 243, 1)";
+        }
+    }]);
