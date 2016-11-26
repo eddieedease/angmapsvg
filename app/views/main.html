@@ -15,7 +15,7 @@
 
     <div class="section" id="totop">
         <div class="container-fluid">
-          <hr>
+            <hr>
             <div class="row">
 
                 <div class="col-md-5" id="viewgem">
@@ -34,8 +34,8 @@
                         </script>
 
                         <div class="panel-body">
-                          <h4>Selectie buurtrecht</h4>
-                          <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code" dropdown-item-template="'selector/demo/browserWithIcon'"></select>
+                            <h4>Selectie buurtrecht</h4>
+                            <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code" dropdown-item-template="'selector/demo/browserWithIcon'"></select>
                             <!--<p>
               <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
             </p>
@@ -53,6 +53,16 @@
                             </div>
                             <hr>
 
+                        </div>
+
+                        <div ng-if='main.instrumentenbuurtrechten'>
+                            <table ng-table="main.tableParams" class="table" show-filter="true">
+                                <tr ng-repeat="user in $data">
+                                    <td title="'Instrumenten inzet'" filter="{ name: 'text'}" sortable="'name'">
+                                        <a>{{user.name}}</a>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
 
                         <div style='padding:20px;padding-top:0px'>
@@ -119,6 +129,7 @@
                     <div ng-show="main.loadingnow">
                         <h3>{{main.loadingtext}}</h3>
                     </div>
+
                     <div ng-show="!main.loadingnow">
                         <div ng-if="main.apiResp">
                             <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
@@ -135,62 +146,66 @@
 
                 <div class="row">
 
-                        <div class="col-md-4">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h3>Laatst bijgewerkt</h3>
-                                    <ul class="media-list main-list">
-                                        <li class="media">
-                                            <div class="media-body">
-                                                <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.lastgemedit)"><h4 class="media-heading">{{main.lastgemedit}}</h4></a>
-                                                <p class="by-author">{{main.lastgemedittime}}</p>
-                                            </div>
-                                            <div class="media-body">
-                                                <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.enalastgemedit)"><h4 class="media-heading">{{main.enalastgemedit}}</h4></a>
-                                                <p class="by-author">{{main.enalastgemedittime}}</p>
-                                            </div>
-                                        </li>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>Laatst bijgewerkt</h3>
+                                <ul class="media-list main-list">
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.lastgemedit)">
+                                                <h4 class="media-heading">{{main.lastgemedit}}</h4>
+                                            </a>
+                                            <p class="by-author">{{main.lastgemedittime}}</p>
+                                        </div>
+                                        <div class="media-body">
+                                            <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.enalastgemedit)">
+                                                <h4 class="media-heading">{{main.enalastgemedit}}</h4>
+                                            </a>
+                                            <p class="by-author">{{main.enalastgemedittime}}</p>
+                                        </div>
+                                    </li>
 
-                                    </ul>
-                                </div>
+                                </ul>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h3>Willekeurig instrument  <a href="#" class="btn btn-primary">></a></h3>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>Willekeurig instrument
+                                    <a href="#" style="float:right" class="btn btn-primary">></a>
+                                </h3>
 
-                                    <ul class="media-list main-list">
-                                        <li class="media">
+                                <ul class="media-list main-list">
+                                    <li class="media">
 
-                                            <div class="media-body">
-                                                <h4 class="media-heading">{{main.randinstrumentnaam}}</h4>
-                                                <h5>Wordt ingezet in: {{main.randinstrumentgemeenten}}</h5>
-                                                <p ng-bind-html="main.randinstrumentwysig" class="by-author"></p>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{main.randinstrumentnaam}}</h4>
+                                            <h5>Wordt ingezet in:
+                                                {{main.randinstrumentgemeenten}}</h5>
+                                            <p ng-bind-html="main.randinstrumentwysig" class="by-author"></p>
 
-                                            </div>
-                                        </li>
+                                        </div>
+                                    </li>
 
-                                    </ul>
-                                </div>
+                                </ul>
                             </div>
                         </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6">
+                        <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
 
                     </div>
                 </div>
             </div>
-
-            <footer class="section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-
-
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
-
-                        </div>
-                    </div>
-                </div>
-            </footer>
+        </footer>

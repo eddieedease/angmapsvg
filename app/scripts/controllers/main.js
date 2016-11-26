@@ -10,15 +10,16 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MainCtrl', function($scope, $rootScope, $timeout, $http, $sce, $route, apis, $routeParams) {
+    .controller('MainCtrl', function($scope, $rootScope, NgTableParams, $timeout, $http, $sce, $route, apis, $routeParams) {
 
         // try to take routing
         //this.keyyy = $location.url();
         //this.keyy = $scope.keyyy.replace('/', '');
-        console.log($routeParams.gemeente);
+        //console.log($routeParams.gemeente);
         //console.log($route);
         // always bind self for various (aqr) reasons
         var self = this;
+        var data;
         this.current = 0;
         this.max = 410;
         this.loadingnow = true;
@@ -103,11 +104,44 @@ angular.module('lsamapApp')
             apis.setSerGemeenten(dataResponse.data[0]);
             self.apiResp = dataResponse.data[0];
             self.instrumenten = dataResponse.data[1];
+            self.instrumentenbuurtrechten = [];
             self.uploads = dataResponse.data[2];
             //self.apiResp = "chck";
 
             // TODO assign the random values and last editted set everything up
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
+
+
+
+
+
+
+            for (var n = 0; n < self.instrumenten.length; n++) {
+                //console.log(self.instrumenten[n])
+
+                //console.log(typeof(apis.currentMap));
+
+                var intlink = parseInt(self.instrumenten[n].link);
+
+
+                if (intlink === apis.currentMap) {
+                    self.instrumentenbuurtrechten.push(self.instrumenten[n]);
+                }
+            }
+
+
+            console.log(self.instrumenten);
+            console.log(self.instrumentenbuurtrechten);
+
+
+
+            // some hocus pocus to fill the table for instruments // WORKS
+            data = self.instrumentenbuurtrechten;
+            self.tableParams = new NgTableParams({}, {
+                dataset: data
+            });
+
+
 
 
             // Get the Random one
@@ -152,7 +186,7 @@ angular.module('lsamapApp')
             self.enalastgemedittime = self.apiResp[enalastposition].date;
 
             // NOTE check for routeparam NOTE this func is a copy of the onListChange, since I couldn't get it to work otherwise
-          if ($routeParams.gemeente !== undefined) {
+            if ($routeParams.gemeente !== undefined) {
                 console.log("before" + self.currentgemeente);
                 self.currentgemeente = $routeParams.gemeente;
                 console.log("after" + self.currentgemeente);
@@ -312,9 +346,9 @@ angular.module('lsamapApp')
         // NOTE FUNCTIONS FROM SELF/CONTROLLER
 
 
-          this.showFullText = function() {
+        this.showFullText = function() {
             console.log("show more text!");
-          }
+        }
 
 
         this.setMap = function(whichmap) {
