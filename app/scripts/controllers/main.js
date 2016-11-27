@@ -10,7 +10,7 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MainCtrl', function($scope, $rootScope, NgTableParams, $timeout, $http, $sce, $route, apis, $routeParams) {
+    .controller('MainCtrl', function($scope, $rootScope, $window, NgTableParams, $anchorScroll, $timeout, $http, $sce, $route, apis, $routeParams) {
 
         // try to take routing
         //this.keyyy = $location.url();
@@ -29,6 +29,10 @@ angular.module('lsamapApp')
 
         this.mappselect = [apis.currentMap];
 
+        this.detailpage = false;
+        this.textshort = true;
+
+
         this.mapps = [{
             code: 0,
             label: "Geheel overzicht",
@@ -36,27 +40,27 @@ angular.module('lsamapApp')
         }, {
             code: 1,
             label: "Beheer van voorzieningen",
-            icon: "images/smallicons/small1.png"
+            icon: "images/smallicons/small2.png"
         }, {
             code: 2,
             label: "Toegang tot geld",
-            icon: "images/smallicons/small2.png"
+            icon: "images/smallicons/small3.png"
         }, {
             code: 3,
             label: "Open Overheid",
-            icon: "images/smallicons/small3.png"
+            icon: "images/smallicons/small5.png"
         }, {
             code: 4,
             label: "Zelfgekozen ondersteuning",
-            icon: "images/smallicons/small4.png"
+            icon: "images/smallicons/small6.png"
         }, {
             code: 5,
             label: "Maatschappelijk aanbesteden",
-            icon: "images/smallicons/small5.png"
+            icon: "images/smallicons/small4.png"
         }, {
             code: 6,
             label: "Plannen voor de buurt",
-            icon: "images/smallicons/small6.png"
+            icon: "images/smallicons/small1.png"
         }];
 
 
@@ -109,7 +113,7 @@ angular.module('lsamapApp')
             //self.apiResp = "chck";
 
             // TODO assign the random values and last editted set everything up
-            var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
+
 
 
 
@@ -129,6 +133,14 @@ angular.module('lsamapApp')
                 }
             }
 
+            if (apis.currentMap === 0) {
+                self.instrumentenbuurtrechten = null;
+            } else {
+                self.starttekst = "Klik op een gemeente/Gebruik de zoekbalk hierboven voor verdere informatie. Je kunt ook hieronder door instrumenten zoeken die horen bij dit buurtrecht";
+            }
+
+            self.linkieshow = false;
+
 
             console.log(self.instrumenten);
             console.log(self.instrumentenbuurtrechten);
@@ -143,7 +155,7 @@ angular.module('lsamapApp')
 
 
 
-
+            var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
             // Get the Random one
             self.randinstrumentnaam = rand.name;
             var ranwysigin = rand.wysig;
@@ -346,9 +358,7 @@ angular.module('lsamapApp')
         // NOTE FUNCTIONS FROM SELF/CONTROLLER
 
 
-        this.showFullText = function() {
-            console.log("show more text!");
-        }
+
 
 
         this.setMap = function(whichmap) {
@@ -380,6 +390,8 @@ angular.module('lsamapApp')
         // gets also the new and the oldvalue-
         // NOTE NOTE this one is called when value is changed
         this.onChangeFromList = function(newValue, oldValue) {
+            self.instrumentenbuurtrechten = null;
+            self.linkieshow = true;
             //console.log("Hoe vaak!");
             this.starttekst = "";
             if (newValue) {
@@ -492,6 +504,7 @@ angular.module('lsamapApp')
             this.loadingtext = "";
             this.instruview = true;
             this.loadingnow = true;
+            this.detailpage = false;
         }
 
         this.hideInstru = function() {
@@ -500,7 +513,32 @@ angular.module('lsamapApp')
             this.loadingnow = false;
         };
 
+        this.hideDetail = function() {
+            this.loadingtext = "Laden..";
+            this.detailpage = false;
+            this.loadingnow = false;
+            self.textshort = true;
+            self.linkieshow = true;
+        };
 
+        this.showFullText = function() {
+            self.linkieshow = false;
+            self.textshort = false;
+            console.log("show more text!");
+            self.loadingnow = true;
+            self.detailpage = true;
+            self.instruview = false;
+            $window.scrollTo(0, 50);
+        }
+
+        this.nextrandominstru = function() {
+            var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
+            // Get the Random one
+            self.randinstrumentnaam = rand.name;
+            var ranwysigin = rand.wysig;
+            self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
+            self.randinstrumentgemeenten = rand.gemeentenlink;
+        }
 
 
     });

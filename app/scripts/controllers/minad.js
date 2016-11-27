@@ -74,8 +74,10 @@ angular.module('lsamapApp')
         this.inlogger = function() {
             // NOTE new nd secure
             apis.pwd = this.userpw;
+            self.wrongpwtext = "Controleren...";
             // AUTH WORKS
             apis.getIpa().then(function(dataResponse) {
+              self.wrongpwtext = "Checking...";
                 var check = dataResponse.data;
                 console.log(check);
                 if (check !== "reject") {

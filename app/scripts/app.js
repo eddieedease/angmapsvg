@@ -282,30 +282,30 @@ var app = angular
         }
     }]).filter('map_coloursec', [function() {
         return function(input) {
-            return "rgba(248, 225, 225, 1)";
+            return "RGB(255, 245, 245)";
         }
     }]).filter('map_colour6', [function() {
         return function(input) {
-            return "rgba(20, 103, 99, 1)";
+            return "RGB(0, 13, 25)";
         }
     }]).filter('map_colour5', [function() {
         return function(input) {
-            return "rgba(27, 154, 148, 1)";
+            return "RGB(0, 51, 102)";
         }
     }]).filter('map_colour4', [function() {
         return function(input) {
-            return "rgba(96, 198, 198, 1)";
+            return "RGB(0, 90, 179)";
         }
     }]).filter('map_colour3', [function() {
         return function(input) {
-            return "rgba(140, 211, 213, 1)";
+            return "RGB(0, 128, 255)";
         }
     }]).filter('map_colour2', [function() {
         return function(input) {
-            return "rgba(191, 229, 230, 1)";
+            return "RGB(77, 166, 255)";
         }
     }]).filter('map_colour1', [function() {
         return function(input) {
-            return "rgba(223, 242, 243, 1)";
+            return "RGB(153, 204, 255)";
         }
     }]);
