@@ -25,7 +25,8 @@ var app = angular
         'ngToast',
         'ngFileUpload',
         'scrollto',
-        'dibari.angular-ellipsis'
+        'dibari.angular-ellipsis',
+        'sn.addthis'
     ])
     .config(function($routeProvider) {
         $routeProvider

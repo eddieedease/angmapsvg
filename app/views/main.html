@@ -22,6 +22,12 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Info</h3>
                         </div>
+
+                        <!-- 1. include addthis_widget.js in index page with async option -->
+
+                        <!-- 3. add classes to anchor links to attach the link to a service -->
+                        <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
+
                         <script type="text/ng-template" id="selector/demo/browserWithURL">
                             {{option.label}}
                             <a class="small" ng-href="{{option.url}}" ng-bind="option.url"></a>
@@ -57,7 +63,7 @@
                             <table ng-table="main.tableParams" class="table" show-filter="true">
                                 <tr ng-repeat="user in $data">
                                     <td title="'Instrumenten inzet'" filter="{ name: 'text'}" sortable="'name'">
-                                        <a>{{user.name}}</a>
+                                        <a ng-click="main.showInstru(user.id)">{{user.name}}</a>
                                     </td>
                                 </tr>
                             </table>
@@ -67,7 +73,7 @@
                             <h2>{{main.curcur}}</h2>
                             <div ng-if="main.instrus.length">
                                 <h4>Instrumenten die worden ingezet:</h4>
-                                <div ng-repeat="instr in main.instrus">
+                                <div ng-repeat="instr in main.instrus track by $index">
                                     <a ng-click="main.showInstru(instr.id)" href="" scroll-to="#totop" offset="0" container="html, body">{{instr.name}}</a>
                                 </div>
                             </div>
@@ -76,13 +82,37 @@
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
                             <p>
-                                <div ng-show="main.textshort" style="height:200px;" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
+                                <div ng-show="main.textshort" style="max-height:200px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
                             </p><hr>
-                            <div ng-show="main.linkieshow">
-                                <h5 class="attachment-heading">
-                                    <b>Link:
-                                    </b><br>http://edtestic.nl/lsamap#?gemeente={{main.curcur}}
-                                </h5>
+                            <div ng-if="main.linkieshow">
+                              <h5>Deel deze pagina:</h5>
+                                <sn-addthis-toolbox
+                                    class="addthis_custom_sharing"
+                                    data-share="{
+                                    title: main.currentgemeente,
+                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                    description: 'informatie over' + main.currentgemeente,
+                                }">
+                                    <a href class="addthis_button_facebook">Facebook</a>
+                                </sn-addthis-toolbox>
+                                <sn-addthis-toolbox
+                                    class="addthis_custom_sharing"
+                                    data-share="{
+                                    title: main.currentgemeente,
+                                    url: 'http://edtestic.nl#?gemeente={{main.currentgemeente}}' + main.currentgemeente,
+                                    description: 'informatie over' + main.currentgemeente,
+                                }">
+                                    <a href class="addthis_button_twitter">Twitter</a>
+                                </sn-addthis-toolbox>
+                                <sn-addthis-toolbox
+                                    class="addthis_custom_sharing"
+                                    data-share="{
+                                    title: 'LSA Buurtrechtenkaart - ' + main.currentgemeente,
+                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                    description: 'informatie over' + main.currentgemeente,
+                                }">
+                                    <a href class="addthis_button_email">Email</a>
+                                </sn-addthis-toolbox>
                             </div>
 
                             <hr>
@@ -129,39 +159,38 @@
                         </div>
                     </div>
                     <div id="detailview">
-                      <div ng-show="main.detailpage">
-                          <div class="row" style="margin-top:20px !important">
-                              <div class="col-md-12">
-                                  <div class="box box-widget">
-                                      <div class="box-header with-border">
-                                          <div class="user-block"></div>
-                                          <div class="box-tools">
-                                              <button type="button" ng-click="main.hideDetail()">
-                                                  <i>Sluit/Terug naar kaart</i>
-                                              </button>
+                        <div ng-show="main.detailpage">
+                            <div class="row" style="margin-top:20px !important">
+                                <div class="col-md-12">
+                                    <div class="box box-widget">
+                                        <div class="box-header with-border">
+                                            <div class="user-block"></div>
+                                            <div class="box-tools">
+                                                <button type="button" ng-click="main.hideDetail()">
+                                                    <i>Sluit/Terug naar kaart</i>
+                                                </button>
 
-                                          </div>
-                                      </div>
-                                      <div class="box-body">
-                                          <div ng-bind-html="main.currentwysig"></div>
-                                          <div class="attachment-block clearfix">
-                                              <div class="attachment-pushed">
-                                                  <h4 class="attachment-heading">
-                                                      http://edtestic.nl/lsamap#?gemeente={{main.curcur}}
-                                                  </h4>
-                                              </div>
-                                          </div>
-                                      </div>
+                                            </div>
+                                        </div>
+                                        <div class="box-body">
+                                          <h2>{{main.currentgemeente}}</h2>
+                                            <div ng-bind-html="main.currentwysig"></div>
+                                            <h5>Delen:</h5>
+                                            <div class="attachment-block clearfix">
+                                                <div class="attachment-pushed">
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                      <div class="box-footer">
-                                          <h5>__</h5>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                                        <div class="box-footer">
+                                            <h5>__</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
 
                     <div ng-show="main.loadingnow">
                         <h3>{{main.loadingtext}}</h3>

@@ -14,7 +14,7 @@ angular.module('lsamapApp')
 
     this.mailsend = false;
 
-    //var nwlink = './api/';
+    //qvar nwlink = './api/';
     var nwlink = 'http://localhost:80/lsamap/app/api/';
 
     // Handle the contact form
