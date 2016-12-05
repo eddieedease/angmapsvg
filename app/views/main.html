@@ -85,11 +85,11 @@
                                 <div ng-show="main.textshort" style="max-height:200px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
                             </p><hr>
                             <div ng-if="main.linkieshow">
-                              <h5>Deel deze pagina:</h5>
-                                <sn-addthis-toolbox
+                                <h5>Deel deze pagina:</h5>
+                                <rerender><sn-addthis-toolbox
                                     class="addthis_custom_sharing"
                                     data-share="{
-                                    title: main.currentgemeente,
+                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
@@ -98,8 +98,8 @@
                                 <sn-addthis-toolbox
                                     class="addthis_custom_sharing"
                                     data-share="{
-                                    title: main.currentgemeente,
-                                    url: 'http://edtestic.nl#?gemeente={{main.currentgemeente}}' + main.currentgemeente,
+                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
                                     <a href class="addthis_button_twitter">Twitter</a>
@@ -107,16 +107,15 @@
                                 <sn-addthis-toolbox
                                     class="addthis_custom_sharing"
                                     data-share="{
-                                    title: 'LSA Buurtrechtenkaart - ' + main.currentgemeente,
+                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
                                     <a href class="addthis_button_email">Email</a>
-                                </sn-addthis-toolbox>
+                                </sn-addthis-toolbox></rerender>
+
                             </div>
-
                             <hr>
-
                         </div>
                     </div>
                 </div>
@@ -173,13 +172,11 @@
                                             </div>
                                         </div>
                                         <div class="box-body">
-                                          <h2>{{main.currentgemeente}}</h2>
+                                            <h2>{{main.currentgemeente}}</h2>
                                             <div ng-bind-html="main.currentwysig"></div>
                                             <h5>Delen:</h5>
                                             <div class="attachment-block clearfix">
-                                                <div class="attachment-pushed">
-                                                  
-                                                </div>
+                                                <div class="attachment-pushed"></div>
                                             </div>
                                         </div>
 

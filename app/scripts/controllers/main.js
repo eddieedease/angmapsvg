@@ -10,7 +10,7 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MainCtrl', function($scope, $rootScope, $window, NgTableParams, $anchorScroll, $timeout, $http, $sce, $route, apis, $routeParams) {
+    .controller('MainCtrl', function($scope, $rootScope, $compile, $window, NgTableParams, $anchorScroll, $timeout, $http, $sce, $route, apis, $routeParams) {
 
         // try to take routing
         //this.keyyy = $location.url();
@@ -114,12 +114,6 @@ angular.module('lsamapApp')
 
             // TODO assign the random values and last editted set everything up
 
-
-
-
-
-
-
             for (var n = 0; n < self.instrumenten.length; n++) {
                 //console.log(self.instrumenten[n])
 
@@ -145,15 +139,11 @@ angular.module('lsamapApp')
             console.log(self.instrumenten);
             console.log(self.instrumentenbuurtrechten);
 
-
-
             // some hocus pocus to fill the table for instruments // WORKS
             data = self.instrumentenbuurtrechten;
             self.tableParams = new NgTableParams({}, {
                 dataset: data
             });
-
-
 
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
             // Get the Random one
@@ -394,6 +384,8 @@ angular.module('lsamapApp')
             self.linkieshow = true;
             //console.log("Hoe vaak!");
             this.starttekst = "";
+            //$route.reload();
+
             if (newValue) {
                 //clear everything
                 self.images = [];
@@ -402,6 +394,21 @@ angular.module('lsamapApp')
                 $scope.currentgemeente = newValue.value;
                 self.currentgemeente = newValue.value;
                 self.curcur = newValue.value;
+
+
+
+                // TODO TODO TODO
+                // The addthis functions only renders on init dom, so we will have to rerender the soab
+                // BUT we will definitely having this
+
+                //var templates = '<sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: "Buurtrechten" +self.currentgemeente + " in kaart. Door LSA-Bewoners", url: "http://edtestic.nl#?gemeente=" + self.currentgemeente, description: "informatie over" + self.currentgemeente}"><a href class="addthis_button_twitter">Facebook</a> </sn-addthis-toolbox>';
+
+                //angular.element('rerender').append($compile(templates)($scope));
+
+
+
+
+
                 // first reset checkboxes
                 this.brechtcheckboxes = {
                     Buurtrecht1: false,
