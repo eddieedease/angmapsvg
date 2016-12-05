@@ -397,13 +397,14 @@ angular.module('lsamapApp')
 
 
 
-                // TODO TODO TODO
+                // TODO TODO TODO_ Link 1 WORKS!
                 // The addthis functions only renders on init dom, so we will have to rerender the soab
                 // BUT we will definitely having this
 
-                //var templates = '<sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: "Buurtrechten" +self.currentgemeente + " in kaart. Door LSA-Bewoners", url: "http://edtestic.nl#?gemeente=" + self.currentgemeente, description: "informatie over" + self.currentgemeente}"><a href class="addthis_button_twitter">Facebook</a> </sn-addthis-toolbox>';
-
-                //angular.element('rerender').append($compile(templates)($scope));
+                var templates = '<sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: \'Buurtrechten \' + main.currentgemeente + \' in kaart. Door LSA-Bewoners\', url: \'http://edtestic.nl#?gemeente=\' + main.currentgemeente, description: \'informatie over\' + main.currentgemeente}"><a href class="addthis_button_facebook">Facebook</a> </sn-addthis-toolbox><sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: \'Buurtrechten \' + main.currentgemeente + \' in kaart. Door LSA-Bewoners\', url: \'http://edtestic.nl#?gemeente=\' + main.currentgemeente, description: \'informatie over\' + main.currentgemeente}"><a href class="addthis_button_twitter">Twitter</a> </sn-addthis-toolbox><sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: \'Buurtrechten \' + main.currentgemeente + \' in kaart. Door LSA-Bewoners\', url: \'http://edtestic.nl#?gemeente=\' + main.currentgemeente, description: \'informatie over\' + main.currentgemeente}"><a href class="addthis_button_email">Mail</a> </sn-addthis-toolbox>';
+                console.log(templates);
+                angular.element('sn-addthis-toolbox').remove();
+                angular.element('rerender').append($compile(templates)($scope));
 
 
 
@@ -518,6 +519,8 @@ angular.module('lsamapApp')
             this.loadingtext = "Laden..";
             this.instruview = false;
             this.loadingnow = false;
+            self.textshort = true;
+            self.linkieshow = true;
         };
 
         this.hideDetail = function() {

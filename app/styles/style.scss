@@ -30,7 +30,7 @@ svg path:hover , path.active { /* Amend this */
 
 svg .gemeente.active ,.gemeente1.active, .gemeente2.active ,.gemeente3.active, .gemeente4.active {
     cursor: pointer;
-    fill: #fff;
+    fill: #0ac9b6;
 		stroke:#000
 }
 
@@ -91,7 +91,7 @@ svg .gemeente4 {
 svg .gemeente:hover ,.gemeente1:hover, .gemeente2:hover ,.gemeente3:hover, .gemeente4:hover, .state.active {
     cursor: pointer;
     stroke-width: 1;
-    //fill: #fff;
+    fill:#f4a742;
 		stroke:#000
 }
 

@@ -56,7 +56,7 @@
                             <hr>
                         </div>
 
-                        <div style='padding:20px;padding-top:0px'>
+                        <div ng-if='main.starttekst' style='padding:20px;padding-top:0px'>
                             <h5>{{main.starttekst}}</h5>
                         </div>
                         <div ng-if='main.instrumentenbuurtrechten'>
@@ -68,7 +68,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div style='padding:20px;padding-top:-20px'>
+                        <div style='padding:20px;padding-top:0px'>
 
                             <h2>{{main.curcur}}</h2>
                             <div ng-if="main.instrus.length">
@@ -82,37 +82,39 @@
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
                             <p>
-                                <div ng-show="main.textshort" style="max-height:200px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
+                                <div ng-show="main.textshort" style="height:270px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
                             </p><hr>
                             <div ng-if="main.linkieshow">
                                 <h5>Deel deze pagina:</h5>
-                                <rerender><sn-addthis-toolbox
-                                    class="addthis_custom_sharing"
-                                    data-share="{
+                                <rerender>
+                                    <sn-addthis-toolbox
+                                        class="addthis_custom_sharing"
+                                        data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
-                                    <a href class="addthis_button_facebook">Facebook</a>
-                                </sn-addthis-toolbox>
-                                <sn-addthis-toolbox
-                                    class="addthis_custom_sharing"
-                                    data-share="{
+                                        <a href class="addthis_button_facebook">Facebook</a>
+                                    </sn-addthis-toolbox>
+                                    <sn-addthis-toolbox
+                                        class="addthis_custom_sharing"
+                                        data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
-                                    <a href class="addthis_button_twitter">Twitter</a>
-                                </sn-addthis-toolbox>
-                                <sn-addthis-toolbox
-                                    class="addthis_custom_sharing"
-                                    data-share="{
+                                        <a href class="addthis_button_twitter">Twitter</a>
+                                    </sn-addthis-toolbox>
+                                    <sn-addthis-toolbox
+                                        class="addthis_custom_sharing"
+                                        data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
-                                    <a href class="addthis_button_email">Email</a>
-                                </sn-addthis-toolbox></rerender>
+                                        <a href class="addthis_button_email">Email</a>
+                                    </sn-addthis-toolbox>
+                                </rerender>
 
                             </div>
                             <hr>
@@ -176,13 +178,40 @@
                                             <div ng-bind-html="main.currentwysig"></div>
                                             <h5>Delen:</h5>
                                             <div class="attachment-block clearfix">
-                                                <div class="attachment-pushed"></div>
+                                                <div class="attachment-pushed">
+                                                    <rerender>
+                                                        <sn-addthis-toolbox
+                                                            class="addthis_custom_sharing"
+                                                            data-share="{
+                                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    description: 'informatie over' + main.currentgemeente,
+                                                }">
+                                                            <a href class="addthis_button_facebook">Facebook</a>
+                                                        </sn-addthis-toolbox>
+                                                        <sn-addthis-toolbox
+                                                            class="addthis_custom_sharing"
+                                                            data-share="{
+                                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    description: 'informatie over' + main.currentgemeente,
+                                                }">
+                                                            <a href class="addthis_button_twitter">Twitter</a>
+                                                        </sn-addthis-toolbox>
+                                                        <sn-addthis-toolbox
+                                                            class="addthis_custom_sharing"
+                                                            data-share="{
+                                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    description: 'informatie over' + main.currentgemeente,
+                                                }">
+                                                            <a href class="addthis_button_email">Email</a>
+                                                        </sn-addthis-toolbox>
+                                                    </rerender>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="box-footer">
-                                            <h5>__</h5>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

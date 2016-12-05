@@ -95,7 +95,7 @@ var app = angular
                         switch (apis.currentMap) {
                             case 0:
                                 if (scope.buurtrechtarray.length === 1 && scope.buurtrechtarray[0] === "") {
-                                    element.attr("ng-attr-fill", "{{0.1 | map_colour}}");
+                                    element.attr("ng-attr-fill", "{{1 | map_colour1}}");
                                 } else {
                                     switch (scope.buurtrechtarray.length) {
                                         case 1:
