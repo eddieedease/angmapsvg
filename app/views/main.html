@@ -3,7 +3,6 @@
         <img src="images/banner2.png" class="img-responsive" style="width:100%">
     </div>
 </div>-->
-
 <div class="section">
     <div class="container">
         <div class="row">
@@ -12,7 +11,6 @@
             </div>
         </div>
     </div>
-
     <div class="section" id="totop">
         <div class="container-fluid">
             <hr>
@@ -22,24 +20,21 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Info</h3>
                         </div>
-
                         <!-- 1. include addthis_widget.js in index page with async option -->
-
                         <!-- 3. add classes to anchor links to attach the link to a service -->
                         <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
-
                         <script type="text/ng-template" id="selector/demo/browserWithURL">
                             {{option.label}}
                             <a class="small" ng-href="{{option.url}}" ng-bind="option.url"></a>
                         </script>
                         <script type="text/ng-template" id="selector/demo/browserWithIcon">
-                            <img ng-src="{{option.icon}}">
-                            {{option.label}}
+                            <img ng-src="{{option.icon}}"> {{option.label}}
                         </script>
                         <div class="panel-body">
                             <h4>Selectie buurtrecht</h4>
-                            <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code" dropdown-item-template="'selector/demo/browserWithIcon'"></select>
-                            <!--<p>
+                            <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code"
+                                dropdown-item-template="'selector/demo/browserWithIcon'"></select>
+                                <!--<p>
               <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
             </p>
             <div class="regionlist">
@@ -48,14 +43,14 @@
                 <div>{{gemeente.value | number}}</div>
               </div>
             </div>-->
-                            <h4>Zoeken op gemeente</h4>
-                            <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten" value-attr="value"></select>
-                            <div style="float:right">
-                                {{main.hovergemeente}}
-                            </div>
-                            <hr>
+                                <h4>Zoeken op gemeente</h4>
+                                <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten"
+                                    value-attr="value"></select>
+                                    <div style="float:right">
+                                        {{main.hovergemeente}}
+                                    </div>
+                                    <hr>
                         </div>
-
                         <div ng-if='main.starttekst' style='padding:20px;padding-top:0px'>
                             <h5>{{main.starttekst}}</h5>
                         </div>
@@ -69,7 +64,6 @@
                             </table>
                         </div>
                         <div style='padding:20px;padding-top:0px'>
-
                             <h2>{{main.curcur}}</h2>
                             <div ng-if="main.instrus.length">
                                 <h4>Instrumenten die worden ingezet:</h4>
@@ -82,225 +76,192 @@
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
                             <p>
-                                <div ng-show="main.textshort" style="height:270px;max-height:270px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
-                            </p><hr>
-                            <div ng-if="main.linkieshow">
-                                <h5>Deel deze pagina:</h5>
-                                <rerender>
-                                    <sn-addthis-toolbox
-                                        class="addthis_custom_sharing"
-                                        data-share="{
+                                <div ng-show="main.textshort" style="height:270px;max-height:270px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis
+                                    data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
+                        </p>
+                        <hr>
+                        <div ng-if="main.linkieshow">
+                            <h5>Deel deze pagina:</h5>
+                            <rerender>
+                                <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
-                                        <a href class="addthis_button_facebook">Facebook</a>
+                                    <a href class="addthis_button_facebook">Facebook</a>
                                     </sn-addthis-toolbox>
-                                    <sn-addthis-toolbox
-                                        class="addthis_custom_sharing"
-                                        data-share="{
+                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
                                         <a href class="addthis_button_twitter">Twitter</a>
-                                    </sn-addthis-toolbox>
-                                    <sn-addthis-toolbox
-                                        class="addthis_custom_sharing"
-                                        data-share="{
+                                        </sn-addthis-toolbox>
+                                        <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
-                                        <a href class="addthis_button_email">Email</a>
-                                    </sn-addthis-toolbox>
-                                </rerender>
-
+                                            <a href class="addthis_button_email">Email</a>
+                                            </sn-addthis-toolbox>
+                            </rerender>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div ng-show="main.instruview">
+                    <div class="row" style="margin-top:20px !important">
+                        <div class="col-md-12">
+                            <div class="box box-widget">
+                                <div class="box-header with-border">
+                                    <div class="user-block">
+                                        <span class="username">
+                                                {{main.instrumentnaam}}
+                                            </span>
+                                    </div>
+                                    <div class="box-tools">
+                                        <button type="button" ng-click="main.hideInstru()">
+                                                <i>Sluit/Terug naar kaart</i>
+                                            </button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div ng-bind-html="main.instrumentwysig"></div>
+                                    <div class="attachment-block clearfix">
+                                        <div class="attachment-pushed">
+                                            <h4 class="attachment-heading">
+                                                Wordt ingezet in:
+                                            </h4>{{main.instrumentgemeenten}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <h5>__</h5>
+                                </div>
                             </div>
-                            <hr>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div ng-show="main.instruview">
+                <div id="detailview">
+                    <div ng-show="main.detailpage">
                         <div class="row" style="margin-top:20px !important">
                             <div class="col-md-12">
                                 <div class="box box-widget">
                                     <div class="box-header with-border">
-                                        <div class="user-block">
-
-                                            <span class="username">
-                                                {{main.instrumentnaam}}
-                                            </span>
-
-                                        </div>
+                                        <div class="user-block"></div>
                                         <div class="box-tools">
-                                            <button type="button" ng-click="main.hideInstru()">
-                                                <i>Sluit/Terug naar kaart</i>
-                                            </button>
-
+                                            <button type="button" ng-click="main.hideDetail()">
+                                                    <i>Sluit/Terug naar kaart</i>
+                                                </button>
                                         </div>
                                     </div>
                                     <div class="box-body">
-                                        <div ng-bind-html="main.instrumentwysig"></div>
+                                        <h2>{{main.currentgemeente}}</h2>
+                                        <div ng-bind-html="main.currentwysig"></div>
+                                        <h5>Delen:</h5>
                                         <div class="attachment-block clearfix">
                                             <div class="attachment-pushed">
-                                                <h4 class="attachment-heading">
-                                                    Wordt ingezet in:
-                                                </h4>{{main.instrumentgemeenten}}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="box-footer">
-                                        <h5>__</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="detailview">
-                        <div ng-show="main.detailpage">
-                            <div class="row" style="margin-top:20px !important">
-                                <div class="col-md-12">
-                                    <div class="box box-widget">
-                                        <div class="box-header with-border">
-                                            <div class="user-block"></div>
-                                            <div class="box-tools">
-                                                <button type="button" ng-click="main.hideDetail()">
-                                                    <i>Sluit/Terug naar kaart</i>
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                        <div class="box-body">
-                                            <h2>{{main.currentgemeente}}</h2>
-                                            <div ng-bind-html="main.currentwysig"></div>
-                                            <h5>Delen:</h5>
-                                            <div class="attachment-block clearfix">
-                                                <div class="attachment-pushed">
-                                                    <rerender>
-                                                        <sn-addthis-toolbox
-                                                            class="addthis_custom_sharing"
-                                                            data-share="{
+                                                <rerender>
+                                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
-                                                    description: 'informatie over' + main.currentgemeente,
-                                                }">
-                                                            <a href class="addthis_button_facebook">Facebook</a>
+                                                    description: 'informatie over' + main.currentgemeente,}">
+                                                        <a href class="addthis_button_facebook">Facebook</a>
                                                         </sn-addthis-toolbox>
-                                                        <sn-addthis-toolbox
-                                                            class="addthis_custom_sharing"
-                                                            data-share="{
+                                                        <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
-                                                    description: 'informatie over' + main.currentgemeente,
-                                                }">
+                                                    description: 'informatie over' + main.currentgemeente,}">
                                                             <a href class="addthis_button_twitter">Twitter</a>
-                                                        </sn-addthis-toolbox>
-                                                        <sn-addthis-toolbox
-                                                            class="addthis_custom_sharing"
-                                                            data-share="{
+                                                            </sn-addthis-toolbox>
+                                                            <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,
                                                 }">
-                                                            <a href class="addthis_button_email">Email</a>
-                                                        </sn-addthis-toolbox>
-                                                    </rerender>
-                                                </div>
+                                                                <a href class="addthis_button_email">Email</a>
+                                                                </sn-addthis-toolbox>
+                                                </rerender>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div ng-show="main.loadingnow">
-                        <h3>{{main.loadingtext}}</h3>
-                    </div>
-
-                    <div ng-show="!main.loadingnow">
-                        <div ng-if="main.apiResp">
-                            <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
-                            <img ng-show="!main.fulllegenda" src="images/legendapart.png" style="position:absolute" class="img-responsive" alt="legendafull">
-                            <object>
+                </div>
+                <div ng-show="main.loadingnow">
+                    <h3>{{main.loadingtext}}</h3>
+                </div>
+                <div ng-show="!main.loadingnow">
+                    <div ng-if="main.apiResp">
+                        <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
+                        <img ng-show="!main.fulllegenda" src="images/legendapart.png" style="position:absolute" class="img-responsive" alt="legendafull">
+                        <object>
                               <div  svg-map scroll-to="#viewgem"></div>
                             </object>
-
-                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="section">
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h3>Laatst bijgewerkt</h3>
-                                <ul class="media-list main-list">
-                                    <li class="media">
-                                        <div class="media-body">
-                                            <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.lastgemedit)">
-                                                <h4 class="media-heading">{{main.lastgemedit}}</h4>
-                                            </a>
-                                            <p class="by-author">{{main.lastgemedittime}}</p>
-                                        </div>
-                                        <div class="media-body">
-                                            <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.enalastgemedit)">
-                                                <h4 class="media-heading">{{main.enalastgemedit}}</h4>
-                                            </a>
-                                            <p class="by-author">{{main.enalastgemedittime}}</p>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Laatst bijgewerkt</h3>
+                            <ul class="media-list main-list">
+                                <li class="media">
+                                    <div class="media-body">
+                                        <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.lastgemedit)">
+                                            <h4 class="media-heading">{{main.lastgemedit}}</h4>
+                                        </a>
+                                        <p class="by-author">{{main.lastgemedittime}}</p>
+                                    </div>
+                                    <div class="media-body">
+                                        <a scroll-to="#viewgem" ng-click="main.lasteditclick(main.enalastgemedit)">
+                                            <h4 class="media-heading">{{main.enalastgemedit}}</h4>
+                                        </a>
+                                        <p class="by-author">{{main.enalastgemedittime}}</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h3>Willekeurig instrument
-                                    <a ng-click="main.nextrandominstru()" style="float:right" class="btn btn-primary">></a>
-                                </h3>
-
-                                <ul class="media-list main-list">
-                                    <li class="media">
-
-                                        <div class="media-body">
-                                            <h4 class="media-heading">{{main.randinstrumentnaam}}</h4>
-                                            <h5>Wordt ingezet in:
-                                                {{main.randinstrumentgemeenten}}</h5>
-                                            <p ng-bind-html="main.randinstrumentwysig" class="by-author"></p>
-
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Willekeurig instrument
+                                <a ng-click="main.nextrandominstru()" style="float:right" class="btn btn-primary">></a>
+                            </h3>
+                            <ul class="media-list main-list">
+                                <li class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{main.randinstrumentnaam}}</h4>
+                                        <h5>Wordt ingezet in: {{main.randinstrumentgemeenten}}
+                                        </h5>
+                                        <p ng-bind-html="main.randinstrumentwysig" class="by-author"></p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
-        <footer class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-6">
-                        <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
-
-                    </div>
+    </div>
+    <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                    <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>

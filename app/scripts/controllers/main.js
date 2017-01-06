@@ -10,7 +10,7 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MainCtrl', function($scope, $rootScope, $compile, $window, NgTableParams, $anchorScroll, $timeout, $http, $sce, $route, apis, $routeParams) {
+    .controller('MainCtrl', function ($scope, $rootScope, $compile, $window, NgTableParams, $anchorScroll, $timeout, $http, $sce, $route, apis, $routeParams) {
 
         // try to take routing
         //this.keyyy = $location.url();
@@ -101,7 +101,7 @@ angular.module('lsamapApp')
 
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
-        apis.getApi().then(function(dataResponse) {
+        apis.getApi().then(function (dataResponse) {
             // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
 
             //update the service so that directive kan acces it
@@ -292,29 +292,29 @@ angular.module('lsamapApp')
         // NOTE DIRECTIVES/ SCOPE CALLS
         // these ones get called from the gemeenten directives
 
-        this.lasteditclick = function(gem) {
+        this.lasteditclick = function (gem) {
             self.currentgemeente = gem;
 
         }
 
 
-        $scope.mouseoverselection = function(idid) {
+        $scope.mouseoverselection = function (idid) {
             self.hovergemeente = "Muis over:  " + idid;
         }
 
 
 
-        $scope.mouseremoveselection = function(idid) {
+        $scope.mouseremoveselection = function (idid) {
             self.hovergemeente = "";
         }
 
 
-        $scope.mouseclicked = function(idid) {
+        $scope.mouseclicked = function (idid) {
             self.currentgemeente = idid;
 
         }
 
-        $scope.collectGemeenten = function(gem) {
+        $scope.collectGemeenten = function (gem) {
             var nieuw = {
                 value: gem,
                 label: gem
@@ -322,7 +322,7 @@ angular.module('lsamapApp')
             self.gemeenten.push(nieuw);
 
             // sort alphabetical
-            self.gemeenten.sort(function(a, b) {
+            self.gemeenten.sort(function (a, b) {
                 // ascending alfabetical
                 if (a.label < b.label) return -1;
                 if (a.label > b.label) return 1;
@@ -339,17 +339,19 @@ angular.module('lsamapApp')
             //var svgElement = document.querySelector('#mapp')
             //var panZoomTiger = svgPanZoom(svgElement)
 
-
-
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 // ont add the panzoom thingie
             } else {
-              svgPanZoom('#mapp', {
-                  controlIconsEnabled: true,
-                  dblClickZoomEnabled: false,
-                  fit: false,
-                  zoomScaleSensitivity: 0.2
-              });
+                var mapzoom = svgPanZoom('#mapp', {
+                    controlIconsEnabled: true,
+                    dblClickZoomEnabled: false,
+                    fit: 0,
+                    zoomScaleSensitivity: 0.2,
+                    center: 1,
+                    minZoom: 0.5,
+                    maxZoom: 3
+                });
+                mapzoom.zoom(1.3);
             }
         }
 
@@ -366,7 +368,7 @@ angular.module('lsamapApp')
 
 
 
-        this.setMap = function(whichmap) {
+        this.setMap = function (whichmap) {
             var thismap = parseInt(whichmap)
             apis.currentMap = thismap;
             //self.loadingnow = true;
@@ -378,7 +380,7 @@ angular.module('lsamapApp')
             //self.loadingnow = false;
         }
 
-        this.onMapChange = function(newValue, oldValue) {
+        this.onMapChange = function (newValue, oldValue) {
 
             if (newValue && oldValue !== undefined) {
                 apis.currentMap = newValue.code;
@@ -388,7 +390,7 @@ angular.module('lsamapApp')
             }
         }
 
-        this.reloadroute = function() {
+        this.reloadroute = function () {
             $route.reload();
         }
 
@@ -396,7 +398,7 @@ angular.module('lsamapApp')
         // this one picks up the selector change
         // gets also the new and the oldvalue-
         // NOTE NOTE this one is called when value is changed
-        this.onChangeFromList = function(newValue, oldValue) {
+        this.onChangeFromList = function (newValue, oldValue) {
             self.instrumentenbuurtrechten = null;
             self.linkieshow = true;
             //console.log("Hoe vaak!");
@@ -512,7 +514,7 @@ angular.module('lsamapApp')
         // TODO manage al the things when a user clicks an instrument
         this.instruview = false;
 
-        this.showInstru = function(thisidd) {
+        this.showInstru = function (thisidd) {
 
 
             for (var i = 0; i < self.instrumenten.length; i++) {
@@ -532,7 +534,7 @@ angular.module('lsamapApp')
             this.detailpage = false;
         }
 
-        this.hideInstru = function() {
+        this.hideInstru = function () {
             this.loadingtext = "Laden..";
             this.instruview = false;
             this.loadingnow = false;
@@ -540,7 +542,7 @@ angular.module('lsamapApp')
             self.linkieshow = true;
         };
 
-        this.hideDetail = function() {
+        this.hideDetail = function () {
             this.loadingtext = "Laden..";
             this.detailpage = false;
             this.loadingnow = false;
@@ -548,7 +550,7 @@ angular.module('lsamapApp')
             self.linkieshow = true;
         };
 
-        this.showFullText = function() {
+        this.showFullText = function () {
             self.linkieshow = false;
             self.textshort = false;
             console.log("show more text!");
@@ -558,7 +560,7 @@ angular.module('lsamapApp')
             $window.scrollTo(0, 50);
         }
 
-        this.nextrandominstru = function() {
+        this.nextrandominstru = function () {
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
             // Get the Random one
             self.randinstrumentnaam = rand.name;
