@@ -18,7 +18,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-5" id="viewgem">
-                    <div class="panel panel-default">
+                    <div class="panel panel-danger">
                         <div class="panel-heading">
                             <h3 class="panel-title">Info</h3>
                         </div>
@@ -82,7 +82,7 @@
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
                             <p>
-                                <div ng-show="main.textshort" style="height:270px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
+                                <div ng-show="main.textshort" style="height:270px;max-height:270px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
                             </p><hr>
                             <div ng-if="main.linkieshow">
                                 <h5>Deel deze pagina:</h5>
@@ -226,7 +226,10 @@
                         <div ng-if="main.apiResp">
                             <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
                             <img ng-show="!main.fulllegenda" src="images/legendapart.png" style="position:absolute" class="img-responsive" alt="legendafull">
-                            <div svg-map scroll-to="#viewgem"></div>
+                            <object>
+                              <div  svg-map scroll-to="#viewgem"></div>
+                            </object>
+
                         </div>
                     </div>
 

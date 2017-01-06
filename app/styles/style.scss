@@ -19,6 +19,8 @@ em {
 }
 
 
+svg {width: 100%; height: 800px;}
+
 
 svg path:hover , path.active { /* Amend this */
     cursor: pointer;
@@ -51,7 +53,7 @@ svg .gemeente {
 
 svg .gemeente1 {
 
-		fill: rgb(65, 136, 48);
+		fill:#fff;
 
     -webkit-transition: stroke 0.5s, stroke-width 0.5s;
     -o-transition: stroke 0.5s, stroke-width 0.5s;

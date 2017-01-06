@@ -136,8 +136,8 @@ angular.module('lsamapApp')
             self.linkieshow = false;
 
 
-            console.log(self.instrumenten);
-            console.log(self.instrumentenbuurtrechten);
+            //console.log(self.instrumenten);
+            //console.log(self.instrumentenbuurtrechten);
 
             // some hocus pocus to fill the table for instruments // WORKS
             data = self.instrumentenbuurtrechten;
@@ -336,6 +336,21 @@ angular.module('lsamapApp')
                 self.loadingnow = false;
                 self.current = 1;
             }
+            //var svgElement = document.querySelector('#mapp')
+            //var panZoomTiger = svgPanZoom(svgElement)
+
+
+
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // ont add the panzoom thingie
+            } else {
+              svgPanZoom('#mapp', {
+                  controlIconsEnabled: true,
+                  dblClickZoomEnabled: false,
+                  fit: false,
+                  zoomScaleSensitivity: 0.2
+              });
+            }
         }
 
         /*  // NOTE timeout example TODO; mayB calls this when loading
@@ -364,9 +379,11 @@ angular.module('lsamapApp')
         }
 
         this.onMapChange = function(newValue, oldValue) {
+
             if (newValue && oldValue !== undefined) {
                 apis.currentMap = newValue.code;
                 this.loadingnow = true;
+                console.log("wauwieee");
                 $timeout(self.reloadroute, 500);
             }
         }
@@ -549,6 +566,10 @@ angular.module('lsamapApp')
             self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
             self.randinstrumentgemeenten = rand.gemeentenlink;
         }
+
+        //var panZoomTiger = svgPanZoom('#mapp');
+        // or
+
 
 
     });
