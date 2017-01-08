@@ -3,8 +3,8 @@
         <form class="form-signin">
             <h2 class="form-signin-heading">Inloggen</h2>
             <hr>
-            <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required=""/>
-            {{minad.wrongpwtext}}
+            <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required=""
+            /> {{minad.wrongpwtext}}
             <button class="btn btn-lg btn-dangerbtn-block" ng-click="minad.inlogger()" type="submit">Inloggen</button>
         </form>
     </div>
@@ -30,6 +30,9 @@
                             <a data-target="#tab3" data-toggle="tab">Instrumenten</a>
                         </li>
                         <li>
+                            <a data-target="#tab5" data-toggle="tab">Buurtrechten</a>
+                        </li>
+                        <li>
                             <a data-target="#tab4" data-toggle="tab">Info/Instellingen</a>
                         </li>
                     </ul>
@@ -42,7 +45,6 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-7">
-
                                     <div ng-show="minad.loadingnow">
                                         <h3>{{minad.loadingtext}}</h3>
                                     </div>
@@ -52,82 +54,81 @@
                                         </div>
                                     </div>
                                     <div ng-if="minad.gemeenteactive" class="panel panel-danger">
-                                        <div class="panel-heading">Fotobak Gemeente
-                                            {{minad.currentgemeente}}</div>
+                                        <div class="panel-heading">Fotobak Gemeente {{minad.currentgemeente}}
+                                        </div>
                                         <div class="panel-body">
                                             Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
-
                                         <form style="padding-left:20px">
                                             <div class="form-group">
                                                 <legend>Upload nieuwe afbeelding</legend>
                                             </div>
                                             <div class="form-group">
-                                                <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 1000}">Selecteer bestand</div>
-                                            </div>
-                                            <div ng-if="minad.file.$ngfName">
-                                                <div class="form-group">Titel voor afbeelding:
-                                                    <input type="text" ng-model="minad.afbtitel"></div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <button class="btn btn-primary" ng-click="minad.uploadprep('gemeente')">Opslaan</button>
-                                            </div>
-                                            <div class="form-group">
-                                                <legend>Verwijder afbeeldingen</legend>
-                                            </div>
-                                        </form>
-                                        <div class="row">
-                                            <div ng-repeat="photo in minad.photoArray" class="col-xs-12 col-sm-12 col-md-3">
-                                                <div class="thumbnail">
-                                                    <img ng-src="{{photo.location}}" alt="">
-                                                    <div class="caption">
-                                                        <p>
-                                                            <a ng-click="minad.delPhoto(photo.id)" class="btn btn-warning btn-xs" role="button">Verwijder</a>
-                                                        </p>
-                                                    </div>
+                                                <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                                                    ngf-resize="{width: 1000}">Selecteer bestand</div>
+                                    </div>
+                                    <div ng-if="minad.file.$ngfName">
+                                        <div class="form-group">Titel voor afbeelding:
+                                            <input type="text" ng-model="minad.afbtitel"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" ng-click="minad.uploadprep('gemeente')">Opslaan</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <legend>Verwijder afbeeldingen</legend>
+                                    </div>
+                                    </form>
+                                    <div class="row">
+                                        <div ng-repeat="photo in minad.photoArray" class="col-xs-12 col-sm-12 col-md-3">
+                                            <div class="thumbnail">
+                                                <img ng-src="{{photo.location}}" alt="">
+                                                <div class="caption">
+                                                    <p>
+                                                        <a ng-click="minad.delPhoto(photo.id)" class="btn btn-warning btn-xs" role="button">Verwijder</a>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="panel panel-danger">
-                                        <div class="panel-heading">Selectie</div>
-                                        <div class="panel-body">
-                                            <h4>Lijst select - (Met suggestie)</h4>
-                                            <div class="form-group">
-                                                <select selector change="minad.onChangeFromList(newValue, oldValue)" model="minad.currentgemeente" options="minad.gemeenten" value-attr="value"></select>
-                                            </div>
-                                            <ol class="breadcrumb">
-                                                <li>
-                                                    <a href="#">Gemeente</a>
-                                                </li>
-                                                <li class="active">Instrument</li>
-                                            </ol>
-                                            <div style="float:right">
-                                                {{minad.hovergemeente}}
-                                            </div>
-                                            <h2>{{minad.currentgemeente}}</h2>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">Selectie</div>
+                                    <div class="panel-body">
+                                        <h4>Lijst select - (Met suggestie)</h4>
+                                        <div class="form-group">
+                                            <select selector change="minad.onChangeFromList(newValue, oldValue)" model="minad.currentgemeente" options="minad.gemeenten"
+                                                value-attr="value"></select>
                                         </div>
-                                        <div class="panel-heading">Tekst
-                                            {{minad.currentgemeente}}</div>
-                                        <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
-                                        <hr>
-                                        <div class="panel-heading">Buurtrechten toewijzen</div>
-                                        <div class="panel-body">
-                                            <div class="checkbox" ng-repeat="(checkboxx,enabled) in minad.brechtcheckboxes">
-                                                <label>
+                                        <ol class="breadcrumb">
+                                            <li>
+                                                <a href="#">Gemeente</a>
+                                            </li>
+                                            <li class="active">Instrument</li>
+                                        </ol>
+                                        <div style="float:right">
+                                            {{minad.hovergemeente}}
+                                        </div>
+                                        <h2>{{minad.currentgemeente}}</h2>
+                                    </div>
+                                    <div class="panel-heading">Tekst {{minad.currentgemeente}}
+                                    </div>
+                                    <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
+                                    <hr>
+                                    <div class="panel-heading">Buurtrechten toewijzen</div>
+                                    <div class="panel-body">
+                                        <div class="checkbox" ng-repeat="(checkboxx,enabled) in minad.brechtcheckboxes">
+                                            <label>
                                                     <input type="checkbox" ng-model="minad.brechtcheckboxes[checkboxx]"/>
                                                     <h5>{{minad.buurtrnames[$index]}}</h5>
                                                 </label>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button class="btn btn-primary center-block" type="submit" ng-click="minad.updateGemeenten()">Opslaan</button>
                                         </div>
                                     </div>
-
-                                    <!--<p>
+                                    <div>
+                                        <button class="btn btn-primary center-block" type="submit" ng-click="minad.updateGemeenten()">Opslaan</button>
+                                    </div>
+                                </div>
+                                <!--<p>
                                     <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
                                   </p>
                                   <div class="regionlist">
@@ -136,130 +137,116 @@
                                       <div>{{gemeente.value | number}}</div>
                                     </div>
                                   </div>-->
-
-                                </div>
-
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab3">
-                        <div class="container">
-                            <div ng-show="!minad.editinstru">
-
-                                <div ng-if='minad.instrumenten'>
-                                    <table ng-table="minad.tableParams" class="table" show-filter="true">
-                                        <tr ng-repeat="user in $data">
-                                            <td title="'Naam instrument'" filter="{ name: 'text'}" sortable="'name'">
-                                                {{user.name}}</td>
-
-                                            <td title="'Handelingen'">
-                                                <button ng-click="minad.goeditInstru(user.id)" class="btn btn-default btn-sm">
+                </div>
+                <div class="tab-pane" id="tab3">
+                    <div class="container">
+                        <div ng-show="!minad.editinstru">
+                            <div ng-if='minad.instrumenten'>
+                                <table ng-table="minad.tableParams" class="table" show-filter="true">
+                                    <tr ng-repeat="user in $data">
+                                        <td title="'Naam instrument'" filter="{ name: 'text'}" sortable="'name'">
+                                            {{user.name}}</td>
+                                        <td title="'Handelingen'">
+                                            <button ng-click="minad.goeditInstru(user.id)" class="btn btn-default btn-sm">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </button>
-                                                <button ng-click="minad.delInstru(user.id)" class="btn btn-danger btn-sm">
+                                            <button ng-click="minad.delInstru(user.id)" class="btn btn-danger btn-sm">
                                                     <span class="glyphicon glyphicon-trash"></span>
                                                 </button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                Of ....
-                                <br><br>
-                                <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            Of ....
+                            <br><br>
+                            <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
                                     Voeg een nieuw instrument toe
                                 </button>
-                            </div>
                         </div>
-
-                        <div class="row" ng-show="minad.editinstru">
-                            <div class="container">
-                                <form class="form-horizontal">
-                                    <fieldset>
-                                        <!-- Form Name -->
-                                        <legend>Maak/verander instrumenten</legend>
-
-                                        <!-- Text input-->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Titel</label>
-                                            <div class="col-md-6">
-                                                <input id="textinput" ng-model="minad.instruName" name="textinput" type="text" placeholder="Titel" class="form-control input-md" required="">
-                                            </div>
-
+                    </div>
+                    <div class="row" ng-show="minad.editinstru">
+                        <div class="container">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <!-- Form Name -->
+                                    <legend>Maak/verander instrumenten</legend>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Titel</label>
+                                        <div class="col-md-6">
+                                            <input id="textinput" ng-model="minad.instruName" name="textinput" type="text" placeholder="Titel" class="form-control input-md"
+                                                required="">
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Tekst edit</label>
-                                            <div class="col-md-6">
-                                                <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelinstru"></textarea>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Tekst edit</label>
+                                        <div class="col-md-6">
+                                            <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelinstru"></textarea>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Gekoppelde gemeenten</label>
-                                            <div class="col-md-6">
-                                                <select selector multi="true" model="minad.instrugems" options="minad.gemeenten" value-attr="value"></select>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Gekoppelde gemeenten</label>
+                                        <div class="col-md-6">
+                                            <select selector multi="true" model="minad.instrugems" options="minad.gemeenten" value-attr="value"></select>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textinput">Koppeling buurtrecht</label>
-                                            <div class="col-md-6">
-                                                <div class="radio">
-                                                    <label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Koppeling buurtrecht</label>
+                                        <div class="col-md-6">
+                                            <div class="radio">
+                                                <label>
                                                         <input type="radio" name="chickenEgg" value="1" ng-model="minad.instrulink">
                                                         Beheer van voorzieningen
                                                     </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
                                                         <input type="radio" name="chickenEgg" value="2" ng-model="minad.instrulink">
                                                         Toegang tot geld
                                                     </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
                                                         <input type="radio" name="chickenEgg" value="3" ng-model="minad.instrulink">
                                                         Open overheid
                                                     </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
                                                         <input type="radio" name="chickenEgg" value="4" ng-model="minad.instrulink">
                                                         Zelfgekozen ondersteuning
                                                     </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
                                                         <input type="radio" name="chickenEgg" value="5" ng-model="minad.instrulink">
                                                         Maatschappelijk aanbesteden
                                                     </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
                                                         <input type="radio" name="chickenEgg" value="6" ng-model="minad.instrulink">
                                                         Plannen voor de buurt
                                                     </label>
-                                                </div>
                                             </div>
                                         </div>
-
-                                        <!-- Button (Double) -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="submitButton"></label>
-                                            <div class="col-md-8">
-                                                <button id="submitButton" ng-click="minad.editInstru()" name="submitButton" class="btn btn-success">Opslaan</button>
-                                                <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
+                                    </div>
+                                    <!-- Button (Double) -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="submitButton"></label>
+                                        <div class="col-md-8">
+                                            <button id="submitButton" ng-click="minad.editInstru()" name="submitButton" class="btn btn-success">Opslaan</button>
+                                            <button class="btn btn-primary" ng-click="minad.goInstruEdit()">
                                                     Annuleer
                                                 </button>
-
-                                            </div>
                                         </div>
-                                    </fieldset>
-
-                                </form>
-
-                                <!--<div class="panel-heading">Fotobak Gemeente
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <!--<div class="panel-heading">Fotobak Gemeente
                                     {{minad.currentgemeente}}</div>
                                 <div class="panel-body">
                                     Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
@@ -295,128 +282,140 @@
                                         </div>
                                     </div>
                                 </div>-->
-                            </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="tab4">
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="images/lsalogo.png" data-original-title="Usuario">
-                            </div>
-                            <div class="col-md-6">
-                                <strong>Informatie</strong><br>
-                                <div class="table-responsive">
-                                    <table class="table table-condensed table-responsive table-user-information">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <strong>
+                </div>
+                <div class="tab-pane" id="tab5">
+                    <div class="container">
+                        <h4>Klik op een icoon van een buurtrecht om de tekst te bewerken.</h4>
+                        <h3>Huidig gekozen: <b>{{minad.currentabout}}</b></h3>
+                        <br><br>
+                        <div class="container">
+                            <div class="col-md-2"><h4>Beheer van voorzieningen</h4><img ng-click="minad.setAboutTextChange(1)" src="images/2.png" alt="..." class="img-rounded"></div>
+                            <div class="col-md-2"><h4>Toegang tot geld</h4><img ng-click="minad.setAboutTextChange(2)" src="images/3.png" alt="..." class="img-rounded"></div>
+                            <div class="col-md-2"><h4>Open Overheid</h4><img ng-click="minad.setAboutTextChange(3)" src="images/5.png" alt="..." class="img-rounded"></div>
+                            <div class="col-md-2"><h4>Zelfgekozen ondersteuning</h4><img ng-click="minad.setAboutTextChange(4)" src="images/6.png" alt="..." class="img-rounded"></div>
+                            <div class="col-md-2"><h4>Maatschappelijk aanbesteden</h4><img ng-click="minad.setAboutTextChange(5)" src="images/4.png" alt="..." class="img-rounded"></div>
+                            <div class="col-md-2"><h4>Plannen voor de buurt</h4><img ng-click="minad.setAboutTextChange(6)" src="images/1.png" alt="..." class="img-rounded"></div>
+                        </div>
+                        <br>
+                        <br><br>
+                        <textarea ui-tinymce="minad.abouttinymceOptions" ng-model="minad.abouttinymceModel"></textarea>
+                        <br><button class="btn btn-primary" ng-click="minad.slaBuurtrechtOp()">Opslaan</button>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="images/lsalogo.png" data-original-title="Usuario">
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Informatie</strong><br>
+                            <div class="table-responsive">
+                                <table class="table table-condensed table-responsive table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>
                                                         <span class="glyphicon glyphicon-asterisk text-primary"></span>
                                                         AppID
                                                     </strong>
-                                                </td>
-                                                <td class="text-primary">
-                                                    EDease_7bc
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                EDease_7bc
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
                                                         <span class="glyphicon glyphicon-eye-open text-primary"></span>
                                                         Ingelogd als
                                                     </strong>
-                                                </td>
-                                                <td class="text-primary">
-                                                    Admin
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                Admin
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
                                                         <span class="glyphicon glyphicon-envelope text-primary"></span>
                                                         Email adres contactformulier:
                                                     </strong>
-                                                </td>
-                                                <td class="text-primary">
-                                                    lsa@lsabewoners.nl
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                lsa@lsabewoners.nl
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
                                                         <span class="glyphicon glyphicon-calendar text-primary"></span>
                                                         Aangemaakt
                                                     </strong>
-                                                </td>
-                                                <td class="text-primary">
-                                                    1 okt 2016
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                1 okt 2016
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
                                                         <span class="glyphicon glyphicon-calendar text-primary"></span>
                                                         Gewijzigd
                                                     </strong>
-                                                </td>
-                                                <td class="text-primary">
-                                                    26 okt 2016
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                                            </td>
+                                            <td class="text-primary">
+                                                26 okt 2016
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <form class="form-horizontal">
-                                <fieldset>
-                                    <!-- Form Name -->
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-
-                                        <label class="col-md-4 control-label" for="textinput"></label>
-                                        <div class="col-md-6">
-                                            <legend>Wachtwoord wijzigen</legend>
-                                            <p>
-                                                Hier kun je je wachtwoord wijzigen.
-                                            </p>
-                                        </div>
+                    </div>
+                    <div class="row">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <!-- Form Name -->
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput"></label>
+                                    <div class="col-md-6">
+                                        <legend>Wachtwoord wijzigen</legend>
+                                        <p>
+                                            Hier kun je je wachtwoord wijzigen.
+                                        </p>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Oude wachtwoord</label>
-                                        <div class="col-md-6">
-                                            <input id="textinput" ng-model="minad.passold" name="textinput" type="password" placeholder="Oud wachtwoord" class="form-control input-md" required="">
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Oude wachtwoord</label>
+                                    <div class="col-md-6">
+                                        <input id="textinput" ng-model="minad.passold" name="textinput" type="password" placeholder="Oud wachtwoord" class="form-control input-md"
+                                            required="">
                                     </div>
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="color">Nieuwe wachtwoord</label>
-                                        <div class="col-md-6">
-                                            <input id="color" ng-model="minad.tnew" name="email" type="password" placeholder="Nieuw wachtwoord" class="form-control input-md">
-                                        </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="color">Nieuwe wachtwoord</label>
+                                    <div class="col-md-6">
+                                        <input id="color" ng-model="minad.tnew" name="email" type="password" placeholder="Nieuw wachtwoord" class="form-control input-md">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="submitButton"></label>
-                                        <div class="col-md-8">
-                                            <button ng-click="minad.editBasis3()" id="submitButton" name="submitButton" class="btn btn-success">Opslaan</button>
-                                            {{minad.pwchanged}}
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="submitButton"></label>
+                                    <div class="col-md-8">
+                                        <button ng-click="minad.editBasis3()" id="submitButton" name="submitButton" class="btn btn-success">Opslaan</button>                                        {{minad.pwchanged}}
                                     </div>
-                                </fieldset>
-                            </form>
-
-                        </div>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+</div>
 </div>

@@ -102,7 +102,7 @@ angular.module('lsamapApp')
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
         apis.getApi().then(function (dataResponse) {
-            // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
+            // NOTE 4 pieces [0] gemeenten [1] instrument [2] uploads [3] about
 
             //update the service so that directive kan acces it
             apis.setSerGemeenten(dataResponse.data[0]);
@@ -414,14 +414,11 @@ angular.module('lsamapApp')
                 self.currentgemeente = newValue.value;
                 self.curcur = newValue.value;
 
-
-
                 // TODO TODO TODO_ Link 1 WORKS!
                 // The addthis functions only renders on init dom, so we will have to rerender the soab
                 // BUT we will definitely having this
-
                 var templates = '<sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: \'Buurtrechten \' + main.currentgemeente + \' in kaart. Door LSA-Bewoners\', url: \'http://edtestic.nl#?gemeente=\' + main.currentgemeente, description: \'informatie over\' + main.currentgemeente}"><a href class="addthis_button_facebook">Facebook</a> </sn-addthis-toolbox><sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: \'Buurtrechten \' + main.currentgemeente + \' in kaart. Door LSA-Bewoners\', url: \'http://edtestic.nl#?gemeente=\' + main.currentgemeente, description: \'informatie over\' + main.currentgemeente}"><a href class="addthis_button_twitter">Twitter</a> </sn-addthis-toolbox><sn-addthis-toolbox class="addthis_custom_sharing" data-share="{title: \'Buurtrechten \' + main.currentgemeente + \' in kaart. Door LSA-Bewoners\', url: \'http://edtestic.nl#?gemeente=\' + main.currentgemeente, description: \'informatie over\' + main.currentgemeente}"><a href class="addthis_button_email">Mail</a> </sn-addthis-toolbox>';
-                console.log(templates);
+                //console.log(templates);
                 angular.element('sn-addthis-toolbox').remove();
                 angular.element('rerender').append($compile(templates)($scope));
 

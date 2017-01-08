@@ -8,17 +8,29 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-  .controller('AboutCtrl', function ($timeout, $http) {
+  .controller('AboutCtrl', function ($timeout, $http,$sce, apis) {
 
-    var self = this;
+  
 
     this.mailsend = false;
 
-    //var nwlink = './api/';
-    var nwlink = 'http://localhost:80/lsamap/app/api/';
+   var self = this;
+        // NOTE NOTE Important
+        //var nwlink = './api/';
+        var nwlink = 'http://localhost:80/lsamap/app/api/';
 
+
+    apis.getApi().then(function (dataResponse) {
+        self.about = dataResponse.data[3];
+        console.log(self.about);
+        //NOTE getting all the texts;
+        //console.log(self.about[0].text1);
+      });
+
+
+  
     // Handle the contact form
-    this.contactuse = function() {
+    this.contactuse = function () {
       console.log("Trying to send mail");
       if (self.naamm !== null && self.usemail !== null && self.onderwerpp !== null && self.berichtt !== null) {
         this.myPromise = $http({
@@ -35,8 +47,7 @@ angular.module('lsamapApp')
           }
         });
         /* Check whether the HTTP Request is Successfull or not. */
-        this.myPromise.success(function(data) {
-          // TODO show that the contact form is send
+        this.myPromise.success(function (data) {
           //console.log("contact send");
           self.mailsend = true;
         });

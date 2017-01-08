@@ -72,6 +72,24 @@ if ($tokenm5 == $ww) {
       case 'editbasis3': //TODO
           $sql = "UPDATE api SET ww = '$tokennew' WHERE id = 1";
           break;
+      case 'editabout': //TODO WONT WORK :()
+                if ($id == 1) {
+                   $abouta = 'text1'; 
+                } elseif ($id == 2) {
+                    $abouta = 'text2';
+                } elseif ($id == 3) {
+                    $abouta = 'text3';
+                } elseif ($id == 4) {
+                    $abouta = 'text4';
+                } elseif ($id == 5) {
+                    $abouta = 'text5';
+                } elseif ($id == 6) {
+                    $abouta = 'text6';
+                }  elseif ($id == 7) {
+                    $abouta = "text7";
+                };   
+          $sql = "UPDATE about SET $abouta = '$wysig' WHERE id = 1";
+          break;
       case 'newgemeente':
           // NEED - id gemeente, wysigtekst
           //$nlsafe = mynl2br($nl);
@@ -111,6 +129,7 @@ if ($tokenm5 == $ww) {
 
   //final callback
   echo $sql;
+  //echo "asdadadadsa";
 }
 
 

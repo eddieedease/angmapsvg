@@ -8,14 +8,12 @@
  * Controller of the lsamapApp
  */
 angular.module('lsamapApp')
-    .controller('MinadCtrl', function(Upload, $scope, NgTableParams, $http, $timeout, $route, apis, ipa, md5, ngToast) {
+    .controller('MinadCtrl', function (Upload, $scope, NgTableParams, $http, $timeout, $route, apis, ipa, md5, ngToast) {
 
-        // NOTE NOTE change
+
+        // NOTE NOTE Important
         //var nwlink = './api/';
         var nwlink = 'http://localhost:80/lsamap/app/api/';
-
-
-
         // instru
         var data;
         this.current = 0;
@@ -71,13 +69,13 @@ angular.module('lsamapApp')
         // Logging in over here, Now for testing purposes
         // TODO TODO TODO TODO TODO MD5 PHP MSQL COnnect, special login script
         // TODO TODO TODO TODO TODO
-        this.inlogger = function() {
+        this.inlogger = function () {
             // NOTE new nd secure
             apis.pwd = this.userpw;
             self.wrongpwtext = "Controleren...";
             // AUTH WORKS
-            apis.getIpa().then(function(dataResponse) {
-              self.wrongpwtext = "Checking...";
+            apis.getIpa().then(function (dataResponse) {
+                self.wrongpwtext = "Checking...";
                 var check = dataResponse.data;
                 console.log(check);
                 if (check !== "reject") {
@@ -97,12 +95,13 @@ angular.module('lsamapApp')
 
         // NOTE NOTE SERVICE CALLS
         // NOTE API call
-        this.getgetget = function() {
-            apis.getApi().then(function(dataResponse) {
-                // NOTE 3 pieces [0] gemeenten [1] instrument [2] uploads
+        this.getgetget = function () {
+            apis.getApi().then(function (dataResponse) {
+                // NOTE 4 pieces [0] gemeenten [1] instrument [2] uploads [3] about
                 apis.setSerGemeenten(dataResponse.data[0]);
                 self.apiResp = dataResponse.data[0];
                 self.uploads = dataResponse.data[2];
+                self.about = dataResponse.data[3];
 
                 // some hocus pocus to fill the table for instruments // WORKS
                 data = dataResponse.data[1];
@@ -143,31 +142,53 @@ angular.module('lsamapApp')
             menubar: false,
         };
 
+        self.currentabout = "-"
+        self.abouttinymceModel = "";
+
+        // options for the editor
+        this.abouttinymceOptions = {
+            extended_valid_elements: "iframe[src|frameborder|style|scrolling|class|width|height|name|align]",
+            theme: "modern",
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor media code"
+            ],
+            toolbar1: "insertfile undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent",
+            toolbar2: "styleselect forecolor backcolor | link | media | code",
+            image_advtab: true,
+            relative_urls: false,
+            height: "400px",
+            width: "100%",
+            menubar: false,
+        };
+
 
 
         // NOTE NOTE NOTE DIRECTIVES CALLS
         // NOTE these ones get called from the gemeenten directives
-        $scope.mouseoverselection = function(idid) {
+        $scope.mouseoverselection = function (idid) {
             self.hovergemeente = idid;
         }
 
-        $scope.mouseremoveselection = function(idid) {
+        $scope.mouseremoveselection = function (idid) {
             self.hovergemeente = "";
         }
 
-        $scope.mouseclicked = function(idid) {
+        $scope.mouseclicked = function (idid) {
             self.currentgemeente = idid;
         }
 
         // calls from the directive
-        $scope.collectGemeenten = function(gem) {
+        $scope.collectGemeenten = function (gem) {
             var nieuw = {
                 value: gem,
                 label: gem
             }
             self.gemeenten.push(nieuw);
             // sort alphabetical
-            self.gemeenten.sort(function(a, b) {
+            self.gemeenten.sort(function (a, b) {
                 // ascending alfabetical
                 if (a.label < b.label) return -1;
                 if (a.label > b.label) return 1;
@@ -183,7 +204,7 @@ angular.module('lsamapApp')
         // this one picks up the selector change
         // gets also the new and the oldvalue-
         // NOTE NOTE this one is called when value is changed
-        this.onChangeFromList = function(newValue, oldValue) {
+        this.onChangeFromList = function (newValue, oldValue) {
             if (newValue) {
                 this.tinymceModel = "";
                 this.gemeenteactive = false;
@@ -258,7 +279,7 @@ angular.module('lsamapApp')
 
         // NOTE NOTE NOTE
         // NOTE This are the Controllers own functions (so not Scope related)
-        this.setMap = function(whichmap) {
+        this.setMap = function (whichmap) {
             apis.currentMap = whichmap;
             // NOTE for the record, when the page view is changed, we need to reload the route
             // the service variable currentmap will force render the new colours
@@ -269,7 +290,7 @@ angular.module('lsamapApp')
 
         // NOTE NOTE vieuw controll
         //switching the instru views
-        this.goInstruEdit = function() {
+        this.goInstruEdit = function () {
             this.instruaction = "new";
             currentinstruid = null;
             this.instruName = "";
@@ -283,7 +304,7 @@ angular.module('lsamapApp')
             }
         }
 
-        this.goeditInstru = function(id) {
+        this.goeditInstru = function (id) {
             this.instruaction = "editexisting";
             self.editinstru = true;
 
@@ -331,7 +352,7 @@ angular.module('lsamapApp')
         // NOTE NOTE NOTE
         // NOTE NOTE NOTE
         // NOTE NOTE NOTE Voorbeeldfunctie
-        this.voorbeeldfunc = function() {
+        this.voorbeeldfunc = function () {
             this.myPromise = $http({
                 method: "post",
                 url: nwlink + 'chng.php',
@@ -347,18 +368,85 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.success(function(data) {
+            this.myPromise.success(function (data) {
                 //console.log(data);
             });
         }
 
+
+        // NOTE Buurtrechtteksten verwerken
+
+        this.setAboutTextChange = function (aboutsetto) {
+            self.aboutchanger = aboutsetto;
+            console.log(aboutsetto);
+            switch (aboutsetto) {
+                case 1:
+                    self.currentabout = "Beheer van voorzieningen";
+                    self.abouttinymceModel = self.about[0].text1;
+                    self.about
+                    break;
+                case 2:
+                    self.currentabout = "Toegang tot geld";
+                    self.abouttinymceModel = self.about[0].text2;
+                    break;
+                case 3:
+                    self.currentabout = "Open Overheid";
+                    self.abouttinymceModel = self.about[0].text3;
+                    break;
+                case 4:
+                    self.currentabout = "Zelfgekozen ondersteuning";
+                    self.abouttinymceModel = self.about[0].text4;
+                    break;
+                case 5:
+                    self.currentabout = "Maatschappelijk aanbesteden";
+                    self.abouttinymceModel = self.about[0].text5;
+                    break;
+                case 6:
+                    self.currentabout = "Plannen voor de buurt";
+                    self.abouttinymceModel = self.about[0].text6;
+                    break;
+            }
+
+
+        }
+
+
+        this.slaBuurtrechtOp = function () {
+
+            console.log("goes out id = " + self.aboutchanger);
+            console.log("goes out wysig = " + self.abouttinymceModel);
+            this.myPromise = $http({
+                method: "post",
+                url: nwlink + 'chng.php',
+                // actions and parameters
+                data: {
+                    token: apis.pwd,
+                    action: "editabout",
+                    id: self.aboutchanger,
+                    wysig: self.abouttinymceModel
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(function (resp) {
+                console.log(resp);
+                $route.reload();
+            })
+        }
+
+
+
+
+
+
+
         // NOTE NOTE the upload script for images // WORKS
-        this.uploadprep = function(dezeview) {
+        this.uploadprep = function (dezeview) {
             currentview = dezeview;
             self.uploadNow(this.file);
         }
 
-        this.uploadNow = function(filez) {
+        this.uploadNow = function (filez) {
             switch (currentview) {
                 case 'gemeente':
                     if (filez !== null) {
@@ -371,7 +459,7 @@ angular.module('lsamapApp')
                                 'description': self.afbtitel,
                                 'extrainfo': self.currentgemeente
                             }
-                        }).then(function(resp) {
+                        }).then(function (resp) {
                             self.file = null;
                             self.afbtitel = null;
                             self.getgetget();
@@ -390,7 +478,7 @@ angular.module('lsamapApp')
                                 'description': self.afbtitel,
                                 'extrainfo': currentinstruid
                             }
-                        }).then(function(resp) {
+                        }).then(function (resp) {
                             self.file = null;
                             self.afbtitel = null;
                         })
@@ -404,7 +492,7 @@ angular.module('lsamapApp')
         // NOTE NOTE NOTE NOTE NOTE
         // NOTE NOTE NOTE NOTE Handling all the request
         // NOTE update RECORDS
-        this.updateGemeenten = function() {
+        this.updateGemeenten = function () {
             var escapedwysig = self.tinymceModel.replace("'", "''");
             var arrayforstring = [];
             if (this.brechtcheckboxes.Buurtrecht1) {
@@ -426,6 +514,7 @@ angular.module('lsamapApp')
                 arrayforstring.push("6");
             }
             var buurtrechtstring = arrayforstring.join();
+            console.log("uhms");
             // first check if it is a edit or a new one
             if (self.isnew === true && self.currentgemeente !== undefined) {
                 this.myPromise = $http({
@@ -441,12 +530,12 @@ angular.module('lsamapApp')
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                });
-                /* Check whether the HTTP Request is Successfull or not. */
-                this.myPromise.success(function(data) {
+                }).then(function (resp) {
                     ngToast.create('Instellingen opgeslagen');
                     $route.reload();
-                });
+                })
+                /* Check whether the HTTP Request is Successfull or not. */
+
             } else if (self.isnew === false && self.currentgemeente !== undefined) {
                 this.myPromise = $http({
                     method: "post",
@@ -461,21 +550,18 @@ angular.module('lsamapApp')
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                });
-                /* Check whether the HTTP Request is Successfull or not. */
-                this.myPromise.success(function(data) {
-                    //self.updateService();
-                    //console.log(data);
+                }).then(function (resp) {
+
                     $route.reload();
-                });
+                })
             }
         };
 
 
-        this.editBasis3 = function() {
+        this.editBasis3 = function () {
             var makehash = md5.createHash(self.tnew || '');
 
-            if (self.passold  === apis.pwd) {
+            if (self.passold === apis.pwd) {
                 this.myPromise = $http({
                     method: "post",
                     url: nwlink + 'chng.php',
@@ -490,7 +576,7 @@ angular.module('lsamapApp')
                     }
                 });
                 /* Check whether the HTTP Request is Successfull or not. */
-                this.myPromise.success(function(data) {
+                this.myPromise.success(function (data) {
                     self.pwchanged = "Wachtwoord is gewijzigd";
                     self.getgetget();
                 });
@@ -501,7 +587,7 @@ angular.module('lsamapApp')
 
 
         // editting the instrument, switch on action for new one if one doesn't exist
-        this.editInstru = function() {
+        this.editInstru = function () {
 
             var instrustringg = this.instrugems.join()
             var escapedwysig = self.tinymceModelinstru.replace("'", "''")
@@ -524,7 +610,7 @@ angular.module('lsamapApp')
                         }
                     });
                     /* Check whether the HTTP Request is Successfull or not. */
-                    this.myPromise.success(function(data) {
+                    this.myPromise.success(function (data) {
                         self.getgetget();
                         self.editinstru = false;
 
@@ -549,7 +635,7 @@ angular.module('lsamapApp')
                         }
                     });
                     /* Check whether the HTTP Request is Successfull or not. */
-                    this.myPromise.success(function(data) {
+                    this.myPromise.success(function (data) {
                         self.getgetget();
                         self.editinstru = false;
 
@@ -563,7 +649,7 @@ angular.module('lsamapApp')
 
 
         // TODO implement deleting of instruments by id
-        this.delInstru = function(delthis) {
+        this.delInstru = function (delthis) {
             this.myPromise = $http({
                 method: "post",
                 url: nwlink + 'chng.php',
@@ -578,13 +664,13 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.success(function(data) {
+            this.myPromise.success(function (data) {
                 self.getgetget();
             });
         }
 
         // TODO implement deleting of instruments by id
-        this.delPhoto = function(delthis) {
+        this.delPhoto = function (delthis) {
             this.myPromise = $http({
                 method: "post",
                 url: nwlink + 'chng.php',
@@ -599,7 +685,7 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.success(function(data) {
+            this.myPromise.success(function (data) {
                 self.getgetget();
             });
         }
