@@ -76,7 +76,7 @@
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
                             <p>
-                                <div ng-show="main.textshort" style="height:270px;max-height:270px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis
+                                <div ng-show="main.textshort" style="height:350px;max-height:350px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis
                                     data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
                         </p>
                         <hr>
@@ -245,7 +245,8 @@
                                         <h4 class="media-heading">{{main.randinstrumentnaam}}</h4>
                                         <h5>Wordt ingezet in: {{main.randinstrumentgemeenten}}
                                         </h5>
-                                        <p ng-bind-html="main.randinstrumentwysig" class="by-author"></p>
+                                        <div style="height:250px;max-height:250px;overflow:none" ng-bind-html="main.randinstrumentwysig" data-ellipsis
+                                    data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showInstru(main.randinstrumentid)"></div>
                                     </div>
                                 </li>
                             </ul>

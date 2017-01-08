@@ -148,6 +148,7 @@ angular.module('lsamapApp')
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
             // Get the Random one
             self.randinstrumentnaam = rand.name;
+            self.randinstrumentid = rand.id;
             var ranwysigin = rand.wysig;
             self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
             self.randinstrumentgemeenten = rand.gemeentenlink;
@@ -561,6 +562,7 @@ angular.module('lsamapApp')
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
             // Get the Random one
             self.randinstrumentnaam = rand.name;
+            self.randinstrumentid = rand.id;
             var ranwysigin = rand.wysig;
             self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
             self.randinstrumentgemeenten = rand.gemeentenlink;
