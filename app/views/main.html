@@ -76,7 +76,7 @@
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
                             <p>
-                                <div ng-show="main.textshort" style="height:350px;max-height:350px;overflow:none" ng-bind-html="main.currentwysig" data-ellipsis
+                                <div ng-show="main.textshort" style="height:350px;max-height:350px;overflow:hidden" ng-bind-html="main.currentwysig" data-ellipsis
                                     data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
                         </p>
                         <hr>
@@ -199,6 +199,10 @@
                     <div ng-if="main.apiResp">
                         <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
                         <img ng-show="!main.fulllegenda" src="images/legendapart.png" style="position:absolute" class="img-responsive" alt="legendafull">
+                        <div style="margin-top: 100px;position:absolute" class="btn-group" role="group" aria-label="...">
+                            <button ng-click="main.zoomIn()" type="button" style="width:30px;" class="btn btn-primary btn-sm"> + </button>
+                            <button ng-click="main.zoomOut()" type="button" style="margin-left:20px;width:30px" class="btn btn-primary btn-sm"> - </button>
+                        </div>
                         <object>
                               <div  svg-map scroll-to="#viewgem"></div>
                             </object>
@@ -245,24 +249,24 @@
                                         <h4 class="media-heading">{{main.randinstrumentnaam}}</h4>
                                         <h5>Wordt ingezet in: {{main.randinstrumentgemeenten}}
                                         </h5>
-                                        <div style="height:250px;max-height:250px;overflow:none" ng-bind-html="main.randinstrumentwysig" data-ellipsis
-                                    data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showInstru(main.randinstrumentid)"></div>
-                                    </div>
-                                </li>
-                            </ul>
+                                        <div style="height:250px;max-height:250px;overflow:hidden" ng-bind-html="main.randinstrumentwysig" data-ellipsis data-ellipsis-append="<a>Lees meer</a>"
+                                            data-ellipsis-append-click="main.showInstru(main.randinstrumentid)"></div>
                         </div>
+                        </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6"></div>
-                <div class="col-sm-6">
-                    <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
-                </div>
+</div>
+<footer class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+                <p class="text-info text-right"><br><br>Copyright © LSA Bewoners</p>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>

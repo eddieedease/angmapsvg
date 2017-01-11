@@ -17,4 +17,12 @@ replace
 ---------------------------------
 
 nwlink
-change var nwlink in services
+change var nwlink in services/main/about/minad if there
+
+---------------------------------
+
+The 'needs' map contains somethingies
+
+---------------------------------
+
+Tiny mce editor needs folder copied to 'script' --> themes/skins/plugins  (copy from bower folder)

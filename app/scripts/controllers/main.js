@@ -315,6 +315,7 @@ angular.module('lsamapApp')
 
         }
 
+
         $scope.collectGemeenten = function (gem) {
             var nieuw = {
                 value: gem,
@@ -343,16 +344,17 @@ angular.module('lsamapApp')
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 // ont add the panzoom thingie
             } else {
-                var mapzoom = svgPanZoom('#mapp', {
+                self.mapzoom = svgPanZoom('#mapp', {
                     controlIconsEnabled: true,
                     dblClickZoomEnabled: false,
+                    mouseWheelZoomEnabled: false,
                     fit: 0,
                     zoomScaleSensitivity: 0.2,
                     center: 1,
                     minZoom: 0.5,
                     maxZoom: 3
                 });
-                mapzoom.zoom(1.3);
+                self.mapzoom.zoom(1.3);
             }
         }
 
@@ -548,7 +550,9 @@ angular.module('lsamapApp')
             self.linkieshow = true;
         };
 
+
         this.showFullText = function () {
+            self.loadingtext = "";
             self.linkieshow = false;
             self.textshort = false;
             console.log("show more text!");
@@ -560,7 +564,6 @@ angular.module('lsamapApp')
 
         this.nextrandominstru = function () {
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
-            // Get the Random one
             self.randinstrumentnaam = rand.name;
             self.randinstrumentid = rand.id;
             var ranwysigin = rand.wysig;
@@ -572,5 +575,15 @@ angular.module('lsamapApp')
         // or
 
 
+        // zoomcontrols for the map
+        this.zoomIn = function () {
+
+            self.mapzoom.zoomIn(1.3);
+        }
+
+        this.zoomOut = function () {
+            self.mapzoom.zoomOut(1.3);
+
+        }
 
     });

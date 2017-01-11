@@ -81,7 +81,7 @@ var app = angular
                     }
                     if (scope.$parent.hoverRegionLast === scope.elementGem) {
                         element.removeAttr("class");
-                        element.attr("ng-class", "gemeente");
+                        //element.attr("ng-attr-stroke", "black");
                         $compile(element)(scope);
                     }
                 });
@@ -213,6 +213,8 @@ var app = angular
                 //otherwise paint other color
                 if (scope.komtvoor === false) {
                     element.attr("ng-attr-fill", "{{0.5 | map_coloursec}}");
+                    element.attr("ng-attr-stroke", "black");
+                    
                 }
                 //randomizing the elements
                 /*
@@ -253,7 +255,6 @@ var app = angular
                 // The functions of this DIRECTIVE
                 scope.gemeenteClick = function() {
                     var gem = scope.elementGem;
-                    // NOTE this calls the parent scope, I WAS in scope mess
                     scope.$parent.mouseclicked(gem);
                 };
                 // triggered on Mouse-Enter
