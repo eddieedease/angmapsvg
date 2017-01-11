@@ -106,6 +106,7 @@ angular.module('lsamapApp')
 
             //update the service so that directive kan acces it
             apis.setSerGemeenten(dataResponse.data[0]);
+            self.apiResp = [];
             self.apiResp = dataResponse.data[0];
             self.instrumenten = dataResponse.data[1];
             self.instrumentenbuurtrechten = [];
@@ -151,7 +152,8 @@ angular.module('lsamapApp')
             self.randinstrumentid = rand.id;
             var ranwysigin = rand.wysig;
             self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
-            self.randinstrumentgemeenten = rand.gemeentenlink;
+            self.randinstrumentgemeenten = rand.gemeentenlink.split(",");
+
 
             // Get the last editted
             // first convert timestamps to date and put in array
@@ -245,7 +247,6 @@ angular.module('lsamapApp')
                         self.isnew = false;
 
 
-
                         // TODO build the new images array
                         // expects   this.images: Array of objects
                         /*  {
@@ -269,6 +270,7 @@ angular.module('lsamapApp')
                             var isoarray = self.instrumenten[x].gemeentenlink.split(",");
                             for (var a = 0; a < isoarray.length; a++) {
                                 if (isoarray[a] === self.currentgemeente) {
+
                                     self.instrus.push(self.instrumenten[x]);
                                 }
                             }
@@ -312,8 +314,9 @@ angular.module('lsamapApp')
 
         $scope.mouseclicked = function (idid) {
             self.currentgemeente = idid;
-
         }
+
+
 
 
         $scope.collectGemeenten = function (gem) {
@@ -348,6 +351,7 @@ angular.module('lsamapApp')
                     controlIconsEnabled: true,
                     dblClickZoomEnabled: false,
                     mouseWheelZoomEnabled: false,
+                    preventMouseEventsDefault: false,
                     fit: 0,
                     zoomScaleSensitivity: 0.2,
                     center: 1,
@@ -388,7 +392,6 @@ angular.module('lsamapApp')
             if (newValue && oldValue !== undefined) {
                 apis.currentMap = newValue.code;
                 this.loadingnow = true;
-                console.log("wauwieee");
                 $timeout(self.reloadroute, 500);
             }
         }
@@ -404,6 +407,7 @@ angular.module('lsamapApp')
         this.onChangeFromList = function (newValue, oldValue) {
             self.instrumentenbuurtrechten = null;
             self.linkieshow = true;
+            console.log("uhmz>");
             //console.log("Hoe vaak!");
             this.starttekst = "";
             //$route.reload();
@@ -440,10 +444,14 @@ angular.module('lsamapApp')
                 };
                 // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
                 for (var i = 0; i < self.apiResp.length; i++) {
-
                     if (self.apiResp[i].name === self.currentgemeente) {
-                        var wysigsce = self.apiResp[i].wysig;
 
+                        // TODO TODO NOTE NOTE because super not efficient
+                        self.images = [];
+                        self.instrus = [];
+
+                        console.log(self.apiResp[i]);
+                        var wysigsce = self.apiResp[i].wysig;
                         self.currentwysig = $sce.trustAsHtml(wysigsce);
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
@@ -467,12 +475,8 @@ angular.module('lsamapApp')
                             if (tempArray[b] === "6") {
                                 self.brechtcheckboxes.Buurtrecht6 = true;
                             }
-
                         }
                         self.isnew = false;
-
-
-
                         // TODO build the new images array
                         // expects   this.images: Array of objects
                         /*  {
@@ -480,7 +484,6 @@ angular.module('lsamapApp')
                               thumbUrl: 'images/castle1.jpg',
                               url: 'images/castle1.jpg',
                           }*/
-
                         for (var z = 0; z < self.uploads.length; z++) {
                             if (self.uploads[z].extrainfo === self.currentgemeente) {
                                 var object = {
@@ -527,7 +530,7 @@ angular.module('lsamapApp')
             }
 
 
-
+            $window.scrollTo(0, 50);
             this.loadingtext = "";
             this.instruview = true;
             this.loadingnow = true;
@@ -550,12 +553,16 @@ angular.module('lsamapApp')
             self.linkieshow = true;
         };
 
+        this.gemfrominstruClick = function (idid) {
+            self.currentgemeente = idid;
+            $window.scrollTo(0, 50);
+        }
+
 
         this.showFullText = function () {
             self.loadingtext = "";
             self.linkieshow = false;
             self.textshort = false;
-            console.log("show more text!");
             self.loadingnow = true;
             self.detailpage = true;
             self.instruview = false;
@@ -568,7 +575,7 @@ angular.module('lsamapApp')
             self.randinstrumentid = rand.id;
             var ranwysigin = rand.wysig;
             self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
-            self.randinstrumentgemeenten = rand.gemeentenlink;
+            self.randinstrumentgemeenten = rand.gemeentenlink.split(",");
         }
 
         //var panZoomTiger = svgPanZoom('#mapp');

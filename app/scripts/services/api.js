@@ -39,7 +39,6 @@ angular.module('lsamapApp')
             //this.sergemeenten =
             // WORKS
             self.serGemeenten = serser;
-            console.log(self.serGemeenten);
         };
         // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
         // NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE

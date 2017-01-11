@@ -26,3 +26,6 @@ The 'needs' map contains somethingies
 ---------------------------------
 
 Tiny mce editor needs folder copied to 'script' --> themes/skins/plugins  (copy from bower folder)
+
+// BREAKING - must fix
+// main.js  446 reset the arrays because the values are duplicated in the DB!
