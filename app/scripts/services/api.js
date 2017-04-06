@@ -55,10 +55,10 @@ angular.module('lsamapApp')
                     woobar: new Date().getTime()
                 },
                 cache: false
-            }).success(function (data, status, headers, config) {
-                //console.log(data);
-                //console.log(data);
-            });
+            }).success(function (result) {
+                $scope.user = result;
+                console.log(result);
+            })
         };
 
         // authenticatin' NOTE NOTE // works // store password in variable

@@ -36,7 +36,6 @@ module.exports = function(config) {
       'bower_components/angular-md5/angular-md5.js',
       'bower_components/tinymce-dist/tinymce.js',
       'bower_components/angular-ui-tinymce/src/tinymce.js',
-      'bower_components/angular-busy-plus/dist/angular-busy.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/angular-svg-round-progressbar/build/roundProgress.js',
       'bower_components/ng-table/dist/ng-table.js',
