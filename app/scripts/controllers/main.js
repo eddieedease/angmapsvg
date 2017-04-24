@@ -358,7 +358,7 @@ angular.module('lsamapApp')
                     minZoom: 0.5,
                     maxZoom: 3
                 });
-                self.mapzoom.zoom(1.3);
+                self.mapzoom.zoom(1.1);
             }
         }
 

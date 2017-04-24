@@ -10,7 +10,6 @@
  */
 var app = angular
     .module('lsamapApp', [
-        'ngAnimate',
         'ngCookies',
         'ngResource',
         'ngRoute',
