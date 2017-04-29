@@ -98,7 +98,7 @@ if ($tokenm5 == $ww) {
       case 'editgemeente':
           // NEED - id gemeente, wysigtekst
           //$nlsafe = mynl2br($nl);
-          $sql = "UPDATE gemeenten SET  name = '$name', wysig = '$wysig',buurtrecht ='$buurtrechten' WHERE name = '$name'";
+          $sql = "UPDATE gemeenten SET  name = '$name', wysig = '$wysig',buurtrecht ='$buurtrechten' WHERE id = '$id'";
           break;
       case 'newinstrument': //TODO
           // title, wysigtekst, link, buurtrechtenlink

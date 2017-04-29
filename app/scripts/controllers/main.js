@@ -345,7 +345,18 @@ angular.module('lsamapApp')
             //var panZoomTiger = svgPanZoom(svgElement)
 
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // ont add the panzoom thingie
+                self.mapzoom = svgPanZoom('#mapp', {
+                    controlIconsEnabled: true,
+                    dblClickZoomEnabled: false,
+                    mouseWheelZoomEnabled: false,
+                    preventMouseEventsDefault: false,
+                    fit: 0,
+                    zoomScaleSensitivity: 0.2,
+                    center: 1,
+                    minZoom: 0.5,
+                    maxZoom: 3
+                });
+                self.mapzoom.zoom(1.1);
             } else {
                 self.mapzoom = svgPanZoom('#mapp', {
                     controlIconsEnabled: true,

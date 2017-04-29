@@ -34,6 +34,8 @@ angular.module('lsamapApp')
 
         self.pwchanged = "";
 
+        self.currentgemeenteid;
+
 
         this.buurtrnames = ["Beheer van voorzieningen", "Toegang tot geld", "Open Overheid", "Zelfgekozen ondersteuning", "Maatschappelijk aanbesteden", "Plannen voor de buurt"];
 
@@ -178,6 +180,7 @@ angular.module('lsamapApp')
 
         $scope.mouseclicked = function (idid) {
             self.currentgemeente = idid;
+            console.log(idid);
         }
 
         // calls from the directive
@@ -219,15 +222,17 @@ angular.module('lsamapApp')
                     Buurtrecht5: false,
                     Buurtrecht6: false
                 };
-
+                self.isnew = true;
 
 
                 // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
                 for (var i = 0; i < self.apiResp.length; i++) {
-                    self.isnew = true;
+                    //self.isnew = true;
                     if (self.apiResp[i].name === self.currentgemeente) {
                         this.gemeenteactive = true;
                         self.tinymceModel = self.apiResp[i].wysig;
+                        self.currentgemeenteid =self.apiResp[i].id;
+                        console.log("currentgemeenteid = " + self.currentgemeenteid)
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
                         var tempArray = tempstring.split(",");
@@ -493,6 +498,7 @@ angular.module('lsamapApp')
         // NOTE NOTE NOTE NOTE Handling all the request
         // NOTE update RECORDS
         this.updateGemeenten = function () {
+            console.log(self.currentgemeenteid)
             var escapedwysig = self.tinymceModel.replace("'", "''");
             var arrayforstring = [];
             if (this.brechtcheckboxes.Buurtrecht1) {
@@ -517,6 +523,7 @@ angular.module('lsamapApp')
             console.log("uhms");
             // first check if it is a edit or a new one
             if (self.isnew === true && self.currentgemeente !== undefined) {
+                console.log("newwnewwwnewwwwww");
                 this.myPromise = $http({
                     method: "post",
                     url: nwlink + 'chng.php',
@@ -537,12 +544,14 @@ angular.module('lsamapApp')
                 /* Check whether the HTTP Request is Successfull or not. */
 
             } else if (self.isnew === false && self.currentgemeente !== undefined) {
+                console.log("editediteditedit");
                 this.myPromise = $http({
                     method: "post",
                     url: nwlink + 'chng.php',
                     data: {
                         token: apis.pwd,
                         action: "editgemeente",
+                        id: self.currentgemeenteid,
                         name: self.currentgemeente,
                         wysig: escapedwysig,
                         buurtrechten: buurtrechtstring
