@@ -348,28 +348,28 @@ angular.module('lsamapApp')
                 self.mapzoom = svgPanZoom('#mapp', {
                     controlIconsEnabled: true,
                     dblClickZoomEnabled: false,
-                    mouseWheelZoomEnabled: false,
+                    mouseWheelZoomEnabled: true,
                     preventMouseEventsDefault: false,
-                    fit: 0,
+                    fit: false,
                     zoomScaleSensitivity: 0.2,
                     center: 1,
                     minZoom: 0.5,
                     maxZoom: 3
                 });
-                self.mapzoom.zoom(1.1);
+                self.mapzoom.zoom(0.7);
             } else {
                 self.mapzoom = svgPanZoom('#mapp', {
                     controlIconsEnabled: true,
                     dblClickZoomEnabled: false,
                     mouseWheelZoomEnabled: false,
                     preventMouseEventsDefault: false,
-                    fit: 0,
+                    fit: false,
                     zoomScaleSensitivity: 0.2,
-                    center: 1,
+                    center: 0.2,
                     minZoom: 0.5,
                     maxZoom: 3
                 });
-                self.mapzoom.zoom(1.1);
+                self.mapzoom.zoom(0.9);
             }
         }
 

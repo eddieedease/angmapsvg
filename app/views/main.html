@@ -1,8 +1,38 @@
-<!--<div class="container-fluid">
-    <div id="totop" class="row">
-        <img src="images/banner2.png" class="img-responsive" style="width:100%">
+<!--Modal on top-->
+<div class="container">
+    <!-- Trigger the modal with a button -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Blueblue</h4>
+                </div>
+                <div class="modal-body">
+                    <img ng-src={{about.curimglink}} class="img-circle" alt="image" />
+                    <div ng-bind-html="about.curfulltext">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <div class="section">
     <div class="container">
         <div class="row">
@@ -16,7 +46,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-5" id="viewgem">
-                    <div class="panel panel-danger">
+                    <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">Info</h3>
                         </div>
@@ -31,7 +61,10 @@
                             <img ng-src="{{option.icon}}"> {{option.label}}
                         </script>
                         <div class="panel-body">
-                            <h4>Selectie buurtrecht</h4>
+                            <h4>Zoeken op gemeente</h4>
+                                <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten"
+                                    value-attr="value"></select>
+                            <h4>Filter op buurtrecht</h4>
                             <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code"
                                 dropdown-item-template="'selector/demo/browserWithIcon'"></select>
                                 <!--<p>
@@ -43,9 +76,7 @@
                 <div>{{gemeente.value | number}}</div>
               </div>
             </div>-->
-                                <h4>Zoeken op gemeente</h4>
-                                <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten"
-                                    value-attr="value"></select>
+                                
                                     <div style="float:right">
                                         {{main.hovergemeente}}
                                     </div>
