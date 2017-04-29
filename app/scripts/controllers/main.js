@@ -572,12 +572,11 @@ angular.module('lsamapApp')
 
         this.showFullText = function () {
             self.loadingtext = "";
-            self.linkieshow = false;
-            self.textshort = false;
-            self.loadingnow = true;
-            self.detailpage = true;
-            self.instruview = false;
+           
             $window.scrollTo(0, 50);
+
+            // NOTE trigger modal
+            $("#myModal").modal();
         }
 
         this.nextrandominstru = function () {
