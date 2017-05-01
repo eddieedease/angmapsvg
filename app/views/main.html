@@ -8,10 +8,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Blueblue</h4>
+                    <h4 class="modal-title">{{main.currentgemeente}}</h4>
                 </div>
                 <div class="modal-body">
-                    <h2>{{main.currentgemeente}}</h2>
                     <div ng-bind-html="main.currentwysig"></div>
                     <div ng-if="main.images.length">
                                 <h4>Afbeeldingen</h4>
@@ -22,7 +21,7 @@
                         <div class="attachment-pushed">
                             <rerender>
                                 <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
-                                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                                    title: 'Buurtrechten ' + main.currentgemeente + ' in kaart. Door LSA-Bewoners',
                                                     url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,}">
                                     <a href class="addthis_button_facebook">Facebook</a>
@@ -260,10 +259,12 @@
                     </div>
                     <div ng-show="!main.loadingnow">
                         <div ng-if="main.apiResp">
+                            <p>Ingeklikt houden voor slepen</p>
                             <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
                             <img ng-show="!main.fulllegenda" src="images/legendapart.png" style="position:absolute" class="img-responsive" alt="legendafull">
 
                             <div style="margin-top: 100px;position:absolute" class="btn-group" role="group" aria-label="...">
+                                
                                 <p>Zoom:</p>
                                 <button ng-click="main.zoomIn()" type="button" style="width:30px;" class="btn btn-primary btn-sm"> + </button>
                                 <button ng-click="main.zoomOut()" type="button" style="margin-left:20px;width:30px" class="btn btn-primary btn-sm"> - </button>
