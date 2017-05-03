@@ -56,7 +56,7 @@ angular.module('lsamapApp')
                 },
                 cache: false
             }).success(function (result) {
-                $scope.user = result;
+                //$scope.user = result;
                 console.log(result);
             })
         };
