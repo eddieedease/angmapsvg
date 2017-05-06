@@ -16,8 +16,8 @@ angular.module('lsamapApp')
 
     var self = this;
     // NOTE NOTE Important
-    //var nwlink = './api/';
-    var nwlink = 'http://localhost:80/lsamap/app/api/';
+    var nwlink = './api/';
+    //var nwlink = 'http://localhost:80/lsamap/app/api/';
 
 
     // getting the 'buurtrechten text
@@ -87,7 +87,7 @@ angular.module('lsamapApp')
           }
         });
         /* Check whether the HTTP Request is Successfull or not. */
-        this.myPromise.success(function (data) {
+        this.myPromise.then(function (data) {
           //console.log("contact send");
           self.mailsend = true;
         });

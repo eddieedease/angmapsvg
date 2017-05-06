@@ -40,6 +40,7 @@
     "test": "grunt test"
   },
   "dependencies": {
+    "ng-image-gallery": "^2.1.2",
     "svg-pan-zoom": "github:ariutta/svg-pan-zoom"
   }
 }

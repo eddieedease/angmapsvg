@@ -23,6 +23,7 @@ angular.module('lsamapApp')
         this.current = 0;
         this.max = 410;
         this.loadingnow = true;
+        this.notmobile = true;
         this.datesArray = [];
         this.loadingtext = "Laden..";
         this.starttekst = "Klik op een gemeente/Gebruik de zoekbalk hierboven voor verdere informatie.";
@@ -39,7 +40,7 @@ angular.module('lsamapApp')
             icon: "images/smallicons/lsa.png"
         }, {
             code: 1,
-            label: "Beheer van voorzieningen",
+            label: "Recht op gebouwen en openbare ruimtes",
             icon: "images/smallicons/small2.png"
         }, {
             code: 2,
@@ -55,11 +56,11 @@ angular.module('lsamapApp')
             icon: "images/smallicons/small6.png"
         }, {
             code: 5,
-            label: "Maatschappelijk aanbesteden",
+            label: "Recht om uit te dagen",
             icon: "images/smallicons/small4.png"
         }, {
             code: 6,
-            label: "Plannen voor de buurt",
+            label: "Recht op buurtplanning",
             icon: "images/smallicons/small1.png"
         }];
 
@@ -68,11 +69,11 @@ angular.module('lsamapApp')
 
         switch (apis.currentMap) {
             case 0:
-                this.soortkaart = "Heel overzicht";
+                this.soortkaart = "Geheel overzicht";
                 this.fulllegenda = true;
                 break;
             case 1:
-                this.soortkaart = "Beheer van voorzieningen";
+                this.soortkaart = "Recht op gebouwen en openbare ruimtes";
                 this.fulllegenda = false;
                 break;
             case 2:
@@ -88,11 +89,11 @@ angular.module('lsamapApp')
                 this.fulllegenda = false;
                 break;
             case 5:
-                this.soortkaart = "Maatschappelijk aanbesteden";
+                this.soortkaart = "Recht om uit te dagen";
                 this.fulllegenda = false;
                 break;
             case 6:
-                this.soortkaart = "Plannen voor de buurt";
+                this.soortkaart = "Recht op buurtplanning";
                 this.fulllegenda = false;
                 break;
         }
@@ -103,7 +104,8 @@ angular.module('lsamapApp')
         // NOTE API call
         apis.getApi().then(function (dataResponse) {
             // NOTE 4 pieces [0] gemeenten [1] instrument [2] uploads [3] about
-
+            console.log("hieronder");
+            console.log(dataResponse);
             //update the service so that directive kan acces it
             apis.setSerGemeenten(dataResponse.data[0]);
             self.apiResp = [];
@@ -148,11 +150,11 @@ angular.module('lsamapApp')
 
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
             // Get the Random one
-            self.randinstrumentnaam = rand.name;
-            self.randinstrumentid = rand.id;
-            var ranwysigin = rand.wysig;
-            self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
-            self.randinstrumentgemeenten = rand.gemeentenlink.split(",");
+            //self.randinstrumentnaam = rand.name;
+           // self.randinstrumentid = rand.id;
+            //var ranwysigin = rand.wysig;
+           // self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
+            //self.randinstrumentgemeenten = rand.gemeentenlink.split(",");
 
 
             // Get the last editted
@@ -344,20 +346,24 @@ angular.module('lsamapApp')
             //var svgElement = document.querySelector('#mapp')
             //var panZoomTiger = svgPanZoom(svgElement)
 
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                this.notmobile = false;
+                console.log("triggers");
                 self.mapzoom = svgPanZoom('#mapp', {
                     controlIconsEnabled: true,
                     dblClickZoomEnabled: false,
-                    mouseWheelZoomEnabled: true,
+                    mouseWheelZoomEnabled: false,
                     preventMouseEventsDefault: false,
-                    fit: false,
+                    fit: true,
                     zoomScaleSensitivity: 0.2,
-                    center: 1,
+                    center: 0.1,
                     minZoom: 0.5,
                     maxZoom: 3
                 });
                 self.mapzoom.zoom(0.7);
             } else {
+                this.notmobile = null;
+                console.log("checkkk");
                 self.mapzoom = svgPanZoom('#mapp', {
                     controlIconsEnabled: true,
                     dblClickZoomEnabled: false,
@@ -365,11 +371,11 @@ angular.module('lsamapApp')
                     preventMouseEventsDefault: false,
                     fit: false,
                     zoomScaleSensitivity: 0.2,
-                    center: 0.2,
+                    center: 1,
                     minZoom: 0.5,
                     maxZoom: 3
                 });
-                self.mapzoom.zoom(0.9);
+                self.mapzoom.zoom(1.1);
             }
         }
 

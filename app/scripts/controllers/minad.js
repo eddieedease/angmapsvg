@@ -12,8 +12,8 @@ angular.module('lsamapApp')
 
 
         // NOTE NOTE Important
-        //var nwlink = './api/';
-        var nwlink = 'http://localhost:80/lsamap/app/api/';
+        var nwlink = './api/';
+        //var nwlink = 'http://localhost:80/lsamap/app/api/';
         // instru
         var data;
         this.current = 0;
@@ -37,7 +37,7 @@ angular.module('lsamapApp')
         self.currentgemeenteid;
 
 
-        this.buurtrnames = ["Beheer van voorzieningen", "Toegang tot geld", "Open Overheid", "Zelfgekozen ondersteuning", "Maatschappelijk aanbesteden", "Plannen voor de buurt"];
+        this.buurtrnames = ["Recht op gebouwen en openbare ruimtes", "Toegang tot geld", "Open Overheid", "Zelfgekozen ondersteuning", "Recht om uit te dagen", "Recht op buurtplanning"];
 
         self.body = "<div>  </div>"; // this is important for tinymce. without content, the error does not occur
         // for linkin
@@ -373,7 +373,7 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.success(function (data) {
+            this.myPromise.then(function (data) {
                 //console.log(data);
             });
         }
@@ -386,7 +386,7 @@ angular.module('lsamapApp')
             console.log(aboutsetto);
             switch (aboutsetto) {
                 case 1:
-                    self.currentabout = "Beheer van voorzieningen";
+                    self.currentabout = "Recht op gebouwen en openbare ruimtes";
                     self.abouttinymceModel = self.about[0].text1;
                     self.about
                     break;
@@ -403,11 +403,11 @@ angular.module('lsamapApp')
                     self.abouttinymceModel = self.about[0].text4;
                     break;
                 case 5:
-                    self.currentabout = "Maatschappelijk aanbesteden";
+                    self.currentabout = " Recht om uit te dagen";
                     self.abouttinymceModel = self.about[0].text5;
                     break;
                 case 6:
-                    self.currentabout = "Plannen voor de buurt";
+                    self.currentabout = " Recht op buurtplanning";
                     self.abouttinymceModel = self.about[0].text6;
                     break;
             }
@@ -585,7 +585,7 @@ angular.module('lsamapApp')
                     }
                 });
                 /* Check whether the HTTP Request is Successfull or not. */
-                this.myPromise.success(function (data) {
+                this.myPromise.then(function (data) {
                     self.pwchanged = "Wachtwoord is gewijzigd";
                     self.getgetget();
                 });
@@ -619,7 +619,7 @@ angular.module('lsamapApp')
                         }
                     });
                     /* Check whether the HTTP Request is Successfull or not. */
-                    this.myPromise.success(function (data) {
+                    this.myPromise.then(function (data) {
                         self.getgetget();
                         self.editinstru = false;
 
@@ -644,7 +644,7 @@ angular.module('lsamapApp')
                         }
                     });
                     /* Check whether the HTTP Request is Successfull or not. */
-                    this.myPromise.success(function (data) {
+                    this.myPromise.then(function (data) {
                         self.getgetget();
                         self.editinstru = false;
 
@@ -673,7 +673,7 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.success(function (data) {
+            this.myPromise.then(function (data) {
                 self.getgetget();
             });
         }
@@ -694,7 +694,7 @@ angular.module('lsamapApp')
                 }
             });
             /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.success(function (data) {
+            this.myPromise.then(function (data) {
                 self.getgetget();
             });
         }
