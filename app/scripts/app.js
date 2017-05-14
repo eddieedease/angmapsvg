@@ -310,3 +310,7 @@ var app = angular
             return "RGB(153, 204, 255)";
         }
     }]);
+
+    app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.hashPrefix('');
+}]);

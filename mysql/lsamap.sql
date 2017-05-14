@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
+-- version 4.4.15.5
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Gegenereerd op: 03 mei 2017 om 23:04
--- Serverversie: 5.7.18-0ubuntu0.16.04.1
--- PHP-versie: 7.0.15-0ubuntu0.16.04.4
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 14, 2017 at 12:15 PM
+-- Server version: 5.6.34-log
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `about`
+-- Table structure for table `about`
 --
 
-CREATE TABLE `about` (
+CREATE TABLE IF NOT EXISTS `about` (
   `id` int(11) NOT NULL,
   `text1` text NOT NULL,
   `text2` text NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `about` (
   `text5` text NOT NULL,
   `text6` text NOT NULL,
   `text7` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `about`
+-- Dumping data for table `about`
 --
 
 INSERT INTO `about` (`id`, `text1`, `text2`, `text3`, `text4`, `text5`, `text6`, `text7`) VALUES
@@ -47,18 +47,18 @@ INSERT INTO `about` (`id`, `text1`, `text2`, `text3`, `text4`, `text5`, `text6`,
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `api`
+-- Table structure for table `api`
 --
 
-CREATE TABLE `api` (
+CREATE TABLE IF NOT EXISTS `api` (
   `id` int(11) NOT NULL,
   `ww` text NOT NULL,
   `usr` text NOT NULL,
   `email` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `api`
+-- Dumping data for table `api`
 --
 
 INSERT INTO `api` (`id`, `ww`, `usr`, `email`) VALUES
@@ -67,39 +67,30 @@ INSERT INTO `api` (`id`, `ww`, `usr`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `gemeenten`
+-- Table structure for table `gemeenten`
 --
 
-CREATE TABLE `gemeenten` (
+CREATE TABLE IF NOT EXISTS `gemeenten` (
   `name` text NOT NULL,
   `wysig` text NOT NULL,
   `buurtrecht` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `gemeenten`
---
-
-INSERT INTO `gemeenten` (`name`, `wysig`, `buurtrecht`, `date`, `id`) VALUES
-('Emmen', '<p>Test hem</p>', '1,2', '2017-04-29 14:13:27', 4),
-('Horst aan de Maas', '<p>Waarom no?</p>', '2,3,4', '2017-04-29 14:13:38', 5),
-('Emmen', '<p>Test hem safsafdsa</p>', '1,2', '2017-04-29 14:13:47', 6),
-('De Fryske Marren', '<p>asfdasdfasfwerew</p>', '3,4', '2017-04-29 14:16:29', 7),
-('Emmen', '<p>kijk hier</p>', '3,4,6', '2017-04-29 15:48:14', 8),
-('Horst aan de Maas', '<p>Hij ziet hem als nieuw! Het probleem!</p>', '2,3,4', '2017-04-29 14:16:55', 9),
-('Roosendaal', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis velit at elit posuere, id euismod lectus laoreet. Aliquam id sodales eros. Maecenas ut feugiat arcu. Sed et lectus sit amet nisl posuere sollicitudin vitae ac elit. Donec fringilla at sapien in consequat. Proin vitae pellentesque nibh, sed dignissim neque. Morbi in aliquet velit.</p>\n<p>Praesent eros dolor, consectetur sed massa non, facilisis feugiat elit. Aenean feugiat sem neque, quis lacinia augue bibendum a. Aliquam dolor sem, sodales sed fermentum dictum, viverra vel enim. Nam mi dolor, elementum et eros iaculis, volutpat maximus eros. Aliquam ac scelerisque massa, eget molestie mi. Curabitur non pellentesque dui. Praesent luctus faucibus purus sit amet interdum. Sed tincidunt massa in accumsan sollicitudin. Mauris fermentum tempus tristique. Cras vehicula interdum eros sit amet facilisis.</p>\n<p>Praesent venenatis est et venenatis volutpat. Suspendisse felis felis, pellentesque et est ac, molestie interdum lorem. Donec aliquet risus a justo posuere, sit amet venenatis nibh finibus. In nibh est, lobortis ac semper et, porttitor venenatis magna. In ac interdum augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vestibulum in massa at rutrum. Donec pharetra fringilla viverra. Cras gravida finibus arcu molestie efficitur. Quisque vitae interdum libero. Nunc vel aliquet neque, at sollicitudin ligula. Quisque dictum, nisi ac dapibus luctus, odio purus semper dui, in hendrerit velit sem sit amet nisl. Proin nulla metus, convallis sit amet ornare vel, hendrerit eget purus. Sed orci est, gravida vitae est quis, porta posuere nibh.</p>\n<p>Maecenas nec tempor velit. Duis in convallis libero. Praesent tempus nisi a est posuere sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse quis vehicula dui. Donec quis suscipit risus, ut dignissim sapien. Maecenas dictum justo vitae pellentesque imperdiet.</p>\n<p>Suspendisse malesuada tempor dapibus. Suspendisse ornare purus sed purus tristique, in iaculis velit consequat. In convallis sed tortor a eleifend. Nunc quis lacinia nulla, vitae tincidunt leo. Integer lectus magna, pharetra sit amet condimentum et, condimentum quis lorem. Nam a consequat massa. Donec pharetra massa at elit hendrerit mollis. Sed feugiat, enim vitae ullamcorper dapibus, enim magna gravida arcu, eget feugiat ante dui vitae dui. Aliquam congue purus sed egestas viverra. Mauris rutrum ex quis odio suscipit sodales. Praesent iaculis, elit in ornare malesuada, dolor ex vehicula lacus, id consectetur quam mi eu mi. Duis tristique porttitor lacus a interdum. Vivamus ornare ullamcorper orci, porttitor consectetur enim faucibus ut. Cras consequat sem eu ipsum ullamcorper hendrerit. Praesent fringilla tellus maximus purus faucibus dignissim. Donec cursus vitae elit ultrices eleifend.</p>', '1,4,6', '2017-04-29 16:32:47', 10),
-('Ommen', '<p>dOET HET</p>', '5,6', '2017-04-29 15:48:55', 11),
-('Renswoude', '<p>zEG EENS yejasdsads</p>', '2,3,4', '2017-04-29 15:49:11', 12);
+  `id` int(11) NOT NULL,
+  `b1` text NOT NULL,
+  `b2` text NOT NULL,
+  `b3` text NOT NULL,
+  `b4` text NOT NULL,
+  `b5` text NOT NULL,
+  `b6` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `instrument`
+-- Table structure for table `instrument`
 --
 
-CREATE TABLE `instrument` (
+CREATE TABLE IF NOT EXISTS `instrument` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `wysig` text NOT NULL,
@@ -108,20 +99,13 @@ CREATE TABLE `instrument` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Gegevens worden geëxporteerd voor tabel `instrument`
---
-
-INSERT INTO `instrument` (`id`, `name`, `wysig`, `gemeentenlink`, `link`, `date`) VALUES
-(1, 'Titel instrument', '<p>Check check check</p>', 'Roosendaal', '3', '2017-04-30 14:30:07');
-
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `uploads`
+-- Table structure for table `uploads`
 --
 
-CREATE TABLE `uploads` (
+CREATE TABLE IF NOT EXISTS `uploads` (
   `id` int(11) NOT NULL,
   `cat` text NOT NULL,
   `location` text NOT NULL,
@@ -130,24 +114,17 @@ CREATE TABLE `uploads` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `uploads`
---
-
-INSERT INTO `uploads` (`id`, `cat`, `location`, `description`, `extrainfo`) VALUES
-(2, 'gemeente', './uploads/17291837CORS preflight info.png', 'ggj', 'Roosendaal');
-
---
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `about`
+-- Indexes for table `about`
 --
 ALTER TABLE `about`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `api`
+-- Indexes for table `api`
 --
 ALTER TABLE `api`
   ADD PRIMARY KEY (`id`),
@@ -155,55 +132,55 @@ ALTER TABLE `api`
   ADD KEY `id` (`id`);
 
 --
--- Indexen voor tabel `gemeenten`
+-- Indexes for table `gemeenten`
 --
 ALTER TABLE `gemeenten`
   ADD UNIQUE KEY `id_2` (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexen voor tabel `instrument`
+-- Indexes for table `instrument`
 --
 ALTER TABLE `instrument`
   ADD UNIQUE KEY `id_2` (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexen voor tabel `uploads`
+-- Indexes for table `uploads`
 --
 ALTER TABLE `uploads`
   ADD UNIQUE KEY `id_2` (`id`),
   ADD KEY `id` (`id`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `about`
+-- AUTO_INCREMENT for table `about`
 --
 ALTER TABLE `about`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT voor een tabel `api`
+-- AUTO_INCREMENT for table `api`
 --
 ALTER TABLE `api`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT voor een tabel `gemeenten`
+-- AUTO_INCREMENT for table `gemeenten`
 --
 ALTER TABLE `gemeenten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT voor een tabel `instrument`
+-- AUTO_INCREMENT for table `instrument`
 --
 ALTER TABLE `instrument`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `uploads`
+-- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
