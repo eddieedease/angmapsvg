@@ -102,19 +102,19 @@ select { text-indent: 5px; }
     line-height: .85;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
-    color: #ffffff;
+    color: blue;
 }
 
 .panel-tabs > li > a:hover {
     border-color: transparent;
-    color: #ffffff;
+    color: black;
     background-color: transparent;
 }
 
 .panel-tabs > li.active > a,
 .panel-tabs > li.active > a:hover,
 .panel-tabs > li.active > a:focus {
-    color: #fff;
+    color: black;
     cursor: default;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;

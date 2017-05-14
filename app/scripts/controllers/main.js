@@ -133,7 +133,7 @@ angular.module('lsamapApp')
             if (apis.currentMap === 0) {
                 self.instrumentenbuurtrechten = null;
             } else {
-                self.starttekst = "Klik op een gemeente/Gebruik de zoekbalk hierboven voor verdere informatie. Je kunt ook hieronder door instrumenten zoeken die horen bij dit buurtrecht";
+                self.starttekst = "Klik op een gemeente/Gebruik de zoekbalk hierboven voor verdere informatie.";
             }
 
             self.linkieshow = false;

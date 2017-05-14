@@ -36,6 +36,13 @@ $tokenm5 = md5($token);
 @$title = $request->title;
 @$type = $request->type;
 
+@$b1 = $request->b1;
+@$b2 = $request->b2;
+@$b3 = $request->b3;
+@$b4 = $request->b4;
+@$b5 = $request->b5;
+@$b6 = $request->b6;
+
 
 // Sooooo.... escape the wysig
 //$wysig = $mysqli->real_escape_string($wysig);
@@ -93,12 +100,12 @@ if ($tokenm5 == $ww) {
       case 'newgemeente':
           // NEED - id gemeente, wysigtekst
           //$nlsafe = mynl2br($nl);
-          $sql = "INSERT INTO gemeenten (name,wysig,buurtrecht) VALUES ('$name','$wysig','$buurtrechten')";
+          $sql = "INSERT INTO gemeenten (name,wysig,b1,b2,b3,b4,b5,b6,buurtrecht) VALUES ('$name','$wysig','$b1','$b2','$b3','$b4','$b5','$b6','$buurtrechten')";
           break;
       case 'editgemeente':
           // NEED - id gemeente, wysigtekst
           //$nlsafe = mynl2br($nl);
-          $sql = "UPDATE gemeenten SET  name = '$name', wysig = '$wysig',buurtrecht ='$buurtrechten' WHERE id = '$id'";
+          $sql = "UPDATE gemeenten SET  name = '$name', wysig = '$wysig', b1 = '$b1', b2 = '$b2', b3 = '$b3', b4 = '$b4', b5 = '$b5', b6 = '$b6',buurtrecht ='$buurtrechten' WHERE id = '$id'";
           break;
       case 'newinstrument': //TODO
           // title, wysigtekst, link, buurtrechtenlink

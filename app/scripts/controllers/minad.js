@@ -22,6 +22,12 @@ angular.module('lsamapApp')
         // scope variables
         this.md5message = 'Your pwd encryption is: ' + md5.createHash("goudvis" || '');
         this.tinymceModel = "";
+        this.tinymceModel1 = "";
+        this.tinymceModel2 = "";
+        this.tinymceModel3 = "";
+        this.tinymceModel4 = "";
+        this.tinymceModel5 = "";
+        this.tinymceModel6 = "";
         this.editinstru = false;
         this.brechtcheckboxes = {
             Buurtrecht1: false,
@@ -231,7 +237,15 @@ angular.module('lsamapApp')
                     if (self.apiResp[i].name === self.currentgemeente) {
                         this.gemeenteactive = true;
                         self.tinymceModel = self.apiResp[i].wysig;
-                        self.currentgemeenteid =self.apiResp[i].id;
+                        self.tinymceModel1 = self.apiResp[i].b1;
+                        self.tinymceModel2 = self.apiResp[i].b2;
+                        self.tinymceModel3 = self.apiResp[i].b3;
+                        self.tinymceModel4 = self.apiResp[i].b4;
+                        self.tinymceModel5 = self.apiResp[i].b5;
+                        self.tinymceModel6 = self.apiResp[i].b6;
+
+
+                        self.currentgemeenteid = self.apiResp[i].id;
                         console.log("currentgemeenteid = " + self.currentgemeenteid)
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
@@ -500,6 +514,20 @@ angular.module('lsamapApp')
         this.updateGemeenten = function () {
             console.log(self.currentgemeenteid)
             var escapedwysig = self.tinymceModel.replace("'", "''");
+
+            var escapedwysig1 = self.tinymceModel1.replace("'", "''");
+            var escapedwysig2 = self.tinymceModel2.replace("'", "''");
+            var escapedwysig3 = self.tinymceModel3.replace("'", "''");
+            var escapedwysig4 = self.tinymceModel4.replace("'", "''");
+            var escapedwysig5 = self.tinymceModel5.replace("'", "''");
+            var escapedwysig6 = self.tinymceModel6.replace("'", "''");
+
+
+
+
+
+
+
             var arrayforstring = [];
             if (this.brechtcheckboxes.Buurtrecht1) {
                 arrayforstring.push("1");
@@ -532,6 +560,12 @@ angular.module('lsamapApp')
                         action: "newgemeente",
                         name: self.currentgemeente,
                         wysig: escapedwysig,
+                        b1: escapedwysig1,
+                        b2: escapedwysig2,
+                        b3: escapedwysig3,
+                        b4: escapedwysig4,
+                        b5: escapedwysig5,
+                        b6: escapedwysig6,
                         buurtrechten: buurtrechtstring
                     },
                     headers: {
@@ -554,6 +588,12 @@ angular.module('lsamapApp')
                         id: self.currentgemeenteid,
                         name: self.currentgemeente,
                         wysig: escapedwysig,
+                        b1: escapedwysig1,
+                        b2: escapedwysig2,
+                        b3: escapedwysig3,
+                        b4: escapedwysig4,
+                        b5: escapedwysig5,
+                        b6: escapedwysig6,
                         buurtrechten: buurtrechtstring
                     },
                     headers: {

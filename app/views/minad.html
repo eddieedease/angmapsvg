@@ -5,14 +5,14 @@
             <hr>
             <input ng-model="minad.userpw" type="password" class="form-control" name="password" placeholder="Wachtwoord" required=""
             /> {{minad.wrongpwtext}}
-            <button class="btn btn-lg btn-dangerbtn-block" ng-click="minad.inlogger()" type="submit">Inloggen</button>
+            <button class="btn btn-lg btn-defaultbtn-block" ng-click="minad.inlogger()" type="submit">Inloggen</button>
         </form>
     </div>
 </div>
 <div ng-show="minad.minnn" class="section" style="padding-top:50px">
 
     <div class="col-md-12">
-        <div class="panel panel-danger">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Admin Menu ->
                 </h3>
@@ -48,7 +48,7 @@
                                             <div svg-map></div>
                                         </div>
                                     </div>
-                                    <div ng-if="minad.gemeenteactive" class="panel panel-danger">
+                                    <div ng-if="minad.gemeenteactive" class="panel panel-default">
                                         <div class="panel-heading">Fotobak Gemeente {{minad.currentgemeente}}
                                         </div>
                                         <div class="panel-body">
@@ -78,7 +78,7 @@
                                                     <img ng-src="{{photo.location}}" alt="">
                                                     <div class="caption">
                                                         <p>
-                                                            <a ng-click="minad.delPhoto(photo.id)" class="btn btn-warning btn-xs" role="button">Verwijder</a>
+                                                            <a ng-click="minad.delPhoto(photo.id)" class="btn btn-default btn-xs" role="button">Verwijder</a>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5">
-                                    <div class="panel panel-danger">
+                                    <div class="panel panel-default">
                                         <div class="panel-heading">Selectie</div>
                                         <div class="panel-body">
                                             <h4>Lijst select - (Met suggestie)</h4>
@@ -106,10 +106,10 @@
                                             </div>
                                             <h2>{{minad.currentgemeente}}</h2>
                                         </div>
-                                        <div class="panel-heading">Tekst {{minad.currentgemeente}}
+                                        <!--<div class="panel-heading">Tekst {{minad.currentgemeente}}
                                         </div>
                                         <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
-                                        <hr>
+                                        <hr>-->
                                         <div class="panel-heading">Buurtrechten toewijzen</div>
                                         <div class="panel-body">
                                             <div class="checkbox" ng-repeat="(checkboxx,enabled) in minad.brechtcheckboxes">
@@ -134,33 +134,33 @@
                                   </div>-->
                                 </div>
 
-
+</div>
 
 
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-4">
-                                        <div class="panel panel-danger">
+                                        <div class="panel panel-default">
                                             <div class="panel-heading">Recht op gebouwen en openbare ruimtes</div>
                                             <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel1"></textarea></div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-danger">
+                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
                                             <div class="panel-heading">Toegang tot geld</div>
                                             <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel2"></textarea></div>
                                         </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-danger">
+                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
                                             <div class="panel-heading">Open Overheid</div>
                                             <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel3"></textarea></div>
                                         </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-danger">
+                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
                                             <div class="panel-heading">Zelfgekozen ondersteuning</div>
                                             <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel4"></textarea></div>
                                         </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-danger">
+                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
                                             <div class="panel-heading">Recht om uit te dagen</div>
                                             <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel5"></textarea></div>
                                         </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-danger">
+                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
                                             <div class="panel-heading">Recht op buurtplanning</div>
                                             <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel6"></textarea></div>
                                         </div></div>
@@ -169,7 +169,7 @@
 
 
 
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="tab-pane" id="tab3">
@@ -184,7 +184,7 @@
                                                 <button ng-click="minad.goeditInstru(user.id)" class="btn btn-default btn-sm">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </button>
-                                                <button ng-click="minad.delInstru(user.id)" class="btn btn-danger btn-sm">
+                                                <button ng-click="minad.delInstru(user.id)" class="btn btn-default btn-sm">
                                                     <span class="glyphicon glyphicon-trash"></span>
                                                 </button>
                                             </td>
@@ -307,7 +307,7 @@
                                             <img ng-src="{{photo.location}}" alt="">
                                             <div class="caption">
                                                 <p>
-                                                    <a href="#" class="btn btn-warning btn-xs" role="button">Verwijder</a>
+                                                    <a href="#" class="btn btn-default btn-xs" role="button">Verwijder</a>
                                                 </p>
                                             </div>
                                         </div>
