@@ -12,12 +12,7 @@
 angular.module('lsamapApp')
     .controller('MainCtrl', function ($scope, $rootScope, $compile, $window, NgTableParams, $anchorScroll, $timeout, $http, $sce, $route, apis, $routeParams) {
 
-        // try to take routing
-        //this.keyyy = $location.url();
-        //this.keyy = $scope.keyyy.replace('/', '');
-        //console.log($routeParams.gemeente);
-        //console.log($route);
-        // always bind self for various (aqr) reasons
+
         var self = this;
         var data;
         this.current = 0;
@@ -32,6 +27,13 @@ angular.module('lsamapApp')
 
         this.detailpage = false;
         this.textshort = true;
+
+        this.detail1 = false;
+        this.detail2 = false;
+        this.detail3 = false;
+        this.detail4 = false;
+        this.detail5 = false;
+        this.detail6 = false;
 
 
         this.mapps = [{
@@ -151,9 +153,9 @@ angular.module('lsamapApp')
             var rand = self.instrumenten[Math.floor(Math.random() * self.instrumenten.length)];
             // Get the Random one
             //self.randinstrumentnaam = rand.name;
-           // self.randinstrumentid = rand.id;
+            // self.randinstrumentid = rand.id;
             //var ranwysigin = rand.wysig;
-           // self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
+            // self.randinstrumentwysig = $sce.trustAsHtml(ranwysigin);
             //self.randinstrumentgemeenten = rand.gemeentenlink.split(",");
 
 
@@ -204,6 +206,12 @@ angular.module('lsamapApp')
                 self.images = [];
                 self.instrus = [];
                 self.currentwysig = "";
+                self.currentwysig1 = "";
+                self.currentwysig2 = "";
+                self.currentwysig3 = "";
+                self.currentwysig4 = "";
+                self.currentwysig5 = "";
+                self.currentwysig6 = "";
                 // first reset checkboxes
                 self.brechtcheckboxes = {
                     Buurtrecht1: false,
@@ -217,11 +225,37 @@ angular.module('lsamapApp')
                 for (var i = 0; i < self.apiResp.length; i++) {
 
                     if (self.apiResp[i].name === self.currentgemeente) {
-                        var wysigsce = self.apiResp[i].wysig;
+
                         self.currentgemeente = self.apiResp[i].name;
                         $scope.currentgemeente = self.apiResp[i].name;
                         self.curcur = self.apiResp[i].name;
+
+                        var wysigsce = self.apiResp[i].wysig;
                         self.currentwysig = $sce.trustAsHtml(wysigsce);
+
+                        var wysigsceb1 = self.apiResp[i].b1;
+                        self.currentwysig1 = $sce.trustAsHtml(wysigsceb1);
+
+                        var wysigsceb2 = self.apiResp[i].b2;
+                        self.currentwysig2 = $sce.trustAsHtml(wysigsceb2);
+
+                        var wysigsceb3 = self.apiResp[i].b3;
+                        self.currentwysig3 = $sce.trustAsHtml(wysigsceb3);
+
+                        var wysigsceb4 = self.apiResp[i].b4;
+                        self.currentwysig4 = $sce.trustAsHtml(wysigsceb4);
+
+                        var wysigsceb5 = self.apiResp[i].b5;
+                        self.currentwysig5 = $sce.trustAsHtml(wysigsceb5);
+
+                        var wysigsceb6 = self.apiResp[i].b6;
+                        self.currentwysig6 = $sce.trustAsHtml(wysigsceb6);
+
+
+
+
+
+
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
                         var tempArray = tempstring.split(",");
@@ -348,7 +382,6 @@ angular.module('lsamapApp')
 
             if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 this.notmobile = false;
-                console.log("triggers");
                 self.mapzoom = svgPanZoom('#mapp', {
                     controlIconsEnabled: true,
                     dblClickZoomEnabled: false,
@@ -434,6 +467,17 @@ angular.module('lsamapApp')
                 self.images = [];
                 self.instrus = [];
                 self.currentwysig = "";
+
+                self.currentwysig1 = "";
+                self.currentwysig2 = "";
+                self.currentwysig3 = "";
+                self.currentwysig4 = "";
+                self.currentwysig5 = "";
+                self.currentwysig6 = "";
+
+
+
+
                 $scope.currentgemeente = newValue.value;
                 self.currentgemeente = newValue.value;
                 self.curcur = newValue.value;
@@ -470,6 +514,29 @@ angular.module('lsamapApp')
                         console.log(self.apiResp[i]);
                         var wysigsce = self.apiResp[i].wysig;
                         self.currentwysig = $sce.trustAsHtml(wysigsce);
+
+                        var wysigsceb1 = self.apiResp[i].b1;
+                        self.currentwysig1 = $sce.trustAsHtml(wysigsceb1);
+
+                        var wysigsceb2 = self.apiResp[i].b2;
+                        self.currentwysig2 = $sce.trustAsHtml(wysigsceb2);
+
+                        var wysigsceb3 = self.apiResp[i].b3;
+                        self.currentwysig3 = $sce.trustAsHtml(wysigsceb3);
+
+                        var wysigsceb4 = self.apiResp[i].b4;
+                        self.currentwysig4 = $sce.trustAsHtml(wysigsceb4);
+
+                        var wysigsceb5 = self.apiResp[i].b5;
+                        self.currentwysig5 = $sce.trustAsHtml(wysigsceb5);
+
+                        var wysigsceb6 = self.apiResp[i].b6;
+                        self.currentwysig6 = $sce.trustAsHtml(wysigsceb6);
+
+
+
+
+
                         // Check for buurtrechten
                         var tempstring = self.apiResp[i].buurtrecht;
                         var tempArray = tempstring.split(",");
@@ -576,10 +643,47 @@ angular.module('lsamapApp')
         }
 
 
-        this.showFullText = function () {
+        this.showFullText = function (_whut) {
             self.loadingtext = "";
-           
-            $window.scrollTo(0, 50);
+
+            self.detail1 = false;
+            self.detail2 = false;
+            self.detail3 = false;
+            self.detail4 = false;
+            self.detail5 = false;
+            self.detail6 = false;
+
+            switch (_whut) {
+                case 'all':
+                    self.detail1 = true;
+                    self.detail2 = true;
+                    self.detail3 = true;
+                    self.detail4 = true;
+                    self.detail5 = true;
+                    self.detail6 = true;
+                    break;
+                case 1:
+                    self.detail1 = true;
+                    break;
+                case 2:
+                    self.detail2 = true;
+                    break;
+                case 3:
+                    self.detail3 = true;
+                    break;
+                case 4:
+                    self.detail4 = true;
+                    break;
+                case 5:
+                    self.detail5 = true;
+                    break;
+                case 6:
+                    self.detail6 = true;
+                    break;
+
+            }
+
+            //$window.scrollTo(0, 50);
 
             // NOTE trigger modal
             $("#myModal").modal();

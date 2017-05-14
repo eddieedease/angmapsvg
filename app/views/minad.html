@@ -48,43 +48,7 @@
                                             <div svg-map></div>
                                         </div>
                                     </div>
-                                    <div ng-if="minad.gemeenteactive" class="panel panel-default">
-                                        <div class="panel-heading">Fotobak Gemeente {{minad.currentgemeente}}
-                                        </div>
-                                        <div class="panel-body">
-                                            Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
-                                        <form style="padding-left:20px">
-                                            <div class="form-group">
-                                                <legend>Upload nieuwe afbeelding</legend>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                                                    ngf-resize="{width: 1000}">Selecteer bestand</div>
-                                            </div>
-                                            <div ng-if="minad.file.$ngfName">
-                                                <div class="form-group">Titel voor afbeelding:
-                                                    <input type="text" ng-model="minad.afbtitel"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <button class="btn btn-primary" ng-click="minad.uploadprep('gemeente')">Opslaan</button>
-                                            </div>
-                                            <div class="form-group">
-                                                <legend>Verwijder afbeeldingen</legend>
-                                            </div>
-                                        </form>
-                                        <div class="row">
-                                            <div ng-repeat="photo in minad.photoArray" class="col-xs-12 col-sm-12 col-md-3">
-                                                <div class="thumbnail">
-                                                    <img ng-src="{{photo.location}}" alt="">
-                                                    <div class="caption">
-                                                        <p>
-                                                            <a ng-click="minad.delPhoto(photo.id)" class="btn btn-default btn-xs" role="button">Verwijder</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-md-5">
                                     <div class="panel panel-default">
@@ -134,42 +98,89 @@
                                   </div>-->
                                 </div>
 
-</div>
+                            </div>
 
 
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-4">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">Recht op gebouwen en openbare ruimtes</div>
-                                            <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel1"></textarea></div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Recht op gebouwen en openbare ruimtes</div>
+                                        <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel1"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Toegang tot geld</div>
+                                        <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel2"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Open Overheid</div>
+                                        <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel3"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Zelfgekozen ondersteuning</div>
+                                        <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel4"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Recht om uit te dagen</div>
+                                        <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel5"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Recht op buurtplanning</div>
+                                        <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel6"></textarea></div>
+                                    </div>
+                                </div>
+                                <div ng-if="minad.gemeenteactive" class="panel panel-default">
+                                        <div class="panel-heading">Fotobak Gemeente {{minad.currentgemeente}}
+                                        </div>
+                                        <div class="panel-body">
+                                            Hier kunnen foto's voor een gemeente toegevoegd en/of verwijderd worden.</div>
+                                        <form style="padding-left:20px">
+                                            <div class="form-group">
+                                                <legend>Upload nieuwe afbeelding</legend>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="btn btn-info" type="file" ngf-select ng-model="minad.file" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                                                    ngf-resize="{width: 1000}">Selecteer bestand</div>
+                                            </div>
+                                            <div ng-if="minad.file.$ngfName">
+                                                <div class="form-group">Titel voor afbeelding:
+                                                    <input type="text" ng-model="minad.afbtitel"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-primary" ng-click="minad.uploadprep('gemeente')">Opslaan</button>
+                                            </div>
+                                            <div class="form-group">
+                                                <legend>Verwijder afbeeldingen</legend>
+                                            </div>
+                                        </form>
+                                        <div class="row">
+                                            <div ng-repeat="photo in minad.photoArray" class="col-xs-12 col-sm-12 col-md-3">
+                                                <div class="thumbnail">
+                                                    <img ng-src="{{photo.location}}" alt="">
+                                                    <div class="caption">
+                                                        <p>
+                                                            <a ng-click="minad.delPhoto(photo.id)" class="btn btn-default btn-xs" role="button">Verwijder</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
-                                            <div class="panel-heading">Toegang tot geld</div>
-                                            <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel2"></textarea></div>
-                                        </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
-                                            <div class="panel-heading">Open Overheid</div>
-                                            <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel3"></textarea></div>
-                                        </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
-                                            <div class="panel-heading">Zelfgekozen ondersteuning</div>
-                                            <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel4"></textarea></div>
-                                        </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
-                                            <div class="panel-heading">Recht om uit te dagen</div>
-                                            <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel5"></textarea></div>
-                                        </div></div>
-                                    <div class="col-xs-12 col-sm-4"> <div class="panel panel-default">
-                                            <div class="panel-heading">Recht op buurtplanning</div>
-                                            <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel6"></textarea></div>
-                                        </div></div>
-                                </div>
+                            </div>
 
 
 
 
-                            
+
                         </div>
                     </div>
                     <div class="tab-pane" id="tab3">

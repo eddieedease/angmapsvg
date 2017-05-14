@@ -8,14 +8,45 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{main.currentgemeente}}</h4>
+                    <h1 class="modal-title">{{main.currentgemeente}}</h1>
                 </div>
                 <div class="modal-body">
-                    <div ng-bind-html="main.currentwysig"></div>
+
+
+                    <div ng-show="main.detail1">
+                        <h2>Recht op gebouwen en openbare ruimtes</h2>
+                        <div ng-bind-html="main.currentwysig1"></div><br><br>
+                    </div>
+                    <div ng-show="main.detail2">
+                        <h2>Toegang tot geld</h2>
+                        <div ng-bind-html="main.currentwysig2"></div><br><br>
+                    </div>
+
+                    <div ng-show="main.detail3">
+                        <h2>Open overheid</h2>
+                        <div ng-bind-html="main.currentwysig3"></div><br><br>
+                    </div>
+
+                    <div ng-show="main.detail4">
+                        <h2>Zelfgekozen ondersteuning</h2>
+                        <div ng-bind-html="main.currentwysig4"></div><br><br>
+                    </div>
+
+                    <div ng-show="main.detail5">
+                        <h2>Recht om uit te dagen</h2>
+                        <div ng-bind-html="main.currentwysig5"></div><br><br>
+                    </div>
+
+                    <div ng-show="main.detail6">
+                        <h2>Recht op buurtplanning</h2>
+                        <div ng-bind-html="main.currentwysig6"></div><br><br>
+                    </div>
+
+
                     <div ng-if="main.images.length">
-                                <h4>Afbeeldingen</h4>
-                                <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
-                            </div>
+                        <h4>Afbeeldingen</h4>
+                        <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
+                    </div>
                     <h5>Delen:</h5>
                     <div class="attachment-block clearfix">
                         <div class="attachment-pushed">
@@ -73,7 +104,7 @@
         <div class="container-fluid">
             <hr>
             <div class="row">
-                 <div class="col-md-7">
+                <div class="col-md-7">
                     <div ng-show="main.instruview">
                         <div class="row" style="margin-top:20px !important">
                             <div class="col-md-12">
@@ -169,9 +200,9 @@
 
                             <div style="margin-top: 100px;position:absolute" class="btn-group" role="group" aria-label="...">
                                 <div ng-if="main.notmobile === true">
-                                <p>Zoom:</p>
-                                <button ng-click="main.zoomIn()" type="button" style="width:30px;" class="btn btn-primary btn-sm"> + </button>
-                                <button ng-click="main.zoomOut()" type="button" style="margin-left:20px;width:30px" class="btn btn-primary btn-sm"> - </button>
+                                    <p>Zoom:</p>
+                                    <button ng-click="main.zoomIn()" type="button" style="width:30px;" class="btn btn-primary btn-sm"> + </button>
+                                    <button ng-click="main.zoomOut()" type="button" style="margin-left:20px;width:30px" class="btn btn-primary btn-sm"> - </button>
                                 </div>
                             </div>
                             <object>
@@ -230,7 +261,26 @@
                             </table>
                         </div>-->
                         <div style='padding:20px;padding-top:0px'>
-                            <h2>{{main.curcur}}</h2>
+                            <h2>{{main.curcur}}:</h2>
+
+
+                            <div class="btn-group-vertical" role="group" aria-label="...">
+                                <button type="button" ng-click="main.showFullText('all')" class="btn btn-info">Toon alles</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht1" ng-click="main.showFullText(1)" class="btn btn-danger">Recht op gebouwen en openbare ruimtes</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht2" ng-click="main.showFullText(2)" class="btn btn-danger">Toegang tot geld</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht3" ng-click="main.showFullText(3)" class="btn btn-danger">Open overheid</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht4" ng-click="main.showFullText(4)" class="btn btn-danger">Zelfgekozen ondersteuning</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht5" ng-click="main.showFullText(5)" class="btn btn-danger">Recht om uit te dagen</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht6" ng-click="main.showFullText(6)" class="btn btn-danger">Recht op buurtplanning</button>
+                            </div>
+
+
+
+
+
+
+
+
                             <!--<div ng-if="main.instrus.length">
                                 <h4>Instrumenten die worden ingezet:</h4>
                                 <div ng-repeat="instr in main.instrus track by $index">
@@ -241,10 +291,10 @@
                                 <h4>Afbeeldingen</h4>
                                 <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                             </div>
-                            <p>
+                            <!--<p>
                                 <div ng-show="main.textshort" style="height:350px;max-height:350px;overflow:hidden" ng-bind-html="main.currentwysig" data-ellipsis
                                     data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
-                            </p>
+                            </p>-->
                             <hr>
                             <div ng-if="main.linkieshow">
                                 <h5>Deel deze pagina:</h5>
@@ -276,10 +326,10 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
-     
+
         <footer class="section">
             <div class="container">
                 <div class="row">
