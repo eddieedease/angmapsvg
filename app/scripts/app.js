@@ -25,7 +25,8 @@ var app = angular
         'ngFileUpload',
         'scrollto',
         'dibari.angular-ellipsis',
-        'sn.addthis'
+        'sn.addthis',
+        'ngCsv'
     ])
     .config(function($routeProvider) {
         $routeProvider

@@ -18,33 +18,39 @@
                     </div>
 
                     <div ng-show="main.detail1">
-                        <h2>Recht op gebouwen en openbare ruimtes</h2>
+                        <h2 style="background-color: lightgray; padding:10px">Recht op gebouwen</h2>
                         <div ng-bind-html="main.currentwysig1"></div><br><br>
                     </div>
-                    <div ng-show="main.detail2">
-                        <h2>Toegang tot geld</h2>
-                        <div ng-bind-html="main.currentwysig2"></div><br><br>
-                    </div>
-
-                    <div ng-show="main.detail3">
-                        <h2>Open overheid</h2>
-                        <div ng-bind-html="main.currentwysig3"></div><br><br>
-                    </div>
-
-                    <div ng-show="main.detail4">
-                        <h2>Zelfgekozen ondersteuning</h2>
-                        <div ng-bind-html="main.currentwysig4"></div><br><br>
-                    </div>
-
-                    <div ng-show="main.detail5">
-                        <h2>Recht om uit te dagen</h2>
+                      <div ng-show="main.detail5">
+                        <h2 style="background-color: lightgray; padding:10px">Recht om uit te dagen</h2>
                         <div ng-bind-html="main.currentwysig5"></div><br><br>
                     </div>
 
                     <div ng-show="main.detail6">
-                        <h2>Recht op buurtplanning</h2>
+                        <h2 style="background-color: lightgray; padding:10px">Recht op buurtplanning</h2>
                         <div ng-bind-html="main.currentwysig6"></div><br><br>
                     </div>
+
+                     <div ng-show="main.detail3">
+                        <h2 style="background-color: lightgray; padding:10px">Open overheid</h2>
+                        <div ng-bind-html="main.currentwysig3"></div><br><br>
+                    </div>
+
+                    <div ng-show="main.detail2">
+                        <h2 style="background-color: lightgray; padding:10px">Toegang tot geld</h2>
+                        <div ng-bind-html="main.currentwysig2"></div><br><br>
+                    </div>
+
+                   
+
+                    <div ng-show="main.detail4">
+                        <h2 style="background-color: lightgray; padding:10px">Zelfgekozen ondersteuning</h2>
+                        <div ng-bind-html="main.currentwysig4"></div><br><br>
+                    </div>
+
+                  
+
+                    
 
 
                     <div ng-if="main.images.length">
@@ -111,6 +117,125 @@
         <div class="container-fluid">
             <hr>
             <div class="row">
+                 <div class="col-md-5" id="viewgem">
+                    <div class="panel">
+                        
+                        <!-- 1. include addthis_widget.js in index page with async option -->
+                        <!-- 3. add classes to anchor links to attach the link to a service -->
+                        <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
+                        <script type="text/ng-template" id="selector/demo/browserWithURL">
+                            {{option.label}}
+                            <a class="small" ng-href="{{option.url}}" ng-bind="option.url"></a>
+                        </script>
+                        <script type="text/ng-template" id="selector/demo/browserWithIcon">
+                            <img ng-src="{{option.icon}}"> {{option.label}}
+                        </script>
+                        <div class="panel-body">
+                            <h4>Zoeken op gemeente</h4>
+                            <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten"
+                                value-attr="value"></select>
+                            <h4>Filter op buurtrecht</h4>
+                            <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code"
+                                dropdown-item-template="'selector/demo/browserWithIcon'"></select>
+                            <!--<p>
+              <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
+            </p>
+            <div class="regionlist">
+              <div ng-repeat="(key,gemeente) in dummyData">
+                <div>{{key}}</div>
+                <div>{{gemeente.value | number}}</div>
+              </div>
+            </div>-->
+
+                            <div style="float:left">
+                                {{main.hovergemeente}}
+                            </div>
+                            <hr>
+                        </div>
+                        <div ng-if='main.starttekst' style='padding:20px;padding-top:0px'>
+                            <h5>{{main.starttekst}}</h5>
+                        </div>
+                        <!--<div ng-if='main.instrumentenbuurtrechten'>
+                            <table ng-table="main.tableParams" class="table" show-filter="true">
+                                <tr ng-repeat="user in $data">
+                                    <td title="'Instrumenten inzet'" filter="{ name: 'text'}" sortable="'name'">
+                                        <a ng-click="main.showInstru(user.id)">{{user.name}}</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>-->
+                        <div ng-if="main.linkieshow" style='padding:5px;padding-top:0px'>
+                            <div ng-show="main.inleiding">
+                                <h3>Inleiding</h3>
+                                <div ng-bind-html="main.currentwysig"></div><br><br>
+                            </div>
+                            <div ng-if="main.linkieshow" class="btn-group-vertical" role="group" aria-label="...">
+                                <button type="button" ng-show="main.inleiding" ng-click="main.showFullText('all')" class="btn btn-info">Toon alles</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht1" ng-click="main.showFullText(1)" class="btn btn-danger">Recht op gebouwen</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht5" ng-click="main.showFullText(5)" class="btn btn-danger">Recht om uit te dagen</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht6" ng-click="main.showFullText(6)" class="btn btn-danger">Recht op buurtplanning</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht3" ng-click="main.showFullText(3)" class="btn btn-danger">Open overheid</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht2" ng-click="main.showFullText(2)" class="btn btn-danger">Toegang tot geld</button>
+                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht4" ng-click="main.showFullText(4)" class="btn btn-danger">Zelfgekozen ondersteuning</button>
+                                
+                                
+                            </div>
+                            
+
+                            
+
+
+
+
+
+
+
+
+                            <!--<div ng-if="main.instrus.length">
+                                <h4>Instrumenten die worden ingezet:</h4>
+                                <div ng-repeat="instr in main.instrus track by $index">
+                                    <a ng-click="main.showInstru(instr.id)" href="" scroll-to="#totop" offset="0" container="html, body">{{instr.name}}</a>
+                                </div>
+                            </div>-->
+                            <div ng-if="main.images.length">
+                                <h4>Afbeeldingen</h4>
+                                <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
+                            </div>
+                            <!--<p>
+                                <div ng-show="main.textshort" style="height:350px;max-height:350px;overflow:hidden" ng-bind-html="main.currentwysig" data-ellipsis
+                                    data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
+                            </p>-->
+                            <hr>
+                            <div ng-if="main.linkieshow">
+                                <h5>Deel deze pagina:</h5>
+                                <rerender>
+                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
+                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
+                                    description: 'informatie over' + main.currentgemeente,
+                                }">
+                                        <a href class="addthis_button_facebook">Facebook</a>
+                                    </sn-addthis-toolbox>
+                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
+                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
+                                    description: 'informatie over' + main.currentgemeente,
+                                }">
+                                        <a href class="addthis_button_twitter">Twitter</a>
+                                    </sn-addthis-toolbox>
+                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
+                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
+                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
+                                    description: 'informatie over' + main.currentgemeente,
+                                }">
+                                        <a href class="addthis_button_email">Email</a>
+                                    </sn-addthis-toolbox>
+                                </rerender>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-7">
                     <div ng-show="main.instruview">
                         <div class="row" style="margin-top:20px !important">
@@ -170,19 +295,19 @@
                                                     <rerender>
                                                         <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,}">
                                                             <a href class="addthis_button_facebook">Facebook</a>
                                                         </sn-addthis-toolbox>
                                                         <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,}">
                                                             <a href class="addthis_button_twitter">Twitter</a>
                                                         </sn-addthis-toolbox>
                                                         <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,
                                                 }">
                                                             <a href class="addthis_button_email">Email</a>
@@ -218,123 +343,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5" id="viewgem">
-                    <div class="panel">
-                        
-                        <!-- 1. include addthis_widget.js in index page with async option -->
-                        <!-- 3. add classes to anchor links to attach the link to a service -->
-                        <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
-                        <script type="text/ng-template" id="selector/demo/browserWithURL">
-                            {{option.label}}
-                            <a class="small" ng-href="{{option.url}}" ng-bind="option.url"></a>
-                        </script>
-                        <script type="text/ng-template" id="selector/demo/browserWithIcon">
-                            <img ng-src="{{option.icon}}"> {{option.label}}
-                        </script>
-                        <div class="panel-body">
-                            <h4>Zoeken op gemeente</h4>
-                            <select selector change="main.onChangeFromList(newValue, oldValue)" model="main.currentgemeente" options="main.gemeenten"
-                                value-attr="value"></select>
-                            <h4>Filter op buurtrecht</h4>
-                            <select selector model="main.mappselect" change="main.onMapChange(newValue, oldValue)" options="main.mapps" value-attr="code"
-                                dropdown-item-template="'selector/demo/browserWithIcon'"></select>
-                            <!--<p>
-              <button ng-click="createDummyData()" class="btn btn-block btn-default">Test Data</button>
-            </p>
-            <div class="regionlist">
-              <div ng-repeat="(key,gemeente) in dummyData">
-                <div>{{key}}</div>
-                <div>{{gemeente.value | number}}</div>
-              </div>
-            </div>-->
-
-                            <div style="float:left">
-                                {{main.hovergemeente}}
-                            </div>
-                            <hr>
-                        </div>
-                        <div ng-if='main.starttekst' style='padding:20px;padding-top:0px'>
-                            <h5>{{main.starttekst}}</h5>
-                        </div>
-                        <!--<div ng-if='main.instrumentenbuurtrechten'>
-                            <table ng-table="main.tableParams" class="table" show-filter="true">
-                                <tr ng-repeat="user in $data">
-                                    <td title="'Instrumenten inzet'" filter="{ name: 'text'}" sortable="'name'">
-                                        <a ng-click="main.showInstru(user.id)">{{user.name}}</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>-->
-                        <div ng-if="main.linkieshow" style='padding:5px;padding-top:0px'>
-                            <div ng-show="main.inleiding">
-                                <h3>Inleiding</h3>
-                                <div ng-bind-html="main.currentwysig"></div><br><br>
-                            </div>
-                            <div ng-if="main.linkieshow" class="btn-group-vertical" role="group" aria-label="...">
-                                <button type="button" ng-show="main.inleiding" ng-click="main.showFullText('all')" class="btn btn-info">Toon alles</button>
-                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht1" ng-click="main.showFullText(1)" class="btn btn-danger">Recht op gebouwen en openbare ruimtes</button>
-                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht2" ng-click="main.showFullText(2)" class="btn btn-danger">Toegang tot geld</button>
-                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht3" ng-click="main.showFullText(3)" class="btn btn-danger">Open overheid</button>
-                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht4" ng-click="main.showFullText(4)" class="btn btn-danger">Zelfgekozen ondersteuning</button>
-                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht5" ng-click="main.showFullText(5)" class="btn btn-danger">Recht om uit te dagen</button>
-                                <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht6" ng-click="main.showFullText(6)" class="btn btn-danger">Recht op buurtplanning</button>
-                            </div>
-                            
-
-                            
-
-
-
-
-
-
-
-
-                            <!--<div ng-if="main.instrus.length">
-                                <h4>Instrumenten die worden ingezet:</h4>
-                                <div ng-repeat="instr in main.instrus track by $index">
-                                    <a ng-click="main.showInstru(instr.id)" href="" scroll-to="#totop" offset="0" container="html, body">{{instr.name}}</a>
-                                </div>
-                            </div>-->
-                            <div ng-if="main.images.length">
-                                <h4>Afbeeldingen</h4>
-                                <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
-                            </div>
-                            <!--<p>
-                                <div ng-show="main.textshort" style="height:350px;max-height:350px;overflow:hidden" ng-bind-html="main.currentwysig" data-ellipsis
-                                    data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showFullText()"></div>
-                            </p>-->
-                            <hr>
-                            <div ng-if="main.linkieshow">
-                                <h5>Deel deze pagina:</h5>
-                                <rerender>
-                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
-                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
-                                    description: 'informatie over' + main.currentgemeente,
-                                }">
-                                        <a href class="addthis_button_facebook">Facebook</a>
-                                    </sn-addthis-toolbox>
-                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
-                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
-                                    description: 'informatie over' + main.currentgemeente,
-                                }">
-                                        <a href class="addthis_button_twitter">Twitter</a>
-                                    </sn-addthis-toolbox>
-                                    <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
-                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
-                                    description: 'informatie over' + main.currentgemeente,
-                                }">
-                                        <a href class="addthis_button_email">Email</a>
-                                    </sn-addthis-toolbox>
-                                </rerender>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                </div>
+               
 
             </div>
         </div>

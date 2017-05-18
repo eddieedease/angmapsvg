@@ -44,20 +44,8 @@ angular.module('lsamapApp')
             icon: "images/smallicons/lsa.png"
         }, {
             code: 1,
-            label: "Recht op gebouwen en openbare ruimtes",
+            label: "Recht op gebouwen",
             icon: "images/smallicons/small2.png"
-        }, {
-            code: 2,
-            label: "Toegang tot geld",
-            icon: "images/smallicons/small3.png"
-        }, {
-            code: 3,
-            label: "Open Overheid",
-            icon: "images/smallicons/small5.png"
-        }, {
-            code: 4,
-            label: "Zelfgekozen ondersteuning",
-            icon: "images/smallicons/small6.png"
         }, {
             code: 5,
             label: "Recht om uit te dagen",
@@ -66,6 +54,18 @@ angular.module('lsamapApp')
             code: 6,
             label: "Recht op buurtplanning",
             icon: "images/smallicons/small1.png"
+        }, {
+            code: 3,
+            label: "Open Overheid",
+            icon: "images/smallicons/small5.png"
+        }, {
+            code: 2,
+            label: "Toegang tot geld",
+            icon: "images/smallicons/small3.png"
+        }, {
+            code: 4,
+            label: "Zelfgekozen ondersteuning",
+            icon: "images/smallicons/small6.png"
         }];
 
 
@@ -77,7 +77,7 @@ angular.module('lsamapApp')
                 this.fulllegenda = true;
                 break;
             case 1:
-                this.soortkaart = "Recht op gebouwen en openbare ruimtes";
+                this.soortkaart = "Recht op gebouwen";
                 this.fulllegenda = false;
                 break;
             case 2:
@@ -385,13 +385,13 @@ angular.module('lsamapApp')
             if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 this.notmobile = false;
                 self.mapzoom = svgPanZoom('#mapp', {
-                    controlIconsEnabled: true,
+                    controlIconsEnabled: false,
                     dblClickZoomEnabled: false,
                     mouseWheelZoomEnabled: false,
                     preventMouseEventsDefault: false,
-                    fit: true,
+                    fit: false,
                     zoomScaleSensitivity: 0.2,
-                    center: 0.1,
+                    center: 1,
                     minZoom: 0.5,
                     maxZoom: 3
                 });

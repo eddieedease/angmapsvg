@@ -423,7 +423,7 @@
                                                     </strong>
                                                 </td>
                                                 <td class="text-primary">
-                                                    30 apr 2017
+                                                    18 mei 2017
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -433,12 +433,20 @@
                         </div>
                         <div class="row">
                             <form class="form-horizontal">
-                                <fieldset>
+                               
                                     <!-- Form Name -->
                                     <!-- Text input-->
                                     <div class="form-group">
+                                        
+                                <fieldset>
                                         <label class="col-md-4 control-label" for="textinput"></label>
                                         <div class="col-md-6">
+                                             <legend>Download Database</legend>
+                                            <p>
+                                                Hier kun je een export van de gemeenten maken in .csv formaat
+                                            </p>
+                               <button type="button" ng-csv="minad.apiResp" csv-header="['Gemeente', 'Inleiding', 'ID', 'Datum','Recht op gebouwen','Toegang tot geld','Open Overheid','Zelfgekozen ondersteuning','Recht om uit te dagen','Recht op buurtplanning']" filename="LSAgemeentenkaart.csv">Export</button>
+                                            <br><br><br>
                                             <legend>Wachtwoord wijzigen</legend>
                                             <p>
                                                 Hier kun je je wachtwoord wijzigen.

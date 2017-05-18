@@ -12,8 +12,8 @@ angular.module('lsamapApp')
 
 
         // NOTE NOTE Important
-        //var nwlink = './api/';
-        var nwlink = 'http://localhost:80/lsamap/app/api/';
+        var nwlink = './api/';
+        //var nwlink = 'http://localhost:80/lsamap/app/api/';
         // instru
         var data;
         this.current = 0;
@@ -43,7 +43,7 @@ angular.module('lsamapApp')
         self.currentgemeenteid;
 
 
-        this.buurtrnames = ["Recht op gebouwen en openbare ruimtes", "Toegang tot geld", "Open Overheid", "Zelfgekozen ondersteuning", "Recht om uit te dagen", "Recht op buurtplanning"];
+        this.buurtrnames = ["Recht op gebouwen", "Toegang tot geld", "Open Overheid", "Zelfgekozen ondersteuning", "Recht om uit te dagen", "Recht op buurtplanning"];
 
         self.body = "<div>  </div>"; // this is important for tinymce. without content, the error does not occur
         // for linkin
