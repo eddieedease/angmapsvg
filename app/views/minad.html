@@ -74,7 +74,7 @@
                                         </div>
                                         <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea>
                                         <hr>-->
-                                        <div class="panel-heading">Buurtrechten toewijzen</div>
+                                        <div class="panel-heading">Buurtrechten toewijzen aan gemeente</div>
                                         <div class="panel-body">
                                             <div class="checkbox" ng-repeat="(checkboxx,enabled) in minad.brechtcheckboxes">
                                                 <label>
@@ -83,6 +83,8 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="panel-heading">Inleidingtekst:</div>
+                                        <div class="panel-body"> <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModel"></textarea></div>
                                         <div>
                                             <button class="btn btn-primary center-block" type="submit" ng-click="minad.updateGemeenten()">Opslaan</button>
                                         </div>

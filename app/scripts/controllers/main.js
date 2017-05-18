@@ -35,6 +35,8 @@ angular.module('lsamapApp')
         this.detail5 = false;
         this.detail6 = false;
 
+        this.inleiding = false;
+
 
         this.mapps = [{
             code: 0,
@@ -503,6 +505,7 @@ angular.module('lsamapApp')
                     Buurtrecht5: false,
                     Buurtrecht6: false
                 };
+                self.inleiding = false;
                 // TODO check the 'name' of gemeenteagainst api, if it matches, set variables
                 for (var i = 0; i < self.apiResp.length; i++) {
                     if (self.apiResp[i].name === self.currentgemeente) {
@@ -510,6 +513,7 @@ angular.module('lsamapApp')
                         // TODO TODO NOTE NOTE because super not efficient
                         self.images = [];
                         self.instrus = [];
+                        self.inleiding = true;
 
                         console.log(self.apiResp[i]);
                         var wysigsce = self.apiResp[i].wysig;
@@ -655,12 +659,29 @@ angular.module('lsamapApp')
 
             switch (_whut) {
                 case 'all':
-                    self.detail1 = true;
-                    self.detail2 = true;
-                    self.detail3 = true;
-                    self.detail4 = true;
-                    self.detail5 = true;
-                    self.detail6 = true;
+
+                    if (self.brechtcheckboxes.Buurtrecht1){
+                            self.detail1 = true;
+                    }
+
+                    if (self.brechtcheckboxes.Buurtrecht2){
+                            self.detail2 = true;
+                    }
+                    if (self.brechtcheckboxes.Buurtrecht3){
+                            self.detail3 = true;
+                    }
+                    if (self.brechtcheckboxes.Buurtrecht4){
+                            self.detail4 = true;
+                    }
+                    if (self.brechtcheckboxes.Buurtrecht5){
+                            self.detail5 = true;
+                    }
+                    if (self.brechtcheckboxes.Buurtrecht6){
+                            self.detail6 = true;
+                    }
+                    
+
+
                     break;
                 case 1:
                     self.detail1 = true;

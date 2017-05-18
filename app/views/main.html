@@ -12,6 +12,10 @@
                 </div>
                 <div class="modal-body">
 
+                    <div ng-show="main.inleiding">
+                        <h3>Inleiding</h3>
+                        <div ng-bind-html="main.currentwysig"></div><br><br>
+                    </div>
 
                     <div ng-show="main.detail1">
                         <h2>Recht op gebouwen en openbare ruimtes</h2>
@@ -47,25 +51,27 @@
                         <h4>Afbeeldingen</h4>
                         <ng-image-gallery images="main.images" thumbnails="true" inline="false" img-bubbles="true" bg-close="true" bubbles="true"></ng-image-gallery>
                     </div>
+
+                    <div ng-show="main.inleiding">
                     <h5>Delen:</h5>
                     <div class="attachment-block clearfix">
                         <div class="attachment-pushed">
                             <rerender>
                                 <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' + main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,}">
                                     <a href class="addthis_button_facebook">Facebook</a>
                                 </sn-addthis-toolbox>
                                 <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,}">
                                     <a href class="addthis_button_twitter">Twitter</a>
                                 </sn-addthis-toolbox>
                                 <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                                     description: 'informatie over' + main.currentgemeente,
                                                 }">
                                     <a href class="addthis_button_email">Email</a>
@@ -73,6 +79,7 @@
                             </rerender>
                         </div>
                     </div>
+                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
@@ -213,9 +220,7 @@
                 </div>
                 <div class="col-md-5" id="viewgem">
                     <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Info</h3>
-                        </div>
+                        
                         <!-- 1. include addthis_widget.js in index page with async option -->
                         <!-- 3. add classes to anchor links to attach the link to a service -->
                         <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
@@ -260,12 +265,13 @@
                                 </tr>
                             </table>
                         </div>-->
-                        <div style='padding:20px;padding-top:0px'>
-                            <h2>{{main.curcur}}:</h2>
-
-
-                            <div class="btn-group-vertical" role="group" aria-label="...">
-                                <button type="button" ng-click="main.showFullText('all')" class="btn btn-info">Toon alles</button>
+                        <div ng-if="main.linkieshow" style='padding:5px;padding-top:0px'>
+                            <div ng-show="main.inleiding">
+                                <h3>Inleiding</h3>
+                                <div ng-bind-html="main.currentwysig"></div><br><br>
+                            </div>
+                            <div ng-if="main.linkieshow" class="btn-group-vertical" role="group" aria-label="...">
+                                <button type="button" ng-show="main.inleiding" ng-click="main.showFullText('all')" class="btn btn-info">Toon alles</button>
                                 <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht1" ng-click="main.showFullText(1)" class="btn btn-danger">Recht op gebouwen en openbare ruimtes</button>
                                 <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht2" ng-click="main.showFullText(2)" class="btn btn-danger">Toegang tot geld</button>
                                 <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht3" ng-click="main.showFullText(3)" class="btn btn-danger">Open overheid</button>
@@ -273,6 +279,9 @@
                                 <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht5" ng-click="main.showFullText(5)" class="btn btn-danger">Recht om uit te dagen</button>
                                 <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht6" ng-click="main.showFullText(6)" class="btn btn-danger">Recht op buurtplanning</button>
                             </div>
+                            
+
+                            
 
 
 
@@ -301,21 +310,21 @@
                                 <rerender>
                                     <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
                                         <a href class="addthis_button_facebook">Facebook</a>
                                     </sn-addthis-toolbox>
                                     <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
                                         <a href class="addthis_button_twitter">Twitter</a>
                                     </sn-addthis-toolbox>
                                     <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
                                     title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                    url: 'http://edtestic.nl#?gemeente=' + main.currentgemeente,
+                                    url: 'https://lsa.stagingsite.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
                                     description: 'informatie over' + main.currentgemeente,
                                 }">
                                         <a href class="addthis_button_email">Email</a>

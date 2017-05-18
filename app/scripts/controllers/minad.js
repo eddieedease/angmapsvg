@@ -216,6 +216,12 @@ angular.module('lsamapApp')
         this.onChangeFromList = function (newValue, oldValue) {
             if (newValue) {
                 this.tinymceModel = "";
+                this.tinymceModel1 = "";
+                this.tinymceModel2 = "";
+                this.tinymceModel3 = "";
+                this.tinymceModel4 = "";
+                this.tinymceModel5 = "";
+                this.tinymceModel6 = "";
                 this.gemeenteactive = false;
                 $scope.currentgemeente = newValue.value;
                 self.currentgemeente = newValue.value;
