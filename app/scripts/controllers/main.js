@@ -34,8 +34,11 @@ angular.module('lsamapApp')
         this.detail4 = false;
         this.detail5 = false;
         this.detail6 = false;
-
+        // inleiding per buurtrecht
         this.inleiding = false;
+
+        //main inleiding
+        this.mainInleiding = false;
 
 
         this.mapps = [{
@@ -117,6 +120,9 @@ angular.module('lsamapApp')
             self.instrumenten = dataResponse.data[1];
             self.instrumentenbuurtrechten = [];
             self.uploads = dataResponse.data[2];
+
+            self.about = dataResponse.data[3];
+            self.inLeiding = self.about[0].text7;
             //self.apiResp = "chck";
 
             // TODO assign the random values and last editted set everything up
@@ -200,7 +206,9 @@ angular.module('lsamapApp')
             if ($routeParams.gemeente !== undefined) {
                 console.log("before" + self.currentgemeente);
                 self.currentgemeente = $routeParams.gemeente;
-                console.log("after" + self.currentgemeente);
+                console.log("after " + self.currentgemeente);
+                self.linkieshow = true;
+                self.inleiding = true;
 
                 //console.log("Hoe vaak!");
                 self.starttekst = "";
@@ -227,7 +235,7 @@ angular.module('lsamapApp')
                 for (var i = 0; i < self.apiResp.length; i++) {
 
                     if (self.apiResp[i].name === self.currentgemeente) {
-
+                        console.log('HITSSSS');
                         self.currentgemeente = self.apiResp[i].name;
                         $scope.currentgemeente = self.apiResp[i].name;
                         self.curcur = self.apiResp[i].name;
@@ -318,6 +326,8 @@ angular.module('lsamapApp')
             }
 
         });
+
+        
 
 
 
@@ -424,7 +434,9 @@ angular.module('lsamapApp')
         // NOTE FUNCTIONS FROM SELF/CONTROLLER
 
 
-
+        this.showInleiding = function() {
+            self.mainInleiding = !self.mainInleiding;
+        }
 
 
         this.setMap = function (whichmap) {
@@ -574,10 +586,12 @@ angular.module('lsamapApp')
                           }*/
                         for (var z = 0; z < self.uploads.length; z++) {
                             if (self.uploads[z].extrainfo === self.currentgemeente) {
+                                console.log(object);
                                 var object = {
                                     title: self.uploads[z].description,
                                     thumbUrl: self.uploads[z].location,
-                                    url: self.uploads[z].location
+                                    url: self.uploads[z].location,
+                                    id: z
                                 }
                                 self.images.push(object);
                             }

@@ -12,8 +12,8 @@ angular.module('lsamapApp')
 
 
         // NOTE NOTE Important
-        var nwlink = './api/';
-        //var nwlink = 'http://localhost:80/lsamap/app/api/';
+        //var nwlink = './api/';
+        var nwlink = 'http://localhost:80/lsamap/app/api/';
         // instru
         var data;
         this.current = 0;
@@ -28,6 +28,7 @@ angular.module('lsamapApp')
         this.tinymceModel4 = "";
         this.tinymceModel5 = "";
         this.tinymceModel6 = "";
+        this.tinymceModelInleiding = "";
         this.editinstru = false;
         this.brechtcheckboxes = {
             Buurtrecht1: false,
@@ -110,6 +111,7 @@ angular.module('lsamapApp')
                 self.apiResp = dataResponse.data[0];
                 self.uploads = dataResponse.data[2];
                 self.about = dataResponse.data[3];
+                self.tinymceModelInleiding = self.about[0].text7;
 
                 // some hocus pocus to fill the table for instruments // WORKS
                 data = dataResponse.data[1];
@@ -377,25 +379,27 @@ angular.module('lsamapApp')
         // NOTE NOTE NOTE
         // NOTE NOTE NOTE
         // NOTE NOTE NOTE Voorbeeldfunctie
-        this.voorbeeldfunc = function () {
+        this.editInleiding = function () {
+           
+
+
+
             this.myPromise = $http({
                 method: "post",
                 url: nwlink + 'chng.php',
                 // actions and parameters
                 data: {
-                    action: "newgemeente",
-                    name: self.currentgemeente,
-                    wysig: self.tinymceModel,
-                    buurtrechten: buurtrechtstring
+                    token: apis.pwd,
+                    action: "inleiding",
+                    wysig: self.tinymceModelInleiding
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
-            });
-            /* Check whether the HTTP Request is Successfull or not. */
-            this.myPromise.then(function (data) {
-                //console.log(data);
-            });
+            }).then(function (resp) {
+                console.log(resp);
+                $route.reload();
+            })
         }
 
 
@@ -429,6 +433,10 @@ angular.module('lsamapApp')
                 case 6:
                     self.currentabout = " Recht op buurtplanning";
                     self.abouttinymceModel = self.about[0].text6;
+                    break;
+                    case 7:
+                    self.currentabout = "Inleiding";
+                    self.abouttinymceModel = self.about[0].text7;
                     break;
             }
 
@@ -741,7 +749,9 @@ angular.module('lsamapApp')
             });
             /* Check whether the HTTP Request is Successfull or not. */
             this.myPromise.then(function (data) {
+                
                 self.getgetget();
+                
             });
         }
 

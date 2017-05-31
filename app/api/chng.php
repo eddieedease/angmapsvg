@@ -79,6 +79,9 @@ if ($tokenm5 == $ww) {
       case 'editbasis3': //TODO
           $sql = "UPDATE api SET ww = '$tokennew' WHERE id = 1";
           break;
+     case 'inleiding': //TODO
+          $sql = "UPDATE about SET text7 = '$wysig' WHERE id = 1";
+          break;
       case 'editabout': //TODO WONT WORK :()
                 if ($id == 1) {
                    $abouta = 'text1'; 

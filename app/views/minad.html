@@ -364,7 +364,7 @@
                     <div class="tab-pane" id="tab4">
                         <div class="row">
                             <div class="col-md-4">
-                                <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="images/lsalogo.png" data-original-title="Usuario">
+                                <img alt="" style="width:400px;" title="" class="img-circle img-thumbnail isTooltip" src="images/lsalogo.png" data-original-title="Usuario">
                             </div>
                             <div class="col-md-6">
                                 <strong>Informatie</strong><br>
@@ -379,7 +379,7 @@
                                                     </strong>
                                                 </td>
                                                 <td class="text-primary">
-                                                    EDease_7bc
+                                                    CubeStick_7bc
                                                 </td>
                                             </tr>
                                             <tr>
@@ -393,17 +393,7 @@
                                                     Admin
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <strong>
-                                                        <span class="glyphicon glyphicon-envelope text-primary"></span>
-                                                        Email adres contactformulier:
-                                                    </strong>
-                                                </td>
-                                                <td class="text-primary">
-                                                    lsa@lsabewoners.nl
-                                                </td>
-                                            </tr>
+        
                                             <tr>
                                                 <td>
                                                     <strong>
@@ -423,7 +413,7 @@
                                                     </strong>
                                                 </td>
                                                 <td class="text-primary">
-                                                    18 mei 2017
+                                                    31 mei 2017
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -432,20 +422,27 @@
                             </div>
                         </div>
                         <div class="row">
+
+                            
+    
                             <form class="form-horizontal">
+                                 
                                
                                     <!-- Form Name -->
                                     <!-- Text input-->
                                     <div class="form-group">
                                         
-                                <fieldset>
+                                
                                         <label class="col-md-4 control-label" for="textinput"></label>
                                         <div class="col-md-6">
+                                        <legend>Wijzig inleiding tekst</legend>
+                                <textarea ui-tinymce="minad.tinymceOptions" ng-model="minad.tinymceModelInleiding"></textarea><br><button ng-click="minad.editInleiding()" class="btn btn-success">Inleiding opslaan</button> <br><br>
+                              
                                              <legend>Download Database</legend>
                                             <p>
                                                 Hier kun je een export van de gemeenten maken in .csv formaat
                                             </p>
-                               <button type="button" ng-csv="minad.apiResp" csv-header="['Gemeente', 'Inleiding', 'ID', 'Datum','Recht op gebouwen','Toegang tot geld','Open Overheid','Zelfgekozen ondersteuning','Recht om uit te dagen','Recht op buurtplanning']" filename="LSAgemeentenkaart.csv">Export</button>
+                               <button type="button" ng-csv="minad.apiResp" field-separator="|" csv-header="['Gemeente', 'Inleiding', 'buurtrechtlink', 'Datum gewijzigd', 'ID','Recht op gebouwen','Toegang tot geld','Open Overheid','Zelfgekozen ondersteuning','Recht om uit te dagen','Recht op buurtplanning']" filename="LSAgemeentenkaart.csv">Export</button>
                                             <br><br><br>
                                             <legend>Wachtwoord wijzigen</legend>
                                             <p>
@@ -473,7 +470,7 @@
                                             <button ng-click="minad.editBasis3()" id="submitButton" name="submitButton" class="btn btn-success">Opslaan</button>                                            {{minad.pwchanged}}
                                         </div>
                                     </div>
-                                </fieldset>
+                               
                             </form>
                         </div>
                     </div>
