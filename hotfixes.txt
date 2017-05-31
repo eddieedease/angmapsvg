@@ -10,6 +10,7 @@ replace
   '<h3 ng-if="activeImg == image" style="color:white">{{image.title}}</h3>' +
 '</div>'+
 
+uhmum;
 
 = adding title to the modal window
 
