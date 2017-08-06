@@ -109,7 +109,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <hr>
+            
             </div>
         </div>
     </div>
@@ -117,7 +117,7 @@
         <div class="container">
             <br>
             <h6>Over deze kaart</h6>
-            <div ng-show="!main.mainInleiding" style="max-height:75px" ng-bind-html="main.inLeiding" data-ellipsis
+            <div ng-show="!main.mainInleiding" style="max-height:75px; overflow: hidden" ng-bind-html="main.inLeiding" data-ellipsis
                 data-ellipsis-append="<a>Lees meer</a>" data-ellipsis-append-click="main.showInleiding()"></div>
             <div ng-show="main.mainInleiding" ng-bind-html="main.inLeiding"></div>
             <a ng-click="main.showInleiding()"  ng-show="main.mainInleiding">Toon minder</a>

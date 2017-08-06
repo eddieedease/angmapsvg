@@ -12,8 +12,8 @@ angular.module('lsamapApp')
 
 
         // NOTE NOTE Important
-        //var nwlink = './api/';
-        var nwlink = 'http://localhost:80/lsamap/app/api/';
+        var nwlink = './api/';
+        //var nwlink = 'http://localhost:80/lsamap/app/api/';
         // instru
         var data;
         this.current = 0;

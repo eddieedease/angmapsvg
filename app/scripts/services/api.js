@@ -12,8 +12,8 @@ angular.module('lsamapApp')
         // AngularJS will instantiate a singleton by calling "new" on this function
         var self = this;
         // NOTE NOTE Important
-        //var nwlink = './api/';
-        var nwlink = 'http://localhost:80/lsamap/app/api/';
+        var nwlink = './api/';
+        //var nwlink = 'http://localhost:80/lsamap/app/api/';
 
         // example function
         this.getMapData = function () {
