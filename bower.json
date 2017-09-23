@@ -10,6 +10,7 @@
     "angular-sanitize": "1.4.0",
     "angular-touch": "1.4.0",
     "svg-pan-zoom": "ariutta/svg-pan-zoom#^3.2.9",
+    "angular-aria": "1.5.8",
     "angular-selector": "1.4.0",
     "angular-md5": "0.1.10",
     "angular-ui-tinymce": "^0.0.16",

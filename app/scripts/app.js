@@ -314,4 +314,10 @@ var app = angular
 
     app.config(['$locationProvider', function($locationProvider) {
   $locationProvider.hashPrefix('');
+  window.onload = function() {
+    //  alert(navigator.userAgent);
+      if (navigator.userAgent.indexOf("Firefox") > 0) {
+          alert("U bekijkt via FireFox deze interactieve kaart. Helaas ondersteund deze browser dit niet geweldig. Gebruik liever een browser als 'Chrome' of 'Edge' voor een optimale weergave van de kaart. Er wordt aan gewerkt om dit probleem te verhelpen.");
+      }
+  }
 }]);

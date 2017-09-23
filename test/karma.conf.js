@@ -31,6 +31,7 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/svg-pan-zoom/dist/svg-pan-zoom.js',
+      'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-selector/dist/angular-selector.js',
       'bower_components/angular-md5/angular-md5.js',
       'bower_components/tinymce-dist/tinymce.js',
