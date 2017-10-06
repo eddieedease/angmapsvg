@@ -8,15 +8,15 @@
  * Service in the lsamapApp.
  */
 angular.module('lsamapApp')
-    .service('apis', function ($http, $timeout) {
+    .service('apis', function($http, $timeout) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         var self = this;
         // NOTE NOTE Important
-        //var nwlink = './api/';
-        var nwlink = 'http://localhost:80/angmapsvg/app/api/';
+        var nwlink = './api/';
+        //var nwlink = 'http://localhost:80/angmapsvg/app/api/';
 
         // example function
-        this.getMapData = function () {
+        this.getMapData = function() {
             return [{
                 id: "1",
                 name: "Iemand",
@@ -35,7 +35,7 @@ angular.module('lsamapApp')
         this.currentMap = 0;
         this.xzy = false;
         // This one gets called from the controller api call to update the service just before rendering the map directive
-        this.setSerGemeenten = function (serser) {
+        this.setSerGemeenten = function(serser) {
             //this.sergemeenten =
             // WORKS
             self.serGemeenten = serser;
@@ -45,7 +45,7 @@ angular.module('lsamapApp')
         // Here are the API CALLS - Change ´nwlink' when needed
 
         //var nwlink = 'http://localhost:80/chaletrenesse/app/api/';
-        this.getApi = function () {
+        this.getApi = function() {
             // $http() returns a $promise that we can add handlers with .then()
             return $http({
                 method: 'GET',
@@ -55,14 +55,14 @@ angular.module('lsamapApp')
                     woobar: new Date().getTime()
                 },
                 cache: false
-            }).then(function (result) {
+            }).then(function(result) {
                 //$scope.user = result;
                 return result;
             })
         };
 
         // authenticatin' NOTE NOTE // works // store password in variable
-        this.getIpa = function () {
+        this.getIpa = function() {
             // $http() returns a $promise that we can add handlers with .then()
             return this.myPromise = $http({
                 method: "post",

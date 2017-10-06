@@ -1,47 +1,49 @@
 {
-  "name": "lsamap",
-  "version": "0.0.0",
-  "dependencies": {
-    "angular": "1.4.0",
-    "bootstrap-sass-official": "^3.2.0",
-    "angular-cookies": "1.4.0",
-    "angular-resource": "1.4.0",
-    "angular-route": "1.4.0",
-    "angular-sanitize": "1.4.0",
-    "angular-touch": "1.4.0",
-    "svg-pan-zoom": "ariutta/svg-pan-zoom#^3.2.9",
-    "angular-aria": "1.5.8",
-    "angular-selector": "1.4.0",
-    "angular-md5": "0.1.10",
-    "angular-ui-tinymce": "^0.0.16",
-    "tinymce-dist": "4.3.12",
-    "angular-loading-bar": "^0.9.0",
-    "angular-svg-round-progressbar": "^0.4.8",
-    "ng-table": "1.0.0",
-    "ng-image-gallery": "^2.1.2",
-    "ngSmoothScroll": "2.0.0",
-    "ngToast": "ngtoast#^2.0.0",
-    "ng-file-upload": "12.2.12",
-    "angular-scrollto": "0.1.4",
-    "angular-ellipsis": "0.1.7",
-    "angular-addthis": "0.2.4",
-    "ng-csv": "^0.3.6"
-  },
-  "devDependencies": {
-    "angular-mocks": "1.4.0"
-  },
-  "appPath": "app",
-  "moduleName": "lsamapApp",
-  "overrides": {
-    "bootstrap": {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
+    "name": "lsamap",
+    "version": "0.0.0",
+    "dependencies": {
+        "angular": "1.4.14",
+        "bootstrap-sass-official": "^3.2.0",
+        "angular-cookies": "1.4.14",
+        "angular-resource": "1.4.14",
+        "angular-route": "1.4.14",
+        "angular-sanitize": "1.4.14",
+        "angular-animate": "1.4.14",
+        "angular-touch": "1.4.14",
+        "svg-pan-zoom": "ariutta/svg-pan-zoom#^3.2.9",
+        "angular-aria": "1.4.14",
+        "angular-selector": "1.4.0",
+        "angular-md5": "0.1.10",
+        "angular-ui-tinymce": "^0.0.16",
+        "tinymce-dist": "4.3.12",
+        "angular-loading-bar": "^0.9.0",
+        "angular-svg-round-progressbar": "^0.4.8",
+        "ng-table": "1.0.0",
+        "ng-image-gallery": "^2.1.2",
+        "ngSmoothScroll": "2.0.0",
+        "ngToast": "ngtoast#^2.0.0",
+        "ng-file-upload": "12.2.12",
+        "angular-scrollto": "0.1.4",
+        "angular-ellipsis": "0.1.7",
+        "angular-addthis": "0.2.4",
+        "ng-csv": "^0.3.6"
+    },
+    "devDependencies": {
+        "angular-mocks": "1.4.14"
+    },
+    "appPath": "app",
+    "moduleName": "lsamapApp",
+    "overrides": {
+        "bootstrap": {
+            "main": [
+                "less/bootstrap.less",
+                "dist/css/bootstrap.css",
+                "dist/js/bootstrap.js"
+            ]
+        }
+    },
+    "resolutions": {
+        "angular": "~1",
+        "angular-animate": "1.4.14"
     }
-  },
-  "resolutions": {
-    "angular": "~1"
-  }
 }
