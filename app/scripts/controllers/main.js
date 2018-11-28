@@ -19,6 +19,8 @@ angular.module('lsamapApp')
         this.max = 410;
         this.loadingnow = true;
         this.notmobile = true;
+
+        this.isnotff = false;
         this.datesArray = [];
         this.loadingtext = "Laden..";
         this.starttekst = "Klik op een gemeente/Gebruik de zoekbalk hierboven voor verdere informatie.";
@@ -409,18 +411,23 @@ angular.module('lsamapApp')
             } else {
                 this.notmobile = null;
                 console.log("checkkk");
-                self.mapzoom = svgPanZoom('#mapp', {
-                    controlIconsEnabled: true,
-                    dblClickZoomEnabled: false,
-                    mouseWheelZoomEnabled: false,
-                    preventMouseEventsDefault: false,
-                    fit: false,
-                    zoomScaleSensitivity: 0.2,
-                    center: 1,
-                    minZoom: 0.5,
-                    maxZoom: 3
-                });
-                self.mapzoom.zoom(1.1);
+                if (navigator.userAgent.indexOf("Firefox") > 0) {
+                    self.isnotff = true;
+                } else {
+                    self.mapzoom = svgPanZoom('#mapp', {
+                        controlIconsEnabled: true,
+                        dblClickZoomEnabled: false,
+                        mouseWheelZoomEnabled: false,
+                        preventMouseEventsDefault: false,
+                        fit: false,
+                        zoomScaleSensitivity: 0.2,
+                        center: 1,
+                        minZoom: 0.5,
+                        maxZoom: 3
+                    });
+                    self.mapzoom.zoom(1.1);
+                }
+               
             }
         }
 

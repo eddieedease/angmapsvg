@@ -17,6 +17,10 @@ small {
     color: #FFF !important;
 }
 
+svg use svg { 
+    fill: inherit !important;
+}
+
 em {
     color: #000000 !important;
     text-shadow: 1px 1px #FFF, 2px 2px #FFF;

@@ -13,7 +13,7 @@ angular.module('lsamapApp')
 
         // NOTE NOTE Important
         var nwlink = './api/';
-        //var nwlink = 'http://localhost:80/angmapsvg/app/api/';
+        // var nwlink = 'http://localhost:80/angmapsvg/app/api/';
         // instru
         var data;
         this.current = 0;

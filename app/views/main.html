@@ -59,32 +59,7 @@
                     </div>
 
                     <div ng-show="main.inleiding">
-                    <h5>Delen:</h5>
-                    <div class="attachment-block clearfix">
-                        <div class="attachment-pushed">
-                            <!-- <rerender>
-                                <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
-                                                    title: 'Buurtrechten ' + main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'https://lsa.stagingsite.nl/lsakaart#?gemeente=' + main.currentgemeente,
-                                                    description: 'informatie over' + main.currentgemeente,}">
-                                    <a href class="addthis_button_facebook">Facebook</a>
-                                </sn-addthis-toolbox>
-                                <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
-                                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'https://cubestick.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
-                                                    description: 'informatie over' + main.currentgemeente,}">
-                                    <a href class="addthis_button_twitter">Twitter</a>
-                                </sn-addthis-toolbox>
-                                <sn-addthis-toolbox class="addthis_custom_sharing" data-share="{
-                                                    title: 'Buurtrechten ' +main.currentgemeente + ' in kaart. Door LSA-Bewoners',
-                                                    url: 'https://cubestick.nl/buurtkaart_lsa#?gemeente=' + main.currentgemeente,
-                                                    description: 'informatie over' + main.currentgemeente,
-                                                }">
-                                    <a href class="addthis_button_email">Email</a>
-                                </sn-addthis-toolbox>
-                            </rerender> -->
-                        </div>
-                    </div>
+                    
                      </div>
                 </div>
                 <div class="modal-footer">
@@ -177,10 +152,11 @@
                         </div>-->
                         <div ng-if="main.linkieshow" style='padding:5px;padding-top:0px'>
                             <div ng-show="main.inleiding">
+                                <h2>{{main.currentgemeente}}</h2>
                                 <h3>Inleiding</h3>
                                 <div ng-bind-html="main.currentwysig"></div><br><br>
                             </div>
-                            <div ng-if="main.linkieshow" class="btn-group-vertical" role="group" aria-label="...">
+                            <div ng-if="main.linkieshow" class="btn-group-vertical btn-block text-center" role="group" aria-label="...">
                                 <button type="button" ng-show="main.inleiding" ng-click="main.showFullText('all')" class="btn btn-info">Toon alles</button>
                                 <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht1" ng-click="main.showFullText(1)" class="btn btn-danger">Recht op gebouwen</button>
                                 <button type="button" ng-show="main.brechtcheckboxes.Buurtrecht5" ng-click="main.showFullText(5)" class="btn btn-danger">Recht om uit te dagen</button>
@@ -337,20 +313,23 @@
                     </div>
                     <div ng-show="!main.loadingnow">
                         <div ng-if="main.apiResp">
-                            <p>Ingeklikt houden voor slepen</p>
+                            <p ng-show="!main.isnotff">Ingeklikt houden voor slepen</p>
                             <img ng-show="main.fulllegenda" src="images/legendafull.png" style="position:absolute" class="img-responsive" alt="legendafull">
                             <img ng-show="!main.fulllegenda" src="images/legendapart.png" style="position:absolute" class="img-responsive" alt="legendafull">
 
-                            <div style="margin-top: 100px;position:absolute" class="btn-group" role="group" aria-label="...">
+                            <div ng-show="!main.isnotff" style="margin-top: 100px;position:absolute" class="btn-group" role="group" aria-label="...">
                                 <div ng-if="main.notmobile === true">
                                     <p>Zoom:</p>
                                     <button ng-click="main.zoomIn()" type="button" style="width:30px;" class="btn btn-primary btn-sm"> + </button>
                                     <button ng-click="main.zoomOut()" type="button" style="margin-left:20px;width:30px" class="btn btn-primary btn-sm"> - </button>
                                 </div>
                             </div>
+                            <div ng-show="!main.loadingnow">
+                                <div ng-if="main.apiResp">
                             <object>
                               <div svg-map scroll-to="#viewgem"></div>
                             </object>
+                        </div></div>
                         </div>
                     </div>
                 </div>
